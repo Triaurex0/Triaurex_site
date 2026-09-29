@@ -1,0 +1,24 @@
+# Node / Vite
+node_modules/
+client/node_modules/
+dist/
+client/dist/
+*.log
+
+# Python / Flask
+venv/
+server/venv/
+__pycache__/
+server/__pycache__/
+*.py[cod]
+*$py.class
+*.db
+*.sqlite3
+
+# Environment & IDE
+.env
+.env.local
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
