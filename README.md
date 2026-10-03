@@ -198,6 +198,7 @@ The optimized bundle will be generated in `client/dist/`.
 - **Email**: [triaurex0@gmail.com](mailto:triaurex0@gmail.com)
 - **Phone**: [+91 80157 12990](tel:+918015712990)
 - **Location**: Tiruchirappalli, Tamil Nadu, India
+- **LinkedIn**: [linkedin.com/company/triaurex](https://www.linkedin.com/company/triaurex/)
 - **GitHub**: [github.com](https://github.com)
 
 ---
