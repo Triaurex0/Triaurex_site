@@ -153,6 +153,7 @@ button {
   margin-bottom: 18px;
   background: linear-gradient(180deg, #ffffff 40%, #94a3b8 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -167,6 +168,7 @@ button {
 .text-gradient {
   background: var(--gradient-cyan-blue);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -618,6 +620,7 @@ button {
   margin-bottom: 6px;
   background: linear-gradient(180deg, #ffffff 30%, #38bdf8 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
