@@ -29,17 +29,10 @@ export default function Services({ services }) {
     },
     {
       id: "mobile-dev",
-      title: "Mobile App Development",
+      title: "Android App Development",
       icon: "Smartphone",
-      description: "Cross-platform mobile apps with native fluid feel, offline persistence, and seamless push ecosystem integration.",
-      deliverables: ["iOS & Android Engineering", "React Native & Flutter Architecture", "App Store Optimization (ASO)", "Realtime Sync & Device Hardware APIs"]
-    },
-    {
-      id: "ai-solutions",
-      title: "AI & Automation",
-      icon: "Cpu",
-      description: "Next-generation generative AI workflows, intelligent chatbots, and automated pipelines that cut operational overhead.",
-      deliverables: ["Custom LLM Agent Pipelines", "Automated Business Workflows", "Predictive Analytics & Dashboards", "Intelligent Search & Vector RAG"]
+      description: "Native and high-performance Android mobile apps with fluid UI, offline persistence, and seamless push ecosystem integration.",
+      deliverables: ["Native Android Engineering", "Jetpack Compose & Architecture", "Google Play Store Optimization", "Realtime Sync & Device Hardware APIs"]
     },
     {
       id: "branding",
@@ -58,10 +51,6 @@ export default function Services({ services }) {
         
         {/* Section Header */}
         <div className="section-header">
-          <div className="section-pill">
-            <Sparkles size={14} />
-            <span>What We Do</span>
-          </div>
           <h2 className="section-title">Services engineered for impact</h2>
           <p className="section-subtitle">
             End-to-end digital solutions that propel your business forward — with precision, velocity, and care.
@@ -120,7 +109,6 @@ export default function Services({ services }) {
                 {React.createElement(iconMap[selectedService.icon] || Code, { size: 28 })}
               </div>
               <div>
-                <span className="section-pill" style={{ marginBottom: 4 }}>Full Service Scope</span>
                 <h3 style={{ fontSize: '1.8rem', color: '#fff' }}>{selectedService.title}</h3>
               </div>
             </div>

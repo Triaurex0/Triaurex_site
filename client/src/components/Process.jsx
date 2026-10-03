@@ -65,10 +65,6 @@ export default function Process({ processSteps }) {
         
         {/* Section Header */}
         <div className="section-header">
-          <div className="section-pill">
-            <GitBranch size={14} />
-            <span>Methodology</span>
-          </div>
           <h2 className="section-title">A proven, transparent process</h2>
           <p className="section-subtitle">
             Step-by-step methodology that guides your idea from concept to launch and beyond.

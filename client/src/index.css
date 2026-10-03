@@ -153,6 +153,7 @@ button {
   margin-bottom: 18px;
   background: linear-gradient(180deg, #ffffff 40%, #94a3b8 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -167,6 +168,7 @@ button {
 .text-gradient {
   background: var(--gradient-cyan-blue);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -263,12 +265,25 @@ button {
 .nav-logo {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
   font-family: var(--font-heading);
-  font-size: 1.45rem;
+  font-size: 1.25rem;
   font-weight: 800;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   color: #ffffff;
+}
+
+.logo-brand-img {
+  height: 25px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(0, 112, 243, 0.4));
+  transition: transform var(--transition-fast), filter var(--transition-fast);
+}
+
+.nav-logo:hover .logo-brand-img {
+  transform: scale(1.06);
+  filter: drop-shadow(0 0 14px rgba(0, 240, 255, 0.65));
 }
 
 .logo-icon-wrap {
@@ -618,6 +633,7 @@ button {
   margin-bottom: 6px;
   background: linear-gradient(180deg, #ffffff 30%, #38bdf8 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 

@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { Layers, Server, Terminal, Cpu, Box, PenTool, Cloud, Sparkles, Code2 } from 'lucide-react';
+import { Layers, Server, Terminal, Cpu, PenTool, Database, Palette } from 'lucide-react';
 
 const iconTechMap = {
   Layers: Layers,
   Server: Server,
   Terminal: Terminal,
   Cpu: Cpu,
-  Box: Box,
   PenTool: PenTool,
-  Cloud: Cloud,
-  Sparkles: Sparkles,
+  Database: Database,
+  Palette: Palette,
 };
 
 export default function Technologies({ techList }) {
@@ -17,18 +16,19 @@ export default function Technologies({ techList }) {
 
   const defaultTech = [
     { name: "React", category: "Frontend", icon: "Layers", description: "Component-driven reactive UI architecture with modern hooks" },
+    { name: "Django", category: "Frontend", icon: "Layers", description: "Dynamic web templates, forms, and responsive frontend views" },
     { name: "Flask", category: "Backend", icon: "Server", description: "Lightweight WSGI Python web framework powering REST APIs" },
     { name: "Python", category: "Backend", icon: "Terminal", description: "High-performance data engineering and backend logic" },
-    { name: "Node.js", category: "Runtime", icon: "Cpu", description: "Asynchronous runtime for fast tooling and build chains" },
-    { name: "Docker", category: "DevOps", icon: "Box", description: "Containerized environments for zero-drift deployments" },
-    { name: "Figma", category: "Design", icon: "PenTool", description: "Collaborative design systems and motion prototyping" },
-    { name: "AWS Cloud", category: "DevOps", icon: "Cloud", description: "Elastic serverless compute, CDN edge, and S3 assets" },
-    { name: "AI / LLMs", category: "AI & ML", icon: "Sparkles", description: "Context-aware LLM agents, vector embeddings, and RAG" }
+    { name: "Node.js", category: "Backend", icon: "Cpu", description: "Asynchronous runtime for fast tooling, services, and APIs" },
+    { name: "MySQL", category: "Database", icon: "Database", description: "ACID-compliant relational database management system for structured data" },
+    { name: "Supabase", category: "Database", icon: "Database", description: "Open-source Firebase alternative with instant Postgres, realtime subscriptions, and auth" },
+    { name: "Figma", category: "Design", icon: "PenTool", description: "Collaborative design systems and UI/UX prototyping" },
+    { name: "Canva", category: "Design", icon: "Palette", description: "Visual graphics, brand identity collateral, and marketing assets" }
   ];
 
   const items = techList && techList.length > 0 ? techList : defaultTech;
 
-  const categories = ['All', 'Frontend', 'Backend', 'DevOps', 'Design', 'AI & ML'];
+  const categories = ['All', 'Frontend', 'Backend', 'Database', 'Design'];
 
   const filteredItems = activeCategory === 'All' 
     ? items 
@@ -40,10 +40,6 @@ export default function Technologies({ techList }) {
         
         {/* Section Header */}
         <div className="section-header">
-          <div className="section-pill">
-            <Code2 size={14} />
-            <span>Tech Stack</span>
-          </div>
           <h2 className="section-title">Technologies we master</h2>
           <p className="section-subtitle">
             A modern, battle-tested toolkit engineered to deliver unrivaled velocity, security, and scale.

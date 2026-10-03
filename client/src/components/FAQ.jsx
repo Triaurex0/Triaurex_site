@@ -19,7 +19,7 @@ export default function FAQ({ faqs }) {
     },
     {
       question: "Can you collaborate with our existing in-house team?",
-      answer: "Yes, we frequently co-create with internal engineering and design teams. Whether you need specialized UI/UX design leadership, frontend React development, or robust Flask API backends, we integrate cleanly into your GitHub workflows and Slack channels."
+      answer: "Yes, we frequently co-create with internal engineering and design teams. Whether you need specialized UI/UX design leadership, frontend React development, or robust Flask API backends, we integrate cleanly into your GitHub workflows."
     },
     {
       question: "Why do you recommend React frontend and Flask backend?",
@@ -39,10 +39,6 @@ export default function FAQ({ faqs }) {
         
         {/* Section Header */}
         <div className="section-header">
-          <div className="section-pill">
-            <HelpCircle size={14} />
-            <span>Got Questions?</span>
-          </div>
           <h2 className="section-title">Frequently asked questions</h2>
           <p className="section-subtitle">
             Everything you need to know about our collaboration model, delivery cycles, and technical stack.
