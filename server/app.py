@@ -1,8 +1,15 @@
 import os
 import sqlite3
 from datetime import datetime
+from dotenv import load_dotenv
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+
+# Load environment variables from .env file
+load_dotenv(os.path.join(os.path.dirname(__file__), '.env'))
+
+from services.chatbot_service import ChatbotService
+from services.knowledge_base import SUGGESTED_QUESTIONS
 
 app = Flask(__name__)
 # Enable CORS for frontend requests
@@ -257,6 +264,16 @@ FAQS_DATA = [
     }
 ]
 
+# Initialize Chatbot Service with live synchronized data models
+chatbot_service = ChatbotService(data_sources={
+    "company_data": COMPANY_DATA,
+    "services_data": SERVICES_DATA,
+    "case_studies_data": CASE_STUDIES_DATA,
+    "process_data": PROCESS_DATA,
+    "tech_data": TECH_DATA,
+    "faqs_data": FAQS_DATA
+})
+
 @app.route('/api/health', methods=['GET'])
 def health_check():
     return jsonify({
@@ -412,6 +429,45 @@ def get_leads():
     leads = [dict(row) for row in rows]
     conn.close()
     return jsonify(leads)
+
+@app.route('/api/chat', methods=['POST'])
+def chat_endpoint():
+    data = request.get_json(silent=True) or {}
+    message = data.get('message', '')
+    conversation = data.get('conversation', [])
+
+    # Get client IP address for rate limiting
+    client_ip = request.headers.get('X-Forwarded-For', request.remote_addr)
+    if client_ip and ',' in client_ip:
+        client_ip = client_ip.split(',')[0].strip()
+
+    result = chatbot_service.process_chat(
+        user_message=message,
+        raw_history=conversation,
+        client_ip=client_ip
+    )
+
+    if not result.get('success'):
+        status_code = 429 if result.get('error') == 'rate_limited' else 400
+        return jsonify({
+            "success": False,
+            "error": result.get('error'),
+            "reply": result.get('reply'),
+            "suggestedQuestions": result.get('suggestedQuestions', [])
+        }), status_code
+
+    return jsonify({
+        "success": True,
+        "reply": result.get('reply'),
+        "suggestedQuestions": result.get('suggestedQuestions', [])
+    })
+
+@app.route('/api/chat/suggested', methods=['GET'])
+def get_chat_suggested():
+    return jsonify({
+        "welcomeMessage": "Hi! 👋 I'm Aurora, your TRIAUREX digital assistant. How can I help you today?",
+        "suggestedQuestions": SUGGESTED_QUESTIONS
+    })
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
