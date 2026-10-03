@@ -1,47 +1,39 @@
 import React, { useState } from 'react';
-import { ArrowRight, Play, TrendingUp, Sparkles, Zap, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Play, CheckCircle, Sparkles, Zap, Globe, Briefcase } from 'lucide-react';
 
 export default function Hero({ companyData }) {
-  const [activeTab, setActiveTab] = useState('30D');
+  const [activeTab, setActiveTab] = useState('Projects');
 
-  // Chart data sets based on selected filter
+  // Interactive work datasets representing completed projects, disciplines, and career milestones
   const chartDatasets = {
-    '7D': [
-      { day: 'Mon', height: '45%', val: '$18.4k' },
-      { day: 'Tue', height: '62%', val: '$24.1k' },
-      { day: 'Wed', height: '55%', val: '$21.8k' },
-      { day: 'Thu', height: '78%', val: '$32.5k' },
-      { day: 'Fri', height: '90%', val: '$41.2k' },
-      { day: 'Sat', height: '70%', val: '$28.6k' },
-      { day: 'Sun', height: '95%', val: '$46.9k' },
+    'Projects': [
+      { label: 'FinTech', height: '94%', val: 'FinScale Platform • 100% Deployed' },
+      { label: 'Travel', height: '88%', val: 'VoyageLab Web App • 100% Deployed' },
+      { label: 'Media', height: '96%', val: 'HyperCore Analytics • 100% Deployed' },
+      { label: 'Cloud', height: '90%', val: 'NovaCloud SaaS • 100% Deployed' },
+      { label: 'Studio TR', height: '100%', val: 'Design System & UI • 100% Deployed' },
     ],
-    '30D': [
-      { day: 'W1', height: '52%', val: '$112k' },
-      { day: 'W2', height: '68%', val: '$148k' },
-      { day: 'W3', height: '82%', val: '$185k' },
-      { day: 'W4', height: '98%', val: '$248k' },
-      { day: 'W5', height: '74%', val: '$162k' },
-      { day: 'W6', height: '88%', val: '$196k' },
-      { day: 'W7', height: '92%', val: '$220k' },
+    'Disciplines': [
+      { label: 'UI/UX', height: '98%', val: 'Figma & Design Systems • 98%' },
+      { label: 'React', height: '100%', val: 'Frontend Web Engineering • 100%' },
+      { label: 'Django', height: '96%', val: 'Django Full-Stack & ORM • 96%' },
+      { label: 'Python', height: '95%', val: 'Flask Backend & APIs • 95%' },
+      { label: 'Database', height: '90%', val: 'MySQL & Supabase Architecture • 90%' },
     ],
-    '1Y': [
-      { day: 'Q1', height: '40%', val: '$480k' },
-      { day: 'Q2', height: '60%', val: '$720k' },
-      { day: 'Q3', height: '85%', val: '$960k' },
-      { day: 'Q4', height: '100%', val: '$1.4M' },
-      { day: 'Q5', height: '75%', val: '$890k' },
-      { day: 'Q6', height: '90%', val: '$1.1M' },
-      { day: 'Q7', height: '95%', val: '$1.3M' },
+    'Timeline': [
+      { label: 'Year 1', height: '70%', val: 'Web Foundations & UI • Year 1' },
+      { label: 'Year 2', height: '85%', val: 'Full-Stack Scalability • Year 2' },
+      { label: 'Year 3', height: '100%', val: 'Global Client Delivery • Year 3' },
     ],
   };
 
-  const currentData = chartDatasets[activeTab] || chartDatasets['30D'];
+  const currentData = chartDatasets[activeTab] || chartDatasets['Projects'];
 
-  const stats = companyData?.stats?.slice(0, 4) || [
-    { value: "120+", label: "Projects Completed" },
-    { value: "45", label: "Global Clients" },
-    { value: "8", label: "Years Experience" },
-    { value: "99%", label: "Client Retention" }
+  const stats = [
+    { value: "5", label: "Projects Completed" },
+    { value: "2", label: "Global Clients" },
+    { value: "3", label: "Years Experience" },
+    { value: "100%", label: "On-Time Delivery" }
   ];
 
   return (
@@ -51,13 +43,6 @@ export default function Hero({ companyData }) {
           
           {/* Left Column: Heading, Subtitle & CTAs */}
           <div className="hero-content">
-            <div>
-              <div className="section-pill">
-                <Sparkles size={14} />
-                <span>Next-Gen Digital Studio</span>
-              </div>
-            </div>
-
             <h1 className="hero-title">
               We build digital <span className="text-gradient">experiences</span> that move brands forward
             </h1>
@@ -89,20 +74,20 @@ export default function Hero({ companyData }) {
             </div>
           </div>
 
-          {/* Right Column: Interactive Dark Mode Glass Dashboard Card */}
+          {/* Right Column: Interactive Work Representation Card */}
           <div className="hero-visual">
             <div className="dashboard-card">
               <div className="card-topbar">
                 <div className="card-metric-badge">
-                  <span className="metric-big">+248%</span>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '4px', color: '#10b981', fontSize: '0.82rem', fontWeight: 600 }}>
-                    <TrendingUp size={15} />
-                    <span>Growth</span>
+                  <span className="metric-big">5</span>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '5px', color: '#00f0ff', fontSize: '0.82rem', fontWeight: 600 }}>
+                    <CheckCircle size={15} color="#00f0ff" />
+                    <span>Projects Delivered</span>
                   </div>
                 </div>
 
                 <div className="card-tabs">
-                  {['7D', '30D', '1Y'].map((tab) => (
+                  {['Projects', 'Disciplines', 'Timeline'].map((tab) => (
                     <button
                       key={tab}
                       className={`card-tab ${activeTab === tab ? 'active' : ''}`}
@@ -114,39 +99,39 @@ export default function Hero({ companyData }) {
                 </div>
               </div>
 
-              {/* Glowing Interactive Bar Chart */}
+              {/* Glowing Interactive Bar Chart representing Work */}
               <div className="chart-container">
                 {currentData.map((item, idx) => (
-                  <div key={idx} className="chart-bar-wrap" title={`${item.day}: ${item.val}`}>
+                  <div key={idx} className="chart-bar-wrap" title={`${item.label}: ${item.val}`}>
                     <div 
                       className="chart-bar" 
                       style={{ 
                         height: item.height,
                         background: idx === currentData.length - 1 
                           ? 'linear-gradient(180deg, #00f0ff 0%, #0070f3 100%)' 
-                          : 'linear-gradient(180deg, rgba(0, 240, 255, 0.7) 0%, rgba(59, 130, 246, 0.4) 100%)'
+                          : 'linear-gradient(180deg, rgba(0, 240, 255, 0.8) 0%, rgba(59, 130, 246, 0.45) 100%)'
                       }}
                     />
-                    <span className="chart-bar-label">{item.day}</span>
+                    <span className="chart-bar-label">{item.label}</span>
                   </div>
                 ))}
               </div>
 
-              {/* Mini Metrics Footer */}
+              {/* Work Metrics Footer */}
               <div className="dashboard-footer">
                 <div className="mini-metric">
-                  <span className="mini-metric-title">Performance Index</span>
+                  <span className="mini-metric-title">Client Reach</span>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
-                    <Zap size={14} color="#00f0ff" />
-                    <span className="mini-metric-value">99.8% Speed</span>
+                    <Globe size={14} color="#00f0ff" />
+                    <span className="mini-metric-value">2 Global Clients</span>
                   </div>
                 </div>
 
                 <div className="mini-metric" style={{ textAlign: 'right' }}>
-                  <span className="mini-metric-title">Security & Uptime</span>
+                  <span className="mini-metric-title">Track Record</span>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '6px', justifyContent: 'flex-end' }}>
-                    <ShieldCheck size={14} color="#10b981" />
-                    <span className="mini-metric-value">Enterprise Tier</span>
+                    <Briefcase size={14} color="#10b981" />
+                    <span className="mini-metric-value">3 Years Experience</span>
                   </div>
                 </div>
               </div>

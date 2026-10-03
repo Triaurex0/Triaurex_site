@@ -21,10 +21,10 @@ export default function About({ companyData }) {
   ];
 
   const stats = [
-    { value: "120+", label: "Completed Projects" },
-    { value: "45", label: "Global Clients" },
-    { value: "8", label: "Years in Business" },
-    { value: "32", label: "Design Awards" }
+    { value: "5", label: "Completed Projects" },
+    { value: "2", label: "Global Clients" },
+    { value: "3", label: "Years in Business" },
+    { value: "100%", label: "Client Satisfaction" }
   ];
 
   return (
@@ -33,10 +33,6 @@ export default function About({ companyData }) {
         
         {/* Section Header */}
         <div className="section-header">
-          <div className="section-pill">
-            <Award size={14} />
-            <span>About Us</span>
-          </div>
           <h2 className="section-title">A studio built for ambitious brands</h2>
           <p className="section-subtitle">
             We combine strategic thinking, user-centered design, and robust engineering to deliver digital solutions that transform businesses and accelerate sustainable growth.

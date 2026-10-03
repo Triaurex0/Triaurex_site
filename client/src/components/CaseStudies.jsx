@@ -52,10 +52,6 @@ export default function CaseStudies({ caseStudies }) {
         
         {/* Section Header */}
         <div className="section-header">
-          <div className="section-pill">
-            <Layers size={14} />
-            <span>Selected Work</span>
-          </div>
           <h2 className="section-title">Case studies that speak for themselves</h2>
           <p className="section-subtitle">
             A curated showcase of high-impact products where design precision meets technical excellence.

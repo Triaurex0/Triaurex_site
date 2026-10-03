@@ -67,7 +67,7 @@ export default function App() {
   return (
     <div className="app-layout">
       {/* Navigation */}
-      <Navbar apiStatus={apiStatus} />
+      <Navbar />
 
       {/* Hero Section with interactive analytics */}
       <Hero companyData={companyInfo} />
@@ -88,7 +88,7 @@ export default function App() {
       <Technologies techList={techList} />
 
       {/* Voice of our partners (Testimonials) */}
-      <Testimonials testimonials={testimonials} />
+      <Testimonials testimonials={testimonials} apiBaseUrl={API_BASE_URL} />
 
       {/* Frequently Asked Questions */}
       <FAQ faqs={faqs} />

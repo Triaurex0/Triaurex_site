@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Layers, ArrowRight, Menu, X, Sparkles, Activity } from 'lucide-react';
+import { ArrowRight, Menu, X } from 'lucide-react';
 
-export default function Navbar({ apiStatus }) {
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -27,10 +27,8 @@ export default function Navbar({ apiStatus }) {
     <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="container nav-container">
         <a href="#" className="nav-logo">
-          <div className="logo-icon-wrap">
-            <Layers size={20} />
-          </div>
-          <span>TRAVIX</span>
+          <img src="/triaurex-logo.png" alt="TRIAUREX Logo" className="logo-brand-img" />
+          <span>TRIAUREX</span>
         </a>
 
         {/* Desktop Nav */}
@@ -46,13 +44,8 @@ export default function Navbar({ apiStatus }) {
           </ul>
         </nav>
 
-        {/* Actions & API Indicator */}
+        {/* Actions */}
         <div className="nav-actions">
-          <div className="backend-status-pill" title={apiStatus.connected ? "Connected to Flask API on :5000" : "Attempting Flask connection..."}>
-            <span className={`status-dot ${apiStatus.connected ? '' : 'disconnected'}`} style={{ background: apiStatus.connected ? '#10b981' : '#f59e0b', boxShadow: apiStatus.connected ? '0 0 8px #10b981' : '0 0 8px #f59e0b' }}></span>
-            <span>{apiStatus.connected ? 'Flask API Online' : 'Connecting API...'}</span>
-          </div>
-
           <a href="#contact" className="btn-primary" style={{ padding: '9px 20px', fontSize: '0.88rem' }}>
             <span>Start a Project</span>
             <ArrowRight size={15} />

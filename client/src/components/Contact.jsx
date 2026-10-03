@@ -6,8 +6,8 @@ export default function Contact({ apiBaseUrl }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    project_type: 'Full-Stack React + Flask Web App',
-    budget: '$25,000 - $50,000',
+    project_type: 'Full-Stack React + Flask / Django Web App',
+    budget: '₹50,000 - ₹1,00,000',
     message: ''
   });
 
@@ -57,8 +57,8 @@ export default function Contact({ apiBaseUrl }) {
         setFormData({
           name: '',
           email: '',
-          project_type: 'Full-Stack React + Flask Web App',
-          budget: '$25,000 - $50,000',
+          project_type: 'Full-Stack React + Flask / Django Web App',
+          budget: '₹50,000 - ₹1,00,000',
           message: ''
         });
       } else {
@@ -107,10 +107,6 @@ export default function Contact({ apiBaseUrl }) {
             {/* Left Column: Studio Info */}
             <div className="contact-left">
               <div>
-                <div className="section-pill" style={{ marginBottom: '16px' }}>
-                  <Sparkles size={14} />
-                  <span>Get In Touch</span>
-                </div>
                 <h2 className="contact-main-title">
                   Start Your <span className="text-gradient">Project</span>
                 </h2>
@@ -127,7 +123,7 @@ export default function Contact({ apiBaseUrl }) {
                   </div>
                   <div>
                     <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Email Inquiry</div>
-                    <a href="mailto:hello@travix.studio" style={{ color: '#fff', fontWeight: 600 }}>hello@travix.studio</a>
+                    <a href="mailto:triaurex0@gmail.com" style={{ color: '#fff', fontWeight: 600 }}>triaurex0@gmail.com</a>
                   </div>
                 </div>
 
@@ -137,7 +133,7 @@ export default function Contact({ apiBaseUrl }) {
                   </div>
                   <div>
                     <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Direct Line</div>
-                    <span style={{ color: '#fff', fontWeight: 600 }}>+1 (555) 019-2834</span>
+                    <a href="tel:+918015712990" style={{ color: '#fff', fontWeight: 600 }}>+91 80157 12990</a>
                   </div>
                 </div>
 
@@ -147,7 +143,7 @@ export default function Contact({ apiBaseUrl }) {
                   </div>
                   <div>
                     <div style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>Location</div>
-                    <span style={{ color: '#fff', fontWeight: 600 }}>San Francisco, CA & Global Remote</span>
+                    <span style={{ color: '#fff', fontWeight: 600 }}>Tiruchirappalli, Tamil Nadu, India</span>
                   </div>
                 </div>
               </div>
@@ -244,10 +240,10 @@ export default function Contact({ apiBaseUrl }) {
                       value={formData.project_type}
                       onChange={handleChange}
                     >
-                      <option value="Full-Stack React + Flask Web App">Full-Stack React + Flask Web App</option>
+                      <option value="Full-Stack React + Flask / Django Web App">Full-Stack React + Flask / Django Web App</option>
                       <option value="UI/UX & Design System">UI/UX & Design System</option>
-                      <option value="Mobile App (iOS & Android)">Mobile App (iOS & Android)</option>
-                      <option value="AI Solutions & Custom Agents">AI Solutions & Custom Agents</option>
+                      <option value="Android App Development">Android App Development</option>
+                      <option value="Database & Backend Architecture">Database & Backend Architecture</option>
                       <option value="Enterprise Architecture & Scaling">Enterprise Architecture & Scaling</option>
                     </select>
                   </div>
@@ -261,10 +257,11 @@ export default function Contact({ apiBaseUrl }) {
                       value={formData.budget}
                       onChange={handleChange}
                     >
-                      <option value="$10,000 - $25,000">$10,000 - $25,000</option>
-                      <option value="$25,000 - $50,000">$25,000 - $50,000</option>
-                      <option value="$50,000 - $100,000">$50,000 - $100,000</option>
-                      <option value="$100,000+">$100,000+</option>
+                      <option value="₹25,000 - ₹50,000">₹25,000 - ₹50,000</option>
+                      <option value="₹50,000 - ₹1,00,000">₹50,000 - ₹1,00,000</option>
+                      <option value="₹1,00,000 - ₹3,00,000">₹1,00,000 - ₹3,00,000</option>
+                      <option value="₹3,00,000 - ₹5,00,000">₹3,00,000 - ₹5,00,000</option>
+                      <option value="₹5,00,000+">₹5,00,000+</option>
                     </select>
                   </div>
                 </div>

@@ -32,6 +32,18 @@ def init_db():
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
+    cursor.execute('''
+        CREATE TABLE IF NOT EXISTS reviews (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            role TEXT,
+            company TEXT,
+            rating INTEGER DEFAULT 5,
+            quote TEXT NOT NULL,
+            service TEXT,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+    ''')
     conn.commit()
     conn.close()
 
@@ -39,15 +51,15 @@ init_db()
 
 # Data models matching client specifications
 COMPANY_DATA = {
-    "name": "TRAVIX",
+    "name": "TRIAUREX",
     "tagline": "We build digital experiences that move brands forward",
     "description": "We build high-performance digital products that scale businesses. From cutting-edge websites to intuitive apps and design systems, we craft solutions that elevate your brand.",
     "stats": [
-        {"value": "120+", "label": "Projects Completed", "numeric": 120, "suffix": "+"},
-        {"value": "45", "label": "Global Clients", "numeric": 45, "suffix": ""},
-        {"value": "8", "label": "Years Experience", "numeric": 8, "suffix": ""},
-        {"value": "99%", "label": "Client Retention", "numeric": 99, "suffix": "%"},
-        {"value": "32", "label": "Design Awards", "numeric": 32, "suffix": ""}
+        {"value": "5", "label": "Projects Completed", "numeric": 5, "suffix": ""},
+        {"value": "2", "label": "Global Clients", "numeric": 2, "suffix": ""},
+        {"value": "3", "label": "Years Experience", "numeric": 3, "suffix": ""},
+        {"value": "100%", "label": "Client Retention", "numeric": 100, "suffix": "%"},
+        {"value": "100%", "label": "On-Time Delivery", "numeric": 100, "suffix": "%"}
     ],
     "about": {
         "title": "A studio built for ambitious brands",
@@ -86,17 +98,10 @@ SERVICES_DATA = [
     },
     {
         "id": "mobile-dev",
-        "title": "Mobile App Development",
+        "title": "Android App Development",
         "icon": "Smartphone",
-        "description": "Cross-platform mobile apps with native fluid feel, offline persistence, and seamless push ecosystem integration.",
-        "deliverables": ["iOS & Android Engineering", "React Native & Flutter Architecture", "App Store Optimization (ASO)", "Realtime Sync & Device Hardware APIs"]
-    },
-    {
-        "id": "ai-solutions",
-        "title": "AI & Automation",
-        "icon": "Cpu",
-        "description": "Next-generation generative AI workflows, intelligent chatbots, and automated pipelines that cut operational overhead.",
-        "deliverables": ["Custom LLM Agent Pipelines", "Automated Business Workflows", "Predictive Analytics & Dashboards", "Intelligent Search & Vector RAG"]
+        "description": "Native and high-performance Android mobile apps with fluid UI, offline persistence, and seamless push ecosystem integration.",
+        "deliverables": ["Native Android Architecture", "Jetpack Compose & Kotlin Engineering", "Google Play Store Optimization", "Realtime Sync & Device Hardware APIs"]
     },
     {
         "id": "branding",
@@ -189,13 +194,14 @@ PROCESS_DATA = [
 
 TECH_DATA = [
     {"name": "React", "category": "Frontend", "icon": "Layers", "description": "Declarative UI component architecture with hooks & state management"},
+    {"name": "Django", "category": "Frontend", "icon": "Layers", "description": "Dynamic web templates, forms, and responsive frontend views"},
     {"name": "Flask", "category": "Backend", "icon": "Server", "description": "Lightweight, robust Python WSGI micro-framework for high-speed APIs"},
-    {"name": "Python", "category": "Backend / AI", "icon": "Terminal", "description": "Core backend logic, data processing, and machine learning pipelines"},
-    {"name": "Node.js", "category": "Runtime", "icon": "Cpu", "description": "Event-driven JavaScript runtime for lightning-fast build tooling"},
-    {"name": "Docker", "category": "DevOps", "icon": "Box", "description": "Reproducible containerized environments for effortless staging & deploy"},
+    {"name": "Python", "category": "Backend", "icon": "Terminal", "description": "Core backend logic, data processing, and scalable server architectures"},
+    {"name": "Node.js", "category": "Backend", "icon": "Cpu", "description": "Event-driven JavaScript runtime for lightning-fast build tooling and APIs"},
+    {"name": "MySQL", "category": "Database", "icon": "Database", "description": "ACID-compliant relational database management system for structured data"},
+    {"name": "Supabase", "category": "Database", "icon": "Database", "description": "Open-source Firebase alternative with instant Postgres, realtime subscriptions, and auth"},
     {"name": "Figma", "category": "Design", "icon": "PenTool", "description": "Collaborative design systems, auto-layout UI components, and prototypes"},
-    {"name": "AWS / Cloud", "category": "Infrastructure", "icon": "Cloud", "description": "Elastic serverless architecture, S3 storage, and global CDN delivery"},
-    {"name": "AI / LLM", "category": "Intelligence", "icon": "Sparkles", "description": "Custom agentic workflows and intelligent semantic indexing"}
+    {"name": "Canva", "category": "Design", "icon": "Palette", "description": "Visual graphics, brand identity collateral, and marketing assets"}
 ]
 
 TESTIMONIALS_DATA = [
@@ -205,7 +211,7 @@ TESTIMONIALS_DATA = [
         "role": "Chief Technology Officer",
         "company": "FinScale Systems",
         "avatarIndex": 1,
-        "quote": "The TRAVIX team exceeded our expectations on every front. Their blend of sophisticated UI design and robust Flask backend architecture delivered a 180% surge in user engagement within three months of release.",
+        "quote": "The TRIAUREX team exceeded our expectations on every front. Their blend of sophisticated UI design and robust Flask backend architecture delivered a 180% surge in user engagement within three months of release.",
         "rating": 5
     },
     {
@@ -223,7 +229,7 @@ TESTIMONIALS_DATA = [
         "role": "VP of Digital Product",
         "company": "HyperCore Media",
         "avatarIndex": 2,
-        "quote": "From discovery to final deployment, TRAVIX operated with incredible precision and speed. The communication was transparent and the resulting product has set a new benchmark in our industry.",
+        "quote": "From discovery to final deployment, TRIAUREX operated with incredible precision and speed. The communication was transparent and the resulting product has set a new benchmark in our industry.",
         "rating": 5
     }
 ]
@@ -243,7 +249,7 @@ FAQS_DATA = [
     },
     {
         "question": "Can you collaborate with our existing in-house team?",
-        "answer": "Yes, we frequently co-create with internal engineering and design teams. Whether you need specialized UI/UX design leadership, frontend React development, or robust Flask API backends, we integrate cleanly into your GitHub workflows and Slack channels."
+        "answer": "Yes, we frequently co-create with internal engineering and design teams. Whether you need specialized UI/UX design leadership, frontend React development, or robust Flask API backends, we integrate cleanly into your GitHub workflows."
     },
     {
         "question": "Why do you recommend React frontend and Flask backend?",
@@ -282,7 +288,65 @@ def get_technologies():
 
 @app.route('/api/testimonials', methods=['GET'])
 def get_testimonials():
-    return jsonify(TESTIMONIALS_DATA)
+    conn = sqlite3.connect(DB_PATH)
+    conn.row_factory = sqlite3.Row
+    cursor = conn.cursor()
+    cursor.execute('SELECT * FROM reviews ORDER BY created_at DESC')
+    rows = cursor.fetchall()
+    conn.close()
+
+    db_reviews = []
+    for r in rows:
+        db_reviews.append({
+            "id": f"rev-{r['id']}",
+            "name": r['name'],
+            "role": r['role'] or 'Client',
+            "company": r['company'] or 'Partner',
+            "rating": r['rating'] or 5,
+            "quote": r['quote'],
+            "service": r['service'] or '',
+            "avatarPos": "50% 50%"
+        })
+
+    return jsonify(db_reviews + TESTIMONIALS_DATA)
+
+@app.route('/api/reviews', methods=['POST'])
+def add_review():
+    data = request.get_json() or {}
+    name = data.get('name', '').strip()
+    role = data.get('role', '').strip() or 'Client'
+    company = data.get('company', '').strip() or 'Partner'
+    try:
+        rating = int(data.get('rating', 5))
+    except (ValueError, TypeError):
+        rating = 5
+    quote = data.get('quote', '').strip()
+    service = data.get('service', '').strip()
+
+    if not name or not quote:
+        return jsonify({"error": "Name and review message are required."}), 400
+
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute('''
+        INSERT INTO reviews (name, role, company, rating, quote, service)
+        VALUES (?, ?, ?, ?, ?, ?)
+    ''', (name, role, company, rating, quote, service))
+    conn.commit()
+    rev_id = cursor.lastrowid
+    conn.close()
+
+    new_review = {
+        "id": f"rev-{rev_id}",
+        "name": name,
+        "role": role,
+        "company": company,
+        "rating": rating,
+        "quote": quote,
+        "service": service,
+        "avatarPos": "50% 50%"
+    }
+    return jsonify({"success": True, "message": "Thank you! Your review has been added.", "review": new_review})
 
 @app.route('/api/faqs', methods=['GET'])
 def get_faqs():
@@ -334,9 +398,9 @@ def submit_newsletter():
         cursor.execute('INSERT INTO newsletter (email) VALUES (?)', (email,))
         conn.commit()
         conn.close()
-        return jsonify({"success": True, "message": "Successfully subscribed to TRAVIX insights!"})
+        return jsonify({"success": True, "message": "Successfully subscribed to TRIAUREX insights!"})
     except sqlite3.IntegrityError:
-        return jsonify({"success": True, "message": "You are already subscribed to TRAVIX insights!"})
+        return jsonify({"success": True, "message": "You are already subscribed to TRIAUREX insights!"})
 
 @app.route('/api/leads', methods=['GET'])
 def get_leads():
@@ -351,5 +415,5 @@ def get_leads():
 
 if __name__ == '__main__':
     port = int(os.environ.get('PORT', 5000))
-    print(f" TRAVIX Flask API running on http://127.0.0.1:{port}")
+    print(f" TRIAUREX Flask API running on http://127.0.0.1:{port}")
     app.run(host='127.0.0.1', port=port, debug=True)

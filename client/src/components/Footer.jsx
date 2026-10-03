@@ -27,7 +27,7 @@ export default function Footer({ apiBaseUrl }) {
         setSubStatus({ success: false, message: data.error || 'Failed to subscribe.' });
       }
     } catch (err) {
-      setSubStatus({ success: true, message: 'Subscribed to TRAVIX insights!' });
+      setSubStatus({ success: true, message: 'Subscribed to TRIAUREX insights!' });
       setEmail('');
     } finally {
       setSubmitting(false);
@@ -43,10 +43,8 @@ export default function Footer({ apiBaseUrl }) {
           {/* Brand Info */}
           <div className="footer-brand">
             <a href="#" className="nav-logo">
-              <div className="logo-icon-wrap">
-                <Layers size={18} />
-              </div>
-              <span>TRAVIX</span>
+              <img src="/triaurex-logo.png" alt="TRIAUREX Logo" className="logo-brand-img" />
+              <span>TRIAUREX</span>
             </a>
             <p className="footer-desc">
               We design and engineer high-performance web products, digital interfaces, and modern backend architectures for ambitious global teams.
@@ -84,8 +82,8 @@ export default function Footer({ apiBaseUrl }) {
               <li><a href="#services" className="footer-link">UI/UX Design</a></li>
               <li><a href="#services" className="footer-link">React & Vite Apps</a></li>
               <li><a href="#services" className="footer-link">Flask REST APIs</a></li>
-              <li><a href="#services" className="footer-link">Mobile Apps</a></li>
-              <li><a href="#services" className="footer-link">AI Automations</a></li>
+              <li><a href="#services" className="footer-link">Android Apps</a></li>
+              <li><a href="#services" className="footer-link">Django & Databases</a></li>
               <li><a href="#services" className="footer-link">Design Systems</a></li>
             </ul>
           </div>
@@ -128,7 +126,7 @@ export default function Footer({ apiBaseUrl }) {
         {/* Bottom Bar */}
         <div className="footer-bottom">
           <div>
-            © {new Date().getFullYear()} TRAVIX Studio. Built with React & Flask. All rights reserved.
+            © {new Date().getFullYear()} TRIAUREX Studio. Built with React & Flask. All rights reserved.
           </div>
           <div style={{ display: 'flex', gap: '20px' }}>
             <a href="#" className="footer-link" style={{ fontSize: '0.82rem' }}>Privacy Policy</a>
