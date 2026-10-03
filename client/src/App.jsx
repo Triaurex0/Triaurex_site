@@ -10,8 +10,9 @@ import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Chatbot from './components/Chatbot/Chatbot';
 
-const API_BASE_URL = 'http://127.0.0.1:5000';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:5000';
 
 export default function App() {
   const [apiStatus, setApiStatus] = useState({ connected: false, loading: true });
@@ -98,6 +99,9 @@ export default function App() {
 
       {/* Footer */}
       <Footer apiBaseUrl={API_BASE_URL} />
+
+      {/* Production-Ready AI Chatbot */}
+      <Chatbot apiBaseUrl={API_BASE_URL} />
     </div>
   );
 }
