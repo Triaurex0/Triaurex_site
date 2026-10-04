@@ -20,12 +20,12 @@ export default function About({ companyData }) {
     }
   ];
 
-  const stats = [
-    { value: "5", label: "Completed Projects" },
-    { value: "2", label: "Global Clients" },
-    { value: "3", label: "Years in Business" },
-    { value: "100%", label: "Client Satisfaction" }
-  ];
+  // const stats = [
+  //   { value: "5", label: "Completed Projects" },
+  //   { value: "2", label: "Global Clients" },
+  //   { value: "3", label: "Years in Business" },
+  //   { value: "100%", label: "Client Satisfaction" }
+  // ];
 
   return (
     <section className="section" id="about">
@@ -56,14 +56,14 @@ export default function About({ companyData }) {
         </div>
 
         {/* 4 Stat Cards */}
-        <div className="about-stats-grid">
+        {/* <div className="about-stats-grid">
           {stats.map((stat, idx) => (
             <div key={idx} className="glass-card about-stat-card">
               <div className="about-stat-value">{stat.value}</div>
               <div className="about-stat-label">{stat.label}</div>
             </div>
           ))}
-        </div>
+        </div> */}
 
       </div>
     </section>
