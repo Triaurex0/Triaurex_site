@@ -47,6 +47,13 @@ export default function Services({ services }) {
       icon: "Sparkles",
       description: "Strategic brand positioning, cohesive visual identities, typography, and guidelines that make your company unforgettable.",
       deliverables: ["Brand Strategy & Voice", "Logo Design & Visual Language", "Brand Style Guides & Assets", "Pitch Decks & Marketing Collateral"]
+    },
+    {
+      id: "data-analysis",
+      title: "Data Analysis",
+      icon: "Cpu",
+      description: "Turn raw business data into clear insights with reliable analysis, interactive dashboards, and practical recommendations.",
+      deliverables: ["Data Cleaning & Preparation", "Exploratory Data Analysis", "Power BI Dashboards & Reporting", "Trend Analysis & Business Insights"]
     }
   ];
 

@@ -23,16 +23,36 @@ export default function Technologies({ techList }) {
     { name: "MySQL", category: "Database", icon: "Database", description: "ACID-compliant relational database management system for structured data" },
     { name: "Supabase", category: "Database", icon: "Database", description: "Open-source Firebase alternative with instant Postgres, realtime subscriptions, and auth" },
     { name: "Figma", category: "Design", icon: "PenTool", description: "Collaborative design systems and UI/UX prototyping" },
-    { name: "Canva", category: "Design", icon: "Palette", description: "Visual graphics, brand identity collateral, and marketing assets" }
+    { name: "Adobe XD", category: "Design", icon: "PenTool", description: "UI/UX design and interactive prototyping" },
+    { name: "Framer", category: "Design", icon: "Layers", description: "Interactive website design and visual prototyping" },
+    { name: "Canva", category: "Design", icon: "Palette", description: "Visual graphics, brand identity collateral, and marketing assets" },
+    { name: "Power BI", category: "Analytics", icon: "Database", description: "Business intelligence dashboards, reporting, and data visualization" },
+    { name: "Excel", category: "Analytics", icon: "Database", description: "Spreadsheet application for data analysis and visualization" }
+  
   ];
 
   const items = techList && techList.length > 0 ? techList : defaultTech;
 
-  const categories = ['All', 'Frontend', 'Backend', 'Database', 'Design'];
+  const categories = ['All', 'Frontend', 'Backend', 'Database', 'Design', 'Analytics'];
 
   const filteredItems = activeCategory === 'All' 
     ? items 
     : items.filter(t => t.category.toLowerCase().includes(activeCategory.toLowerCase()));
+
+  const renderTechCards = (copy) => filteredItems.map((tech) => {
+    const Icon = iconTechMap[tech.icon] || Layers;
+    return (
+      <div key={`${copy}-${tech.name}`} className="glass-card tech-card">
+        <div className="tech-icon-wrap">
+          <Icon size={24} />
+        </div>
+        <div>
+          <div className="tech-name">{tech.name}</div>
+          <div className="tech-category">{tech.category}</div>
+        </div>
+      </div>
+    );
+  });
 
   return (
     <section className="section" id="technologies">
@@ -68,22 +88,15 @@ export default function Technologies({ techList }) {
           </div>
         </div>
 
-        {/* Tech Grid */}
-        <div className="tech-grid">
-          {filteredItems.map((tech, idx) => {
-            const Icon = iconTechMap[tech.icon] || Layers;
-            return (
-              <div key={idx} className="glass-card tech-card">
-                <div className="tech-icon-wrap">
-                  <Icon size={24} />
-                </div>
-                <div>
-                  <div className="tech-name">{tech.name}</div>
-                  <div className="tech-category">{tech.category}</div>
-                </div>
-              </div>
-            );
-          })}
+        <div className="tech-marquee" role="region" aria-label="Technology stack">
+          <div className="tech-track">
+            <div className="tech-marquee-group">
+              {renderTechCards('primary')}
+            </div>
+            <div className="tech-marquee-group" aria-hidden="true">
+              {renderTechCards('duplicate')}
+            </div>
+          </div>
         </div>
 
       </div>
