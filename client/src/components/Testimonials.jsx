@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Star, Quote, Plus, X, CheckCircle2, MessageSquarePlus } from 'lucide-react';
+import { Star, Quote, Plus, X, CheckCircle2, MessageSquarePlus, ArrowLeft, ArrowRight } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function Testimonials({ testimonials, apiBaseUrl = 'http://127.0.0.1:5000' }) {
@@ -33,6 +33,26 @@ export default function Testimonials({ testimonials, apiBaseUrl = 'http://127.0.
       quote: "From discovery to final deployment, TRIAUREX operated with incredible precision and speed. The communication was transparent and the resulting product has set a new benchmark in our industry.",
       rating: 5,
       service: "Android App Development"
+    },
+    {
+      id: 4,
+      name: "Priya Nair",
+      role: "Marketing Director",
+      company: "KiteFlow Studio",
+      avatarPos: '0% 50%',
+      quote: "The TRIAUREX team translated our rough product vision into a polished, conversion-focused digital experience. Their UX thinking and engineering execution felt like an extension of our internal team.",
+      rating: 5,
+      service: "Branding & Identity"
+    },
+    {
+      id: 5,
+      name: "Daniel Brooks",
+      role: "Founder",
+      company: "NorthPeak Labs",
+      avatarPos: '100% 50%',
+      quote: "We needed a partner who could move quickly without sacrificing quality. TRIAUREX delivered a scalable product, improved performance, and a clean system our team could confidently grow.",
+      rating: 5,
+      service: "Web Development"
     }
   ];
 
@@ -41,6 +61,19 @@ export default function Testimonials({ testimonials, apiBaseUrl = 'http://127.0.
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [hoverRating, setHoverRating] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  const visibleReviews = reviewsList.length <= 3
+    ? reviewsList
+    : Array.from({ length: 3 }, (_, index) => reviewsList[(activeIndex + index) % reviewsList.length]);
+
+  const goToPreviousReview = () => {
+    setActiveIndex((current) => (current - 1 + reviewsList.length) % reviewsList.length);
+  };
+
+  const goToNextReview = () => {
+    setActiveIndex((current) => (current + 1) % reviewsList.length);
+  };
 
   const [newReview, setNewReview] = useState({
     name: '',
@@ -59,6 +92,16 @@ export default function Testimonials({ testimonials, apiBaseUrl = 'http://127.0.
       })));
     }
   }, [testimonials]);
+
+  useEffect(() => {
+    if (reviewsList.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setActiveIndex((current) => (current + 1) % reviewsList.length);
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [reviewsList.length]);
 
   const handleReviewSubmit = async (e) => {
     e.preventDefault();
@@ -148,61 +191,83 @@ export default function Testimonials({ testimonials, apiBaseUrl = 'http://127.0.
           </button>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="testimonials-grid">
-          {reviewsList.map((item) => (
-            <div key={item.id} className="glass-card testimonial-card">
-              <div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
-                  <Quote size={28} className="quote-icon" />
-                  <div style={{ display: 'flex', gap: '3px' }}>
-                    {[...Array(item.rating || 5)].map((_, starIdx) => (
-                      <Star key={starIdx} size={15} fill="#00f0ff" color="#00f0ff" />
-                    ))}
+        {/* Testimonials Carousel */}
+        <div className="testimonial-carousel-wrapper">
+          <div className="testimonial-carousel-controls">
+            <button type="button" className="carousel-arrow" onClick={goToPreviousReview} aria-label="Previous testimonial">
+              <ArrowLeft size={18} />
+            </button>
+            <button type="button" className="carousel-arrow" onClick={goToNextReview} aria-label="Next testimonial">
+              <ArrowRight size={18} />
+            </button>
+          </div>
+
+          <div className="testimonials-grid testimonial-carousel-track">
+            {visibleReviews.map((item) => (
+              <div key={item.id} className="glass-card testimonial-card">
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
+                    <Quote size={28} className="quote-icon" />
+                    <div style={{ display: 'flex', gap: '3px' }}>
+                      {[...Array(item.rating || 5)].map((_, starIdx) => (
+                        <Star key={starIdx} size={15} fill="#00f0ff" color="#00f0ff" />
+                      ))}
+                    </div>
+                  </div>
+
+                  <p className="testimonial-quote">
+                    "{item.quote}"
+                  </p>
+
+                  {item.service && (
+                    <div style={{ fontSize: '0.74rem', color: '#00f0ff', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '16px' }}>
+                      Service: {item.service}
+                    </div>
+                  )}
+                </div>
+
+                <div className="testimonial-author">
+                  <div 
+                    style={{
+                      width: '48px',
+                      height: '48px',
+                      borderRadius: '50%',
+                      border: '2px solid rgba(0, 240, 255, 0.4)',
+                      boxShadow: '0 0 12px rgba(0, 240, 255, 0.25)',
+                      background: 'linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(0, 112, 243, 0.3))',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: '#ffffff',
+                      fontWeight: 700,
+                      fontSize: '1.1rem',
+                      flexShrink: 0
+                    }}
+                  >
+                    {item.name ? item.name.charAt(0).toUpperCase() : 'T'}
+                  </div>
+                  <div className="author-info">
+                    <span className="author-name">{item.name}</span>
+                    <span className="author-role">
+                      {item.role ? item.role : 'Client'}{item.company ? `, ${item.company}` : ''}
+                    </span>
                   </div>
                 </div>
-
-                <p className="testimonial-quote">
-                  "{item.quote}"
-                </p>
-
-                {item.service && (
-                  <div style={{ fontSize: '0.74rem', color: '#00f0ff', fontWeight: 600, textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '16px' }}>
-                    Service: {item.service}
-                  </div>
-                )}
               </div>
+            ))}
+          </div>
 
-              {/* Author Info */}
-              <div className="testimonial-author">
-                <div 
-                  style={{
-                    width: '48px',
-                    height: '48px',
-                    borderRadius: '50%',
-                    border: '2px solid rgba(0, 240, 255, 0.4)',
-                    boxShadow: '0 0 12px rgba(0, 240, 255, 0.25)',
-                    background: 'linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(0, 112, 243, 0.3))',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: '#ffffff',
-                    fontWeight: 700,
-                    fontSize: '1.1rem',
-                    flexShrink: 0
-                  }}
-                >
-                  {item.name ? item.name.charAt(0).toUpperCase() : 'T'}
-                </div>
-                <div className="author-info">
-                  <span className="author-name">{item.name}</span>
-                  <span className="author-role">
-                    {item.role ? item.role : 'Client'}{item.company ? `, ${item.company}` : ''}
-                  </span>
-                </div>
-              </div>
-            </div>
-          ))}
+          <div className="testimonial-dots" aria-label="Testimonial carousel pagination">
+            {reviewsList.map((item, index) => (
+              <button
+                key={item.id}
+                type="button"
+                className={`testimonial-dot ${index === activeIndex ? 'active' : ''}`}
+                aria-label={`Go to testimonial ${index + 1}`}
+                onClick={() => setActiveIndex(index)}
+              />
+            ))}
+          </div>
         </div>
 
       </div>

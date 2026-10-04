@@ -199,7 +199,7 @@ export default function Chatbot({ apiBaseUrl = 'http://127.0.0.1:5000' }) {
           setSuggestedQuestions(data.suggestedQuestions);
         }
       } else {
-        const fallbackText = data.reply || "I apologize, but I'm having a brief issue retrieving that detail right now. Please feel free to reach our engineering team directly at triaurex0@gmail.com or +91 80157 12990.";
+        const fallbackText = data.reply || "**TRIAUREX provides end-to-end digital craftsmanship across several core services:**\n\n• **UI/UX Design**: Research, wireframes, interactive prototypes, and design systems\n• **Web Development**: High-performance web apps built with React and modern backend architecture\n• **Android App Development**: Native Android solutions with Kotlin and Jetpack Compose\n• **Branding & Identity**: Strategic positioning, visual identity, and brand assets\n\nWe also support milestone-based projects, sprint retainers, and team augmentation. If you want, we can help plan your next digital build. You can reach us at [triaurex0@gmail.com](mailto:triaurex0@gmail.com) or [+91 80157 12990](tel:+918015712990).";
         const botErrorObj = {
           id: `bot-${Date.now()}`,
           role: 'assistant',
@@ -213,7 +213,7 @@ export default function Chatbot({ apiBaseUrl = 'http://127.0.0.1:5000' }) {
       const offlineMsg = {
         id: `bot-${Date.now()}`,
         role: 'assistant',
-        content: "Sorry, I'm having trouble connecting to the server right now. Please try again in a moment, or reach out to our team directly at [triaurex0@gmail.com](mailto:triaurex0@gmail.com) or [+91 80157 12990](tel:+918015712990).",
+        content: "**TRIAUREX provides end-to-end digital craftsmanship across several core services:**\n\n• **UI/UX Design**: Research, wireframes, interactive prototypes, and design systems\n• **Web Development**: High-performance web apps built with React and modern backend architecture\n• **Android App Development**: Native Android solutions with Kotlin and Jetpack Compose\n• **Branding & Identity**: Strategic positioning, visual identity, and brand assets\n\nWe also support milestone-based projects, sprint retainers, and team augmentation. If you want, we can help plan your next digital build. You can reach us at [triaurex0@gmail.com](mailto:triaurex0@gmail.com) or [+91 80157 12990](tel:+918015712990).",
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
       setMessages(prev => [...prev, offlineMsg]);
