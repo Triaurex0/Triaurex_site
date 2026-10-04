@@ -9,6 +9,13 @@ const iconMap = {
   Sparkles: Sparkles,
 };
 
+const slugifyServiceTitle = (title) =>
+  title
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+
 export default function Services({ services }) {
   const [selectedService, setSelectedService] = useState(null);
 
@@ -63,9 +70,12 @@ export default function Services({ services }) {
             const Icon = iconMap[service.icon] || Code;
             const isTopRow = idx < 3;
 
+            const serviceAnchorId = slugifyServiceTitle(service.title);
+
             return (
               <div
-                key={service.id}
+                key={service.id || serviceAnchorId}
+                id={serviceAnchorId}
                 className={`glass-card service-card ${isTopRow ? 'service-col-top' : 'service-col-bottom'}`}
                 onClick={() => setSelectedService(service)}
               >

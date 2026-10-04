@@ -1,10 +1,45 @@
 import React, { useState } from 'react';
 import { Layers, ArrowRight, CheckCircle2 } from 'lucide-react';
 
+const expertiseLinks = [
+  { label: 'UI/UX Design', anchor: 'ui-ux-design' },
+  { label: 'React & Vite Apps', anchor: 'web-development' },
+  { label: 'Flask REST APIs', anchor: 'web-development' },
+  { label: 'Android Apps', anchor: 'android-app-development' },
+  { label: 'Django & Databases', anchor: 'web-development' },
+  { label: 'Design Systems', anchor: 'ui-ux-design' },
+];
+
+const legalContent = {
+  privacy: {
+    title: 'Privacy Policy',
+    body: [
+      'TRIAUREX respects the privacy of our clients, partners, and website visitors. This policy explains how we collect, use, and protect information when you interact with our site or services.',
+      'We may collect basic contact information such as name, email address, company name, and project requirements when you fill out a form or contact us. This information is used to respond to inquiries, provide services, and maintain communication related to your project.',
+      'We may also collect limited technical information such as browser type, IP address, device information, and usage data to improve performance, understand engagement, and maintain site security. We do not sell personal information.',
+      'Any information you provide may be stored securely and used only for business communication, contract fulfillment, service improvement, and legal compliance. We may retain records as required by applicable law or internal business needs.',
+      'We use reasonable administrative, technical, and organizational safeguards to protect data. However, no method of transmission or storage is completely secure, and we cannot guarantee absolute security.',
+      'If you have any questions about privacy, please contact us through the website contact form or the email listed in our official communications.'
+    ]
+  },
+  terms: {
+    title: 'Terms of Service',
+    body: [
+      'By using the TRIAUREX website or engaging our services, you agree to these Terms of Service. These terms outline the responsibilities of both parties during the project lifecycle.',
+      'TRIAUREX provides product design, web development, mobile app development, and related digital services. Scope, deliverables, timeline, and pricing are defined in the project agreement or proposal agreed upon by both parties.',
+      'All content, visuals, branding, code, design assets, and documentation created for a client project remain subject to the agreed project terms. We may reuse general knowledge, internal methodologies, and non-confidential design patterns unless specifically restricted in writing.',
+      'Clients are responsible for providing timely approvals, assets, access, and required business information. Delays caused by missing input or incomplete requirements may affect milestones and delivery dates.',
+      'We aim to deliver high-quality work, but we do not guarantee specific financial outcomes, user acquisition results, or market performance. Any performance claims should be treated as estimates based on project scope and assumptions.',
+      'These terms are governed by the applicable laws of the jurisdiction in which the engagement is performed, and any dispute should first be addressed through good-faith negotiation before formal legal action.'
+    ]
+  }
+};
+
 export default function Footer({ apiBaseUrl }) {
   const [email, setEmail] = useState('');
   const [subStatus, setSubStatus] = useState(null);
   const [submitting, setSubmitting] = useState(false);
+  const [activeLegal, setActiveLegal] = useState(null);
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
@@ -79,12 +114,11 @@ export default function Footer({ apiBaseUrl }) {
           <div>
             <div className="footer-col-title">Expertise</div>
             <ul className="footer-links">
-              <li><a href="#services" className="footer-link">UI/UX Design</a></li>
-              <li><a href="#services" className="footer-link">React & Vite Apps</a></li>
-              <li><a href="#services" className="footer-link">Flask REST APIs</a></li>
-              <li><a href="#services" className="footer-link">Android Apps</a></li>
-              <li><a href="#services" className="footer-link">Django & Databases</a></li>
-              <li><a href="#services" className="footer-link">Design Systems</a></li>
+              {expertiseLinks.map((service) => (
+                <li key={service.label}>
+                  <a href={`#${service.anchor}`} className="footer-link">{service.label}</a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -129,13 +163,31 @@ export default function Footer({ apiBaseUrl }) {
             © {new Date().getFullYear()} TRIAUREX Studio. Built with React & Flask. All rights reserved.
           </div>
           <div style={{ display: 'flex', gap: '20px' }}>
-            <a href="#" className="footer-link" style={{ fontSize: '0.82rem' }}>Privacy Policy</a>
-            <a href="#" className="footer-link" style={{ fontSize: '0.82rem' }}>Terms of Service</a>
+            <button type="button" className="footer-link" style={{ fontSize: '0.82rem', background: 'transparent', border: 'none', padding: 0 }} onClick={() => setActiveLegal('privacy')}>Privacy Policy</button>
+            <button type="button" className="footer-link" style={{ fontSize: '0.82rem', background: 'transparent', border: 'none', padding: 0 }} onClick={() => setActiveLegal('terms')}>Terms of Service</button>
             <a href="#" className="footer-link" style={{ fontSize: '0.82rem' }}>Security Architecture</a>
           </div>
         </div>
 
       </div>
+
+      {activeLegal && (
+        <div className="modal-backdrop" onClick={() => setActiveLegal(null)} style={{ zIndex: 2000 }}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '900px', maxHeight: '85vh', overflowY: 'auto', padding: '32px 28px' }}>
+            <button className="modal-close-btn" onClick={() => setActiveLegal(null)}>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6L6 18M6 6l12 12" /></svg>
+            </button>
+
+            <h3 style={{ fontSize: '2rem', marginBottom: '20px', color: '#fff' }}>{legalContent[activeLegal].title}</h3>
+
+            <div style={{ display: 'grid', gap: '16px', color: '#e2e8f0', lineHeight: '1.8' }}>
+              {legalContent[activeLegal].body.map((paragraph, index) => (
+                <p key={index} style={{ fontSize: '0.98rem' }}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </footer>
   );
 }
