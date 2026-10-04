@@ -226,9 +226,9 @@ class ChatbotService:
             },
             "contents": contents,
             "generationConfig": {
-                "temperature": 0.3,
+                "temperature": 0.7,
                 "maxOutputTokens": 600,
-                "topP": 0.8
+                "topP": 0.9
             },
             "safetySettings": [
                 {"category": "HARM_CATEGORY_HARASSMENT", "threshold": "BLOCK_MEDIUM_AND_ABOVE"},
@@ -243,7 +243,7 @@ class ChatbotService:
                 url,
                 headers={"Content-Type": "application/json"},
                 json=payload,
-                timeout=12
+                timeout=30
             )
             if response.status_code == 200:
                 data = response.json()
@@ -286,8 +286,8 @@ class ChatbotService:
         payload = {
             "model": model,
             "messages": messages,
-            "temperature": 0.3,
-            "max_tokens": 500
+            "temperature": 0.7,
+            "max_tokens": 600
         }
 
         try:
@@ -298,7 +298,7 @@ class ChatbotService:
                     "Content-Type": "application/json"
                 },
                 json=payload,
-                timeout=12
+                timeout=30
             )
             if response.status_code == 200:
                 data = response.json()
@@ -327,24 +327,86 @@ class ChatbotService:
                 "pricing, and project kickoffs. How can I assist with your next web or mobile build?"
             )
 
-        # 1. Greetings
-        if re.search(r'\b(hi|hello|hey|good morning|good afternoon|good evening|greetings)\b', q_lower):
+        # 1. Greetings & Casual Chit-Chat
+        if re.search(r'\b(hi|hello|hey|good morning|good afternoon|good evening|greetings|howdy)\b', q_lower):
             return (
-                "Hello! 👋 I'm **Aurora**, your TRIAUREX digital assistant. "
-                "I can answer questions about our design and development services, past case studies, "
-                "tech stack (React, Flask, Android, Django), pricing estimates, and project timelines. "
-                "What can I help you explore today?"
+                "Hello! 👋 I'm **Aurora**, your digital assistant at **TRIAUREX**.\n\n"
+                "I can help you explore our design & full-stack development services, review past case studies, "
+                "estimate pricing & timelines, or schedule a discovery call with our team. "
+                "What would you like to build or learn about today?"
             )
 
-        # 2. Services
-        if any(w in q_lower for w in ['service', 'offer', 'what do you do', 'what can you build', 'capabilities']):
+        if re.search(r'\b(how are you|how do you do|how is it going|what\'s up|whats up)\b', q_lower):
+            return (
+                "I'm doing great, thank you! 😊 Ready to help you bring your next digital product to life. "
+                "Are you looking into web development, a native mobile app, or UI/UX design?"
+            )
+
+        # 2. Thank you & Goodbye
+        if re.search(r'\b(thank you|thanks|thx|appreciate it)\b', q_lower):
+            return (
+                "You're very welcome! 😊 Feel free to ask if you have more questions about our services, tech stack, or upcoming projects."
+            )
+
+        if re.search(r'\b(bye|goodbye|see you|cya)\b', q_lower):
+            return (
+                "Have a wonderful day! Whenever you're ready to explore a digital build, I'll be here. Take care!"
+            )
+
+        # 3. Dynamic FAQs check: match against known questions
+        faqs = self.data_sources.get('faqs_data', [])
+        for f in faqs:
+            q_words = set(re.findall(r'\b\w{4,}\b', f['question'].lower()))
+            user_words = set(re.findall(r'\b\w{4,}\b', q_lower))
+            overlap = q_words.intersection(user_words)
+            if len(overlap) >= 2:
+                return f"**{f['question']}**\n\n{f['answer']}"
+
+        # 4. Web Development & Websites
+        if any(w in q_lower for w in ['website', 'web dev', 'web application', 'landing page', 'frontend', 'backend', 'full stack', 'web app']):
+            return (
+                "**Web Development at TRIAUREX:**\n\n"
+                "We engineer lightning-fast, high-converting web applications tailored to your business needs:\n\n"
+                "• **Architecture**: React, Next.js, Vite on the frontend with high-performance Python (Flask & Django) micro-services\n"
+                "• **Capabilities**: Single-page apps, SaaS dashboards, headless CMS, e-commerce, and real-time APIs\n"
+                "• **Performance**: Sub-1.5s load times, responsive mobile-first layouts, and Core Web Vitals optimization\n"
+                "• **Timeline**: 4 to 8 weeks for standard builds\n\n"
+                "Would you like to discuss the scope of your website or get a milestone-based estimate?"
+            )
+
+        # 5. Mobile & Android Apps
+        if any(w in q_lower for w in ['android', 'mobile', 'ios', 'phone app', 'play store', 'kotlin', 'app dev', 'build an app']):
+            return (
+                "**Mobile App Development at TRIAUREX:**\n\n"
+                "We craft high-performance **Native Android Applications** using modern **Kotlin** and **Jetpack Compose**:\n\n"
+                "• **Fluid UI**: Reactive, tactile micro-interactions and obsidian dark/light themes\n"
+                "• **Offline-First**: Room DB local caching and secure background synchronization\n"
+                "• **Integration**: Real-time push notifications, payment gateways, and hardware sensor APIs\n"
+                "• **Store Launch**: Complete Google Play Store deployment and store listing optimization\n\n"
+                "Are you planning an MVP from scratch or modernizing an existing mobile product?"
+            )
+
+        # 6. UI/UX Design & Branding
+        if any(w in q_lower for w in ['design', 'ui/ux', 'ui', 'ux', 'wireframe', 'figma', 'prototype', 'branding', 'logo', 'identity']):
+            return (
+                "**UI/UX Design & Branding at TRIAUREX:**\n\n"
+                "We create user-first digital experiences engineered for maximum conversion and delight:\n\n"
+                "• **User Research**: Persona mapping, user journey blueprints, and usability audits\n"
+                "• **Prototyping**: Interactive Figma prototypes with click-through testing\n"
+                "• **Design Systems**: Reusable component libraries, tokens, and style guides\n"
+                "• **Brand Identity**: Cohesive logos, color palettes, typography, and marketing assets\n\n"
+                "Would you like to review our design case studies or discuss a redesign?"
+            )
+
+        # 7. Services (General)
+        if any(w in q_lower for w in ['service', 'offer', 'what do you do', 'what can you build', 'capabilities', 'what can you do']):
             services = self.data_sources.get('services_data', [])
             if services:
                 list_str = "\n".join([f"• **{s['title']}**: {s['description']}" for s in services])
                 return (
                     f"**TRIAUREX provides end-to-end digital craftsmanship across four core disciplines:**\n\n"
                     f"{list_str}\n\n"
-                    f"Would you like details on our development deliverables or a quote for an upcoming project?"
+                    f"Which service best aligns with what you're looking to achieve?"
                 )
             return (
                 "**TRIAUREX specializes in:**\n"
@@ -355,101 +417,111 @@ class ChatbotService:
                 "Which service aligns best with your goals?"
             )
 
-        # 3. Android / Mobile
-        if any(w in q_lower for w in ['android', 'mobile', 'ios', 'phone app', 'play store', 'kotlin']):
+        # 8. Pricing, Cost & Budget
+        if any(w in q_lower for w in ['price', 'pricing', 'cost', 'rate', 'how much', 'budget', 'quote', 'fee', 'expense', 'cheap', 'discount']):
             return (
-                "Yes! We build high-performance **Native Android Applications** using modern **Kotlin** "
-                "and **Jetpack Compose**. \n\n"
-                "**Our mobile capabilities include:**\n"
-                "• Fluid reactive UI and custom micro-interactions\n"
-                "• Offline persistence (Room DB) and secure background sync\n"
-                "• Google Play Store deployment & optimization\n"
-                "• REST API integration with real-time push notifications\n\n"
-                "Are you planning a new Android app or modernizing an existing mobile product?"
-            )
-
-        # 4. Web Development & Tech Stack
-        if any(w in q_lower for w in ['tech', 'technology', 'stack', 'framework', 'react', 'flask', 'django', 'python', 'database']):
-            return (
-                "Our core engineering stack combines modern frontend speed with robust Python backends:\n\n"
-                "• **Frontend**: React, Next.js, Vite, TypeScript, and TailwindCSS\n"
-                "• **Backend**: Python (Flask WSGI micro-services, Django for enterprise data handling)\n"
-                "• **Mobile**: Native Android (Kotlin, Jetpack Compose)\n"
-                "• **Databases**: PostgreSQL, MySQL, Supabase, and SQLite\n"
-                "• **Design**: Figma, design tokens, and interactive component libraries\n\n"
-                "Would you like to know how we architect our full-stack solutions?"
-            )
-
-        # 5. Pricing & Budget
-        if any(w in q_lower for w in ['price', 'pricing', 'cost', 'rate', 'how much', 'budget', 'quote', 'fee']):
-            return (
-                "TRIAUREX offers transparent, milestone-based fixed pricing and dedicated agile sprint retainers:\n\n"
-                "• **Starter MVP**: ₹50,000 - ₹1,50,000 ($700 - $2,000 USD) • Ideal for initial market validation (4-6 weeks)\n"
+                "**TRIAUREX Pricing & Engagement Guidelines:**\n\n"
+                "We provide transparent, milestone-based fixed pricing so there are zero surprises:\n\n"
+                "• **Starter MVP**: ₹50,000 - ₹1,50,000 ($700 - $2,000 USD) • Focused MVP launch (4-6 weeks)\n"
                 "• **Custom Product**: ₹1,50,000 - ₹3,50,000 ($2,000 - $4,500 USD) • Full-featured web or mobile app (6-10 weeks)\n"
-                "• **Enterprise Platform**: ₹3,50,000+ ($4,500+ USD) • Bespoke architecture, high-concurrency systems, and custom integrations\n\n"
-                "You only pay upon sign-off of each milestone. Would you like a detailed proposal tailored to your product scope?"
+                "• **Enterprise Platform**: ₹3,50,000+ ($4,500+ USD) • Bespoke architecture, high-concurrency systems & custom SLAs\n\n"
+                "**Terms**: You only approve and pay per completed milestone. Every project also includes a complimentary 30-day post-launch warranty."
             )
 
-        # 6. Timeline & Process
-        if any(w in q_lower for w in ['timeline', 'how long', 'duration', 'weeks', 'process', 'methodology', 'step']):
+        # 9. Timeline, Duration & Schedule
+        if any(w in q_lower for w in ['timeline', 'how long', 'duration', 'weeks', 'days', 'months', 'deadline', 'when', 'schedule', 'fast']):
             return (
-                "Engagements typically range from **4 to 12 weeks** depending on complexity:\n\n"
-                "**Our 7-Step Methodology:**\n"
-                "1. **Discovery** (Target market & business KPIs)\n"
-                "2. **Research** (Architecture blueprints & user journeys)\n"
-                "3. **Design** (Figma interactive prototypes & design tokens)\n"
-                "4. **Development** (Clean React frontend & scalable Flask APIs)\n"
-                "5. **Testing** (Cross-browser, accessibility & security QA)\n"
-                "6. **Launch** (Zero-downtime deployment & SEO indexing)\n"
-                "7. **Growth** (Continuous feature sprints & performance monitoring)\n\n"
-                "Every launch also comes with a complimentary 30-day warranty!"
+                "**Project Timelines at TRIAUREX:**\n\n"
+                "Our engagements typically range from **4 to 12 weeks**:\n\n"
+                "• **MVPs & Landing Applications**: 4 to 6 weeks\n"
+                "• **Full-Scale Web & Mobile Products**: 6 to 10 weeks\n"
+                "• **Enterprise Platforms**: 8 to 12+ weeks\n\n"
+                "We deliver weekly demos and milestones so you can see live progress every single sprint!"
             )
 
-        # 7. Case Studies / Portfolio
-        if any(w in q_lower for w in ['case study', 'portfolio', 'work', 'project', 'pranara', 'visitmax', 'example']):
+        # 10. Process & Methodology
+        if any(w in q_lower for w in ['process', 'methodology', 'step', 'how do you work', 'phases', 'workflow', 'how it works']):
             return (
-                "Here are two of our spotlight case studies:\n\n"
-                "1. **PRANARA (Fintech SaaS)**: High-velocity analytics platform processing 25k transactions/sec with real-time multi-currency tracking. Results: **+180% User Growth**, 4.9 App Store rating, 12-week delivery.\n"
-                "2. **VisitMax (Travel & Hospitality)**: Intuitive booking engine with bespoke itineraries and sub-1.2s load speeds. Results: **2.5x Conversion Rate** and -40% bounce rate.\n\n"
-                "Would you like to discuss how we could build something similar for your company?"
+                "**Our 7-Step Development Methodology:**\n\n"
+                "1. **Discovery**: Target market, user personas & business KPIs\n"
+                "2. **Research**: Architecture blueprints and technical feasibility audits\n"
+                "3. **Design**: Interactive Figma prototypes and motion tokens\n"
+                "4. **Development**: Clean React frontend with scalable Python (Flask/Django) APIs\n"
+                "5. **Testing**: Automated end-to-end testing, cross-browser & accessibility QA\n"
+                "6. **Launch**: Zero-downtime deployment, CDN caching, and SEO indexing\n"
+                "7. **Growth**: Post-launch warranty, uptime monitoring, and iteration sprints"
             )
 
-        # 8. Contact, Booking & Location
-        if any(w in q_lower for w in ['contact', 'email', 'phone', 'call', 'book', 'hire', 'location', 'address', 'where are you', 'reach']):
+        # 11. Technology Stack
+        if any(w in q_lower for w in ['tech', 'technology', 'stack', 'framework', 'react', 'flask', 'django', 'python', 'node', 'database', 'sql', 'supabase', 'mysql']):
+            return (
+                "**Our Engineering & Design Stack:**\n\n"
+                "• **Frontend**: React, Next.js, Vite, TypeScript, TailwindCSS\n"
+                "• **Backend**: Python (Flask WSGI micro-services, Django for enterprise data handling), Node.js\n"
+                "• **Mobile**: Native Android (Kotlin, Jetpack Compose)\n"
+                "• **Databases**: PostgreSQL, MySQL, Supabase, Redis\n"
+                "• **Design**: Figma, design tokens, responsive component libraries\n\n"
+                "Would you like to know how we integrate with your existing codebase or APIs?"
+            )
+
+        # 12. Case Studies & Portfolio
+        if any(w in q_lower for w in ['case study', 'portfolio', 'work', 'project', 'pranara', 'visitmax', 'example', 'client', 'past work']):
+            return (
+                "**Featured TRIAUREX Case Studies:**\n\n"
+                "1. **PRANARA (Fintech SaaS)**:\n"
+                "   • Real-time analytics platform handling 25k transactions/sec with multi-currency tracking\n"
+                "   • **Results**: +180% user growth, 4.9 App Store rating, delivered in 12 weeks\n"
+                "   • **Stack**: React, Flask, TypeScript, PostgreSQL\n\n"
+                "2. **VisitMax (Travel & Hospitality)**:\n"
+                "   • High-speed booking engine with personalized itineraries across 1.4M hotel inventories\n"
+                "   • **Results**: 2.5x conversion rate, -40% bounce rate, sub-1.2s load speeds\n"
+                "   • **Stack**: React, Python, Vite, Redis\n\n"
+                "Would you like to discuss a custom build with similar performance standards?"
+            )
+
+        # 13. Contact, Location & Hiring
+        if any(w in q_lower for w in ['contact', 'email', 'phone', 'call', 'book', 'hire', 'location', 'address', 'where are you', 'reach', 'talk', 'office', 'where are']):
             c = STUDIO_PROFILE['contact']
             return (
-                "**Here is how you can connect directly with the TRIAUREX team:**\n\n"
+                "**Connect with TRIAUREX:**\n\n"
                 f"• **Email**: [{c['email']}](mailto:{c['email']})\n"
-                f"• **Direct Line**: [{c['phone']}](tel:{c['phone'].replace(' ', '')})\n"
-                f"• **Location**: {c['location']}\n"
-                f"• **Hours**: {c['business_hours']}\n"
+                f"• **Phone**: [{c['phone']}](tel:{c['phone'].replace(' ', '')})\n"
+                f"• **Studio Location**: {c['location']}\n"
+                f"• **Business Hours**: {c['business_hours']}\n"
                 f"• **Response Time**: {c['response_time']}\n\n"
-                "You can also fill out the contact form right on this page for an immediate project consultation!"
+                "You can also submit your inquiry through the contact form on this page for a rapid response within 2 hours!"
             )
 
-        # 9. Support & Warranty
-        if any(w in q_lower for w in ['warranty', 'support', 'maintenance', 'bug', 'sla', 'after launch']):
+        # 14. Warranty & Support
+        if any(w in q_lower for w in ['warranty', 'support', 'maintenance', 'bug', 'sla', 'after launch', 'guarantee']):
             return (
-                "Yes! Every project we ship includes a **complimentary 30-day post-launch warranty** covering "
-                "any bug fixes or regressions in the delivered scope. \n\n"
-                "Following warranty, we provide optional **Growth & Maintenance SLAs** covering 24/7 uptime monitoring, "
-                "continuous dependency updates, security patches, and feature iteration sprints."
+                "**Warranty & Ongoing Support:**\n\n"
+                "• **Complimentary 30-Day Warranty**: Every shipped project includes 30 days of free bug-fixing and regression support.\n"
+                "• **Growth & Maintenance SLAs**: Optional monthly maintenance retainers covering 24/7 uptime monitoring, security patches, library updates, and agile feature iterations.\n"
+                "• **Milestone Sign-Offs**: You only pay for deliverables that you have reviewed and approved."
             )
 
-        # 10. General Studio / About
-        if any(w in q_lower for w in ['who are you', 'about', 'triaurex', 'company', 'team']):
+        # 15. About TRIAUREX / Company
+        if any(w in q_lower for w in ['who are you', 'about', 'triaurex', 'company', 'team', 'who made you', 'tell me about yourself']):
             return (
-                "**TRIAUREX** is a modern digital design and full-stack engineering studio based in Tiruchirappalli, Tamil Nadu, India. "
-                "We craft high-performance digital products for ambitious brands worldwide, with 100% on-time delivery and client retention. "
-                "Whether you're starting from a napkin sketch or scaling an established platform, we turn complex challenges into elegant software."
+                "**About TRIAUREX:**\n\n"
+                "TRIAUREX is a modern digital design and full-stack engineering studio based in Tiruchirappalli, Tamil Nadu, India. "
+                "We partner with ambitious founders and established brands worldwide to create elegant, high-performance software.\n\n"
+                "• **100% On-Time Delivery** across all milestones\n"
+                "• **100% Client Retention**\n"
+                "• Deep expertise spanning **React, Python/Flask, Native Android (Kotlin), and UI/UX design**\n\n"
+                "How can we help your team succeed?"
             )
 
-        # Fallback default
+        # Fallback default: structured and helpful menu
         return (
-            "I'm here to assist with any questions about TRIAUREX's engineering services, "
-            "web & Android app development, design systems, pricing, or project kickoffs. \n\n"
-            "If you have a custom requirement or need an exact quote, our engineering team is available directly at "
-            f"**{STUDIO_PROFILE['contact']['email']}** or via phone at **{STUDIO_PROFILE['contact']['phone']}**."
+            "I'd love to help you with that! At **TRIAUREX**, we specialize in designing and engineering high-impact digital products. "
+            "Here are a few areas you can ask me about:\n\n"
+            "• **Services**: Web development, Native Android apps, UI/UX design, or branding\n"
+            "• **Pricing & Timeline**: Milestone estimates for MVPs and full-scale platforms\n"
+            "• **Case Studies**: Real-world results from PRANARA (Fintech) and VisitMax (Hospitality)\n"
+            "• **Tech Stack**: Modern React frontends and scalable Python backends\n\n"
+            "What specific question or project idea can I assist you with?"
         )
 
     def _generate_follow_up_suggestions(self, query, reply):
