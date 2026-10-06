@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { GitBranch, CheckCircle2, ArrowRight } from 'lucide-react';
 
 export default function Process({ processSteps }) {
-  const [activeStepIndex, setActiveStepIndex] = useState(3); // Default to Development (Step 04)
+  const [activeStepIndex, setActiveStepIndex] = useState(0);
 
   const defaultProcess = [
     {

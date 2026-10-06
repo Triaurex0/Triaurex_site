@@ -1,16 +1,6 @@
 import React, { useState } from 'react';
 import { Layers, ArrowRight, CheckCircle2, Mail } from 'lucide-react';
 
-const expertiseLinks = [
-  { label: 'UI/UX Design', anchor: 'ui-ux-design' },
-  { label: 'React & Vite Apps', anchor: 'web-development' },
-  { label: 'Flask REST APIs', anchor: 'web-development' },
-  { label: 'Android Apps', anchor: 'android-app-development' },
-  { label: 'Django & Databases', anchor: 'web-development' },
-  { label: 'Design Systems', anchor: 'ui-ux-design' },
-  { label: 'Data Analysis', anchor: 'data-analysis' },
-];
-
 const legalContent = {
   privacy: {
     title: 'Privacy Policy',
@@ -21,6 +11,14 @@ const legalContent = {
       'Any information you provide may be stored securely and used only for business communication, contract fulfillment, service improvement, and legal compliance. We may retain records as required by applicable law or internal business needs.',
       'We use reasonable administrative, technical, and organizational safeguards to protect data. However, no method of transmission or storage is completely secure, and we cannot guarantee absolute security.',
       'If you have any questions about privacy, please contact us through the website contact form or the email listed in our official communications.'
+    ]
+  },
+  cookies: {
+    title: 'Cookies Policy',
+    body: [
+      'TRIAUREX does not currently set analytics, advertising, or cross-site tracking cookies through this website.',
+      'Links to third-party services, including WhatsApp, LinkedIn, and GitHub, are governed by those services\' own privacy and cookie policies.',
+      'If optional cookies are introduced in the future, this policy will be updated and any required consent controls will be provided.'
     ]
   },
   terms: {
@@ -101,25 +99,14 @@ export default function Footer({ apiBaseUrl }) {
           {/* Quick Links: Navigation */}
           <div>
             <div className="footer-col-title">Navigation</div>
-            <ul className="footer-links">
-              <li><a href="#about" className="footer-link">About Studio</a></li>
-              <li><a href="#services" className="footer-link">Our Services</a></li>
-              <li><a href="#case-studies" className="footer-link">Case Studies</a></li>
-              <li><a href="#process" className="footer-link">Methodology</a></li>
-              <li><a href="#technologies" className="footer-link">Tech Stack</a></li>
-              <li><a href="#faq" className="footer-link">Common FAQs</a></li>
-            </ul>
-          </div>
-
-          {/* Quick Links: Services */}
-          <div>
-            <div className="footer-col-title">Expertise</div>
-            <ul className="footer-links">
-              {expertiseLinks.map((service) => (
-                <li key={service.label}>
-                  <a href={`#${service.anchor}`} className="footer-link">{service.label}</a>
-                </li>
-              ))}
+            <ul className="footer-links footer-navigation-links">
+              <li><a href="/#about" className="footer-link">About Studio</a></li>
+              <li><a href="/#services" className="footer-link">Our Services</a></li>
+              <li><a href="/projects" className="footer-link">Projects</a></li>
+              <li><a href="/case-studies" className="footer-link">Case Studies</a></li>
+              <li><a href="/#process" className="footer-link">Methodology</a></li>
+              <li><a href="/#technologies" className="footer-link">Tech Stack</a></li>
+              <li><a href="/#faq" className="footer-link">Common FAQs</a></li>
             </ul>
           </div>
 
@@ -161,12 +148,12 @@ export default function Footer({ apiBaseUrl }) {
         {/* Bottom Bar */}
         <div className="footer-bottom">
           <div>
-            © {new Date().getFullYear()} TRIAUREX Studio. Built with React & Flask. All rights reserved.
+            © 2026 Triaurex. All rights reserved.
           </div>
           <div style={{ display: 'flex', gap: '20px' }}>
             <button type="button" className="footer-link" style={{ fontSize: '0.82rem', background: 'transparent', border: 'none', padding: 0 }} onClick={() => setActiveLegal('privacy')}>Privacy Policy</button>
+            <button type="button" className="footer-link" style={{ fontSize: '0.82rem', background: 'transparent', border: 'none', padding: 0 }} onClick={() => setActiveLegal('cookies')}>Cookies Policy</button>
             <button type="button" className="footer-link" style={{ fontSize: '0.82rem', background: 'transparent', border: 'none', padding: 0 }} onClick={() => setActiveLegal('terms')}>Terms of Service</button>
-            <a href="#" className="footer-link" style={{ fontSize: '0.82rem' }}>Security Architecture</a>
           </div>
         </div>
 

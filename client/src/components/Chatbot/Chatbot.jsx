@@ -27,6 +27,28 @@ const DEFAULT_SUGGESTIONS = [
   "How do I start a project with TRIAUREX?"
 ];
 
+function getOfflineReply(query) {
+  const normalizedQuery = query.toLowerCase();
+
+  if (/\b(start|begin|kickoff|hire|book)\b/.test(normalizedQuery)) {
+    return "To start a project, share your goals and requirements through the contact form, or contact the owner at [triaurex0@gmail.com](mailto:triaurex0@gmail.com) or [+91 80157 12990](tel:+918015712990). The team will arrange a discovery call and prepare a scope and estimate.";
+  }
+
+  if (/\b(timeline|pricing|price|cost|budget|duration|estimate|quote|how long|how much)\b/.test(normalizedQuery)) {
+    return "**Typical project timeline & pricing:**\n\n• **Focused MVP**: ₹50,000–₹1,50,000, usually 4–6 weeks\n• **Custom product**: ₹1,50,000–₹3,50,000, usually 6–10 weeks\n• **Enterprise platform**: ₹3,50,000+, scoped after a discovery call\n\nFinal pricing depends on project requirements.";
+  }
+
+  if (/\b(android|kotlin|jetpack compose|native mobile|mobile app)\b/.test(normalizedQuery)) {
+    return "Yes. TRIAUREX builds native Android apps with Kotlin and Jetpack Compose, including responsive interfaces, real-time integrations, and Google Play launch support.";
+  }
+
+  if (/\b(services?|offer|offerings|what can you build|what do you do)\b/.test(normalizedQuery)) {
+    return "**TRIAUREX services:**\n\n• UI/UX design and prototyping\n• Web development with React and Python backends\n• Native Android app development\n• Branding and visual identity\n• Data analysis and dashboards";
+  }
+
+  return "I can only answer the four suggested topics while the AI service is unavailable. For help with this question, please contact the owner at [triaurex0@gmail.com](mailto:triaurex0@gmail.com) or [+91 80157 12990](tel:+918015712990).";
+}
+
 // Lightweight, secure Markdown renderer for chat responses
 function formatMarkdown(text) {
   if (!text) return { __html: '' };
@@ -199,7 +221,7 @@ export default function Chatbot({ apiBaseUrl = 'http://127.0.0.1:5000' }) {
           setSuggestedQuestions(data.suggestedQuestions);
         }
       } else {
-        const fallbackText = data.reply || "**TRIAUREX provides end-to-end digital craftsmanship across several core services:**\n\n• **UI/UX Design**: Research, wireframes, interactive prototypes, and design systems\n• **Web Development**: High-performance web apps built with React and modern backend architecture\n• **Android App Development**: Native Android solutions with Kotlin and Jetpack Compose\n• **Branding & Identity**: Strategic positioning, visual identity, and brand assets\n\nWe also support milestone-based projects, sprint retainers, and team augmentation. If you want, we can help plan your next digital build. You can reach us at [triaurex0@gmail.com](mailto:triaurex0@gmail.com) or [+91 80157 12990](tel:+918015712990).";
+        const fallbackText = data.reply || getOfflineReply(query);
         const botErrorObj = {
           id: `bot-${Date.now()}`,
           role: 'assistant',
@@ -213,7 +235,7 @@ export default function Chatbot({ apiBaseUrl = 'http://127.0.0.1:5000' }) {
       const offlineMsg = {
         id: `bot-${Date.now()}`,
         role: 'assistant',
-        content: "**TRIAUREX provides end-to-end digital craftsmanship across several core services:**\n\n• **UI/UX Design**: Research, wireframes, interactive prototypes, and design systems\n• **Web Development**: High-performance web apps built with React and modern backend architecture\n• **Android App Development**: Native Android solutions with Kotlin and Jetpack Compose\n• **Branding & Identity**: Strategic positioning, visual identity, and brand assets\n\nWe also support milestone-based projects, sprint retainers, and team augmentation. If you want, we can help plan your next digital build. You can reach us at [triaurex0@gmail.com](mailto:triaurex0@gmail.com) or [+91 80157 12990](tel:+918015712990).",
+        content: getOfflineReply(query),
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       };
       setMessages(prev => [...prev, offlineMsg]);

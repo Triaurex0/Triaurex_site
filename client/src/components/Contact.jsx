@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Database, Sparkles } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 export default function Contact({ apiBaseUrl }) {
@@ -13,10 +13,6 @@ export default function Contact({ apiBaseUrl }) {
 
   const [loading, setLoading] = useState(false);
   const [responseStatus, setResponseStatus] = useState(null); // { success: bool, message: str, inquiryId?: str }
-  const [showLeadsModal, setShowLeadsModal] = useState(false);
-  const [leads, setLeads] = useState([]);
-  const [loadingLeads, setLoadingLeads] = useState(false);
-
   const handleChange = (e) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -83,20 +79,6 @@ export default function Contact({ apiBaseUrl }) {
     }
   };
 
-  const fetchLeads = async () => {
-    setLoadingLeads(true);
-    try {
-      const res = await fetch(`${apiBaseUrl}/api/leads`);
-      const data = await res.json();
-      setLeads(data);
-    } catch (err) {
-      console.error("Could not fetch leads:", err);
-    } finally {
-      setLoadingLeads(false);
-      setShowLeadsModal(true);
-    }
-  };
-
   return (
     <section className="section" id="contact">
       <div className="container">
@@ -148,7 +130,7 @@ export default function Contact({ apiBaseUrl }) {
                 </div>
               </div>
 
-              {/* Socials & Database Inspector */}
+              {/* Social Links */}
               <div>
                 <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '12px' }}>
                   Follow Our Craft
@@ -165,16 +147,6 @@ export default function Contact({ apiBaseUrl }) {
                   </a>
                 </div>
 
-                {/* Live Leads Inspection Button */}
-                <button 
-                  onClick={fetchLeads} 
-                  className="btn-secondary" 
-                  style={{ padding: '8px 16px', fontSize: '0.8rem', gap: '6px' }}
-                  title="View leads stored in Flask SQLite database"
-                >
-                  <Database size={14} color="#00f0ff" />
-                  <span>Inspect Flask Leads DB</span>
-                </button>
               </div>
 
             </div>
@@ -313,51 +285,6 @@ export default function Contact({ apiBaseUrl }) {
 
       </div>
 
-      {/* Leads Database Viewer Modal */}
-      {showLeadsModal && (
-        <div className="modal-backdrop" onClick={() => setShowLeadsModal(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <Database size={22} color="#00f0ff" />
-                <h3 style={{ fontSize: '1.4rem', color: '#fff' }}>SQLite Leads Database</h3>
-              </div>
-              <button className="btn-secondary" style={{ padding: '6px 14px', fontSize: '0.8rem' }} onClick={() => setShowLeadsModal(false)}>
-                Close
-              </button>
-            </div>
-
-            <p style={{ color: 'var(--text-muted)', fontSize: '0.88rem', marginBottom: '20px' }}>
-              Live submissions recorded by the Flask <code>/api/contact</code> endpoint in <code>server/travix.db</code>.
-            </p>
-
-            {loadingLeads ? (
-              <div style={{ textAlign: 'center', padding: '30px', color: 'var(--text-secondary)' }}>Querying SQLite database...</div>
-            ) : leads.length === 0 ? (
-              <div style={{ textAlign: 'center', padding: '30px', color: 'var(--text-secondary)', background: 'rgba(255,255,255,0.02)', borderRadius: '10px' }}>
-                No inquiries submitted yet. Submit the contact form to see live entries recorded here!
-              </div>
-            ) : (
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                {leads.map((lead) => (
-                  <div key={lead.id} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '10px', padding: '14px' }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '6px' }}>
-                      <strong style={{ color: '#00f0ff' }}>{lead.name} ({lead.email})</strong>
-                      <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{lead.created_at}</span>
-                    </div>
-                    <div style={{ fontSize: '0.82rem', color: 'var(--text-secondary)', marginBottom: '6px' }}>
-                      <strong>Service:</strong> {lead.project_type} • <strong>Budget:</strong> {lead.budget}
-                    </div>
-                    <div style={{ fontSize: '0.85rem', color: '#cbd5e1', fontStyle: 'italic' }}>
-                      "{lead.message}"
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      )}
     </section>
   );
 }

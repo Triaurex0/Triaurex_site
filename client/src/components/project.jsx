@@ -1,8 +1,8 @@
 import React, { useMemo, useState } from 'react';
-import { ExternalLink } from 'lucide-react';
+import { ArrowRight, ExternalLink } from 'lucide-react';
 import { projects } from '../data/projects';
 
-const projectFilters = ['All', 'Analytics'];
+const projectFilters = ['All', 'Mobile Apps', 'Web Apps', 'UX Design', 'Branding', 'Analytics'];
 
 function ProjectVisual({ project, large = false }) {
   if (large && project.image) {
@@ -17,10 +17,7 @@ function ProjectVisual({ project, large = false }) {
   }
 
   return (
-    <div
-      className="project-preview project-preview-pink"
-      style={large ? { minHeight: '220px', borderRadius: '18px', border: '1px solid rgba(255,255,255,0.08)' } : undefined}
-    >
+    <div className="project-preview project-preview-pink">
       <div className="project-preview-topbar">
         <span className="project-badge">{project.tags[0]}</span>
         <span className="project-domain-pill">Analytics</span>
@@ -31,7 +28,7 @@ function ProjectVisual({ project, large = false }) {
           className="project-preview-image"
           src={project.image}
           alt={project.title}
-          style={{ objectFit: project.imageFit || 'cover' }}
+          style={{ objectFit: project.imageFit || 'contain' }}
         />
       ) : (
         <div className="project-mini-graph">
@@ -54,18 +51,18 @@ function ProjectVisual({ project, large = false }) {
   );
 }
 
-export default function Projrct() {
+export default function Projrct({ sectionId = 'projects' }) {
   const [activeFilter, setActiveFilter] = useState('All');
   const [activeProject, setActiveProject] = useState(null);
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === 'All') return projects;
-    return projects.filter((project) => project.role === activeFilter.toLowerCase());
+    return projects.filter((project) => (project.categories || [project.role]).includes(activeFilter.toLowerCase()));
   }, [activeFilter]);
 
   const externalLinks = activeProject
     ? Object.entries(activeProject.links || {}).flatMap(([type, urls]) =>
-        (Array.isArray(urls) ? urls : [urls]).map((url, index) => ({
+        (Array.isArray(urls) ? urls : [urls]).map((url) => ({
           type,
           url,
           label: type[0].toUpperCase() + type.slice(1)
@@ -74,7 +71,7 @@ export default function Projrct() {
     : [];
 
   return (
-    <section className="section" id="projects">
+    <section className="section" id={sectionId}>
       <div className="container">
         <div className="project-filter-row">
           {projectFilters.map((filter) => (
@@ -116,27 +113,30 @@ export default function Projrct() {
                   ))}
                 </div>
 
-                <p className="project-kicker">Analytics</p>
+                <p className="project-kicker">{project.role}</p>
                 <h3 className="project-title">{project.title}</h3>
                 <p className="project-description">{project.summary}</p>
 
                 <div className="project-footer-row">
                   <button
                     type="button"
-                    className="project-link-btn"
+                    className="btn-primary project-view-button"
                     onClick={(event) => {
                       event.stopPropagation();
                       setActiveProject(project);
                     }}
                   >
-                    View case study
+                    <span>View case study</span>
+                    <ArrowRight size={16} />
                   </button>
-                  <span className="project-arrow" aria-hidden="true">↗</span>
                 </div>
               </div>
             </article>
           ))}
         </div>
+        {filteredProjects.length === 0 && (
+          <p className="portfolio-empty-state">No {activeFilter.toLowerCase()} projects are available yet.</p>
+        )}
       </div>
 
       {activeProject && (
@@ -151,21 +151,12 @@ export default function Projrct() {
             </div>
 
             <div className="project-detail-content">
-              <span className="portfolio-detail-eyebrow">Analytics case study</span>
+              <span className="portfolio-detail-eyebrow">{activeProject.role} project</span>
               <h3 className="project-detail-title">{activeProject.title}</h3>
               <p className="project-detail-meta">{activeProject.tags.join(' · ')}</p>
               <p className="project-detail-description">{activeProject.description}</p>
 
               <div className="project-detail-body">
-                <div className="project-detail-overview">
-                  <div className="case-metrics-grid project-impact-grid">
-                    <div>
-                      <div className="case-metric-value">{activeProject.impact}</div>
-                      <div className="case-metric-label">{activeProject.impactLabel}</div>
-                    </div>
-                  </div>
-                </div>
-
                 <div className="project-detail-information">
                   <div className="project-case-study">
                     <h4>Case Study</h4>
@@ -195,7 +186,7 @@ export default function Projrct() {
                 <button className="btn-secondary" onClick={() => setActiveProject(null)}>
                   Close
                 </button>
-                <a href="#contact" className="btn-primary" onClick={() => setActiveProject(null)}>
+                <a href="/#contact" className="btn-primary" onClick={() => setActiveProject(null)}>
                   Build Similar Project
                 </a>
               </div>

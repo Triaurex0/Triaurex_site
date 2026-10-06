@@ -4,7 +4,7 @@ import pranaraDoc from '../assets/case-study-doc/PRANARA.docx?url';
 import visitmaxDoc from '../assets/case-study-doc/VISITMAX.docx?url';
 import yrcDoc from '../assets/case-study-doc/YRC XEROX app design.docx?url';
 
-export default function CaseStudies({ caseStudies }) {
+export default function CaseStudies({ caseStudies, sectionId = 'case-studies' }) {
   const [activeModalProject, setActiveModalProject] = useState(null);
   const [activeFilter, setActiveFilter] = useState('All');
 
@@ -68,7 +68,7 @@ export default function CaseStudies({ caseStudies }) {
     },
   ];
 
-  const filterTabs = ['All', 'Frontend', 'Backend', 'Database', 'Design'];
+  const filterTabs = ['All', 'Mobile Apps', 'Web Apps', 'UX Design', 'E-Commerce'];
 
   const imageById = {
     pranara: '/images/casestudy/paranara.png',
@@ -80,20 +80,25 @@ export default function CaseStudies({ caseStudies }) {
     visitmax: visitmaxDoc,
     'yrc-xerox': yrcDoc
   };
-  const projects = caseStudies && caseStudies.length > 0 ? caseStudies.map((item, index) => ({
+  const categoriesById = {
+    pranara: ['Web Apps'],
+    visitmax: ['Mobile Apps', 'UX Design'],
+    'yrc-xerox': ['Web Apps', 'UX Design', 'E-Commerce']
+  };
+  const projects = (caseStudies && caseStudies.length > 0 ? caseStudies : defaultCases).map((item, index) => ({
     ...item,
     image: item.image || imageById[item.id] || '/images/casestudy/YRC.png',
     documentUrl: item.documentUrl || documentById[item.id],
-    category: item.category || (index === 0 ? 'Frontend' : 'Design')
-  })) : defaultCases;
+    categories: item.categories || categoriesById[item.id] || [item.category || (index === 0 ? 'Web Apps' : 'UX Design')]
+  }));
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === 'All') return projects;
-    return projects.filter((item) => item.category === activeFilter);
+    return projects.filter((item) => item.categories?.includes(activeFilter));
   }, [activeFilter, projects]);
 
   return (
-    <section className="section" id="case-studies">
+    <section className="section" id={sectionId}>
       <div className="container">
         <div className="project-filter-row case-filter-row">
           {filterTabs.map((filter) => (
@@ -110,12 +115,10 @@ export default function CaseStudies({ caseStudies }) {
 
         <div className="case-studies-list">
           {filteredProjects.map((item, index) => {
-            const isReversed = index % 2 === 1;
-
             return (
               <div
                 key={item.id}
-                className="glass-card case-study-card"
+                className={`glass-card case-study-card ${index % 2 === 1 ? 'case-study-card-reversed' : ''}`}
                 onClick={() => setActiveModalProject(item)}
                 onKeyDown={(e) => {
                   if (e.key === 'Enter' || e.key === ' ') {
@@ -127,12 +130,10 @@ export default function CaseStudies({ caseStudies }) {
                 tabIndex={0}
                 aria-label={`Open case study ${item.title}`}
               >
-                {!isReversed && (
-                  <div className="case-study-image-wrap">
-                    <img src={item.image} alt={item.title} loading="lazy" />
-                    <div className="case-study-overlay" />
-                  </div>
-                )}
+                <div className="case-study-image-wrap">
+                  <img src={item.image} alt={item.title} loading="lazy" />
+                  <div className="case-study-overlay" />
+                </div>
 
                 <div className="case-study-content">
                   <div>
@@ -171,16 +172,13 @@ export default function CaseStudies({ caseStudies }) {
                   </div>
                 </div>
 
-                {isReversed && (
-                  <div className="case-study-image-wrap">
-                    <img src={item.image} alt={item.title} loading="lazy" />
-                    <div className="case-study-overlay" />
-                  </div>
-                )}
               </div>
             );
           })}
         </div>
+        {filteredProjects.length === 0 && (
+          <p className="portfolio-empty-state">No {activeFilter.toLowerCase()} case studies are available yet.</p>
+        )}
       </div>
 
       {activeModalProject && (
@@ -244,7 +242,7 @@ export default function CaseStudies({ caseStudies }) {
                 <button className="btn-secondary" onClick={() => setActiveModalProject(null)}>
                   Close
                 </button>
-                <a href="#contact" className="btn-primary" onClick={() => setActiveModalProject(null)}>
+                <a href="/#contact" className="btn-primary" onClick={() => setActiveModalProject(null)}>
                   Build Similar Solution
                 </a>
               </div>

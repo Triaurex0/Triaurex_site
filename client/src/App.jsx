@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { ArrowRight } from 'lucide-react';
+import { BrowserRouter, Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
 import CaseStudies from './components/CaseStudies';
-import Projrct from './components/projrct';
+import Projrct from './components/project';
 import Process from './components/Process';
 import Technologies from './components/Technologies';
 import Testimonials from './components/Testimonials';
@@ -15,8 +17,82 @@ import Chatbot from './components/Chatbot/Chatbot';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:5000';
 
+function SiteLayout({ children, apiBaseUrl }) {
+  return (
+    <div className="app-layout">
+      <Navbar />
+      {children}
+      <Footer apiBaseUrl={apiBaseUrl} />
+      <Chatbot apiBaseUrl={apiBaseUrl} />
+    </div>
+  );
+}
+
+function PortfolioChooser() {
+  const choices = [
+    { title: 'Projects', to: '/projects' },
+    { title: 'Case Studies', to: '/case-studies' }
+  ];
+
+  return (
+    <section className="portfolio-choice-section section" aria-label="Explore our work">
+      <div className="container">
+        <div className="portfolio-selector">
+          {choices.map((choice) => (
+            <Link className="portfolio-selector-card" to={choice.to} key={choice.title}>
+              <span className="portfolio-choice-title">{choice.title}</span>
+              <span className="portfolio-choice-view">View <ArrowRight size={14} /></span>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HomePage({ companyInfo, services, processSteps, techList, testimonials, faqs, apiBaseUrl }) {
+  return (
+    <SiteLayout apiBaseUrl={apiBaseUrl}>
+      <Hero companyData={companyInfo} />
+      <About companyData={companyInfo} />
+      <Services services={services} />
+      <PortfolioChooser />
+      <Process processSteps={processSteps} />
+      <Technologies techList={techList} />
+      <Testimonials testimonials={testimonials} apiBaseUrl={apiBaseUrl} />
+      <FAQ faqs={faqs} />
+      <Contact apiBaseUrl={apiBaseUrl} />
+    </SiteLayout>
+  );
+}
+
+function PortfolioPage({ title, apiBaseUrl, children }) {
+  return (
+    <SiteLayout apiBaseUrl={apiBaseUrl}>
+      <main>
+        <header className="portfolio-route-heading">
+          <div className="container">
+            <Link className="portfolio-back-link" to="/">Home</Link>
+            <h1>{title}</h1>
+          </div>
+        </header>
+        {children}
+      </main>
+    </SiteLayout>
+  );
+}
+
+function RouteScrollReset() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 export default function App() {
-  const [activePortfolio, setActivePortfolio] = useState('projects');
   const [apiStatus, setApiStatus] = useState({ connected: false, loading: true });
   const [companyInfo, setCompanyInfo] = useState(null);
   const [services, setServices] = useState([]);
@@ -68,65 +144,41 @@ export default function App() {
   }, []);
 
   return (
-    <div className="app-layout">
-      {/* Navigation */}
-      <Navbar />
-
-      {/* Hero Section with interactive analytics */}
-      <Hero companyData={companyInfo} />
-
-      {/* About Us: Studio built for ambitious brands */}
-      <About companyData={companyInfo} />
-
-      {/* Services engineered for impact */}
-      <Services services={services} />
-
-      <section className="portfolio-section" aria-label="Portfolio">
-        <div className="container">
-          <div className="portfolio-selector" role="tablist" aria-label="Portfolio type">
-            <button
-              type="button"
-              role="tab"
-              aria-selected={activePortfolio === 'projects'}
-              className={`portfolio-selector-card ${activePortfolio === 'projects' ? 'active' : ''}`}
-              onClick={() => setActivePortfolio('projects')}
-            >
-              Project
-            </button>
-            <button
-              type="button"
-              role="tab"
-              aria-selected={activePortfolio === 'case-studies'}
-              className={`portfolio-selector-card ${activePortfolio === 'case-studies' ? 'active' : ''}`}
-              onClick={() => setActivePortfolio('case-studies')}
-            >
-              Case Study
-            </button>
-          </div>
-        </div>
-        {activePortfolio === 'projects' ? <Projrct /> : <CaseStudies caseStudies={caseStudies} />}
-      </section>
-
-      {/* A proven, transparent process */}
-      <Process processSteps={processSteps} />
-
-      {/* Technologies we master */}
-      <Technologies techList={techList} />
-
-      {/* Voice of our partners (Testimonials) */}
-      <Testimonials testimonials={testimonials} apiBaseUrl={API_BASE_URL} />
-
-      {/* Frequently Asked Questions */}
-      <FAQ faqs={faqs} />
-
-      {/* Contact & Project Kickoff with live Flask API */}
-      <Contact apiBaseUrl={API_BASE_URL} />
-
-      {/* Footer */}
-      <Footer apiBaseUrl={API_BASE_URL} />
-
-      {/* Production-Ready AI Chatbot */}
-      <Chatbot apiBaseUrl={API_BASE_URL} />
-    </div>
+    <BrowserRouter>
+      <RouteScrollReset />
+      <Routes>
+        <Route
+          path="/"
+          element={(
+            <HomePage
+              companyInfo={companyInfo}
+              services={services}
+              processSteps={processSteps}
+              techList={techList}
+              testimonials={testimonials}
+              faqs={faqs}
+              apiBaseUrl={API_BASE_URL}
+            />
+          )}
+        />
+        <Route
+          path="/projects"
+          element={(
+            <PortfolioPage title="Projects" apiBaseUrl={API_BASE_URL}>
+              <CaseStudies caseStudies={caseStudies} sectionId="projects" />
+            </PortfolioPage>
+          )}
+        />
+        <Route
+          path="/case-studies"
+          element={(
+            <PortfolioPage title="Case Studies" apiBaseUrl={API_BASE_URL}>
+              <Projrct sectionId="case-studies" />
+            </PortfolioPage>
+          )}
+        />
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </BrowserRouter>
   );
 }

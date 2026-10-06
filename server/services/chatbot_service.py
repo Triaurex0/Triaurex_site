@@ -313,19 +313,37 @@ class ChatbotService:
 
     def _knowledge_engine_fallback(self, query, history):
         """
-        Intelligent Knowledge Engine fallback.
-        Provides accurate, friendly, domain-specific answers directly from
-        the verified TRIAUREX knowledge base when an external API key is absent or offline.
+        Provide fixed answers for the four suggested topics when AI is unavailable.
         """
         q_lower = query.lower()
+        contact = STUDIO_PROFILE['contact']
+        contact_reply = (
+            "I can only answer the four suggested topics while the AI service is unavailable. "
+            f"For help with this question, please contact the owner at "
+            f"[{contact['email']}](mailto:{contact['email']}) or "
+            f"[{contact['phone']}](tel:{contact['phone'].replace(' ', '')})."
+        )
 
         # Check for prompt injection attempts
         if any(term in q_lower for term in ['ignore previous', 'system prompt', 'you are now', 'dan mode', 'bypass']):
+            return contact_reply
+
+        if re.search(r'\b(start|begin|kickoff|hire|book)\b', q_lower):
             return (
-                "I am Aurora, the dedicated TRIAUREX digital assistant. "
-                "I'm here to provide accurate information regarding our engineering services, "
-                "pricing, and project kickoffs. How can I assist with your next web or mobile build?"
+                "To start a project, share your goals and requirements through the contact form, "
+                f"or contact the owner at [{contact['email']}](mailto:{contact['email']}) or "
+                f"[{contact['phone']}](tel:{contact['phone'].replace(' ', '')}). "
+                "The team will arrange a discovery call and prepare a scope and estimate."
             )
+
+        is_pricing_or_timeline = bool(re.search(
+            r'\b(timeline|pricing|price|cost|budget|duration|how long|how much)\b', q_lower
+        ))
+        is_android = bool(re.search(r'\b(android|kotlin|jetpack compose|native mobile)\b', q_lower))
+        is_services = bool(re.search(r'\b(services?|offer|offerings|what can you build)\b', q_lower))
+
+        if not (is_pricing_or_timeline or is_android or is_services):
+            return contact_reply
 
         # 1. Greetings & Casual Chit-Chat
         if re.search(r'\b(hi|hello|hey|good morning|good afternoon|good evening|greetings|howdy)\b', q_lower):
