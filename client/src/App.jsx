@@ -3,6 +3,7 @@ import { ArrowRight } from 'lucide-react';
 import { BrowserRouter, Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import Hero1 from './components/Hero1';
 import About from './components/About';
 import Services from './components/Services';
 import CaseStudies from './components/CaseStudies';
@@ -53,6 +54,7 @@ function PortfolioChooser() {
 function HomePage({ companyInfo, services, processSteps, techList, testimonials, faqs, apiBaseUrl }) {
   return (
     <SiteLayout apiBaseUrl={apiBaseUrl}>
+      <Hero1 />
       <Hero companyData={companyInfo} />
       <About companyData={companyInfo} />
       <Services services={services} />
