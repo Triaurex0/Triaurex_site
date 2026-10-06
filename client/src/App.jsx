@@ -167,7 +167,7 @@ export default function App() {
           path="/projects"
           element={(
             <PortfolioPage title="Projects" apiBaseUrl={API_BASE_URL}>
-              <CaseStudies caseStudies={caseStudies} sectionId="projects" />
+              <Projrct sectionId="projects" />
             </PortfolioPage>
           )}
         />
@@ -175,7 +175,7 @@ export default function App() {
           path="/case-studies"
           element={(
             <PortfolioPage title="Case Studies" apiBaseUrl={API_BASE_URL}>
-              <Projrct sectionId="case-studies" />
+              <CaseStudies caseStudies={caseStudies} sectionId="case-studies" />
             </PortfolioPage>
           )}
         />

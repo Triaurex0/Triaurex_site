@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight, Play, CheckCircle, Sparkles, Zap, Globe, Briefcase } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Hero({ companyData }) {
   const [activeTab, setActiveTab] = useState('Projects');
@@ -57,15 +58,15 @@ export default function Hero({ companyData }) {
                 <ArrowRight size={17} />
               </a>
 
-              <a href="/case-studies" className="btn-secondary">
+              <Link to="/case-studies" className="btn-secondary">
                 <Play size={16} fill="currentColor" />
                 <span>View Case Studies</span>
-              </a>
+              </Link>
 
-              <a href="/projects" className="btn-secondary">
+              <Link to="/projects" className="btn-secondary">
                 <Briefcase size={16} />
                 <span>View Project</span>
-              </a>
+              </Link>
             </div>
 
           </div>
