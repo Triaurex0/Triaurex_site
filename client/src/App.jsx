@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import About from './components/About';
 import Services from './components/Services';
 import CaseStudies from './components/CaseStudies';
+import Projrct from './components/projrct';
 import Process from './components/Process';
 import Technologies from './components/Technologies';
 import Testimonials from './components/Testimonials';
@@ -15,6 +16,7 @@ import Chatbot from './components/Chatbot/Chatbot';
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:5000';
 
 export default function App() {
+  const [activePortfolio, setActivePortfolio] = useState('projects');
   const [apiStatus, setApiStatus] = useState({ connected: false, loading: true });
   const [companyInfo, setCompanyInfo] = useState(null);
   const [services, setServices] = useState([]);
@@ -79,8 +81,31 @@ export default function App() {
       {/* Services engineered for impact */}
       <Services services={services} />
 
-      {/* Case studies that speak for themselves */}
-      <CaseStudies caseStudies={caseStudies} />
+      <section className="portfolio-section" aria-label="Portfolio">
+        <div className="container">
+          <div className="portfolio-selector" role="tablist" aria-label="Portfolio type">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activePortfolio === 'projects'}
+              className={`portfolio-selector-card ${activePortfolio === 'projects' ? 'active' : ''}`}
+              onClick={() => setActivePortfolio('projects')}
+            >
+              Project
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={activePortfolio === 'case-studies'}
+              className={`portfolio-selector-card ${activePortfolio === 'case-studies' ? 'active' : ''}`}
+              onClick={() => setActivePortfolio('case-studies')}
+            >
+              Case Study
+            </button>
+          </div>
+        </div>
+        {activePortfolio === 'projects' ? <Projrct /> : <CaseStudies caseStudies={caseStudies} />}
+      </section>
 
       {/* A proven, transparent process */}
       <Process processSteps={processSteps} />

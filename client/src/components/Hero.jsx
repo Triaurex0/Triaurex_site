@@ -63,15 +63,6 @@ export default function Hero({ companyData }) {
               </a>
             </div>
 
-            {/* Metric counters directly under hero */}
-            <div className="hero-stats-bar">
-              {stats.map((s, index) => (
-                <div key={index} className="stat-item">
-                  <div className="stat-number">{s.value}</div>
-                  <div className="stat-label">{s.label}</div>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* Right Column: Interactive Work Representation Card */}
@@ -113,6 +104,15 @@ export default function Hero({ companyData }) {
                       }}
                     />
                     <span className="chart-bar-label">{item.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="hero-stats-bar">
+                {stats.map((s, index) => (
+                  <div key={index} className="stat-item">
+                    <div className="stat-number">{s.value}</div>
+                    <div className="stat-label">{s.label}</div>
                   </div>
                 ))}
               </div>

@@ -9,6 +9,13 @@ const iconMap = {
   Sparkles: Sparkles,
 };
 
+const slugifyServiceTitle = (title) =>
+  title
+    .toLowerCase()
+    .replace(/&/g, 'and')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');
+
 export default function Services({ services }) {
   const [selectedService, setSelectedService] = useState(null);
 
@@ -40,6 +47,13 @@ export default function Services({ services }) {
       icon: "Sparkles",
       description: "Strategic brand positioning, cohesive visual identities, typography, and guidelines that make your company unforgettable.",
       deliverables: ["Brand Strategy & Voice", "Logo Design & Visual Language", "Brand Style Guides & Assets", "Pitch Decks & Marketing Collateral"]
+    },
+    {
+      id: "data-analysis",
+      title: "Data Analysis",
+      icon: "Cpu",
+      description: "Turn raw business data into clear insights with reliable analysis, interactive dashboards, and practical recommendations.",
+      deliverables: ["Data Cleaning & Preparation", "Exploratory Data Analysis", "Power BI Dashboards & Reporting", "Trend Analysis & Business Insights"]
     }
   ];
 
@@ -63,9 +77,12 @@ export default function Services({ services }) {
             const Icon = iconMap[service.icon] || Code;
             const isTopRow = idx < 3;
 
+            const serviceAnchorId = slugifyServiceTitle(service.title);
+
             return (
               <div
-                key={service.id}
+                key={service.id || serviceAnchorId}
+                id={serviceAnchorId}
                 className={`glass-card service-card ${isTopRow ? 'service-col-top' : 'service-col-bottom'}`}
                 onClick={() => setSelectedService(service)}
               >
