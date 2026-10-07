@@ -116,6 +116,13 @@ SERVICES_DATA = [
         "icon": "Sparkles",
         "description": "Strategic brand positioning, cohesive visual identities, typography, and guidelines that make your company unforgettable.",
         "deliverables": ["Brand Strategy & Voice", "Logo Design & Visual Language", "Brand Style Guides & Assets", "Pitch Decks & Marketing Collateral"]
+    },
+    {
+        "id": "data-analysis",
+        "title": "Data Analysis",
+        "icon": "Cpu",
+        "description": "Turn raw business data into clear insights with reliable analysis, interactive dashboards, and practical recommendations.",
+        "deliverables": ["Data Cleaning & Preparation", "Exploratory Data Analysis", "Power BI Dashboards & Reporting", "Trend Analysis & Business Insights"]
     }
 ]
 
@@ -123,34 +130,56 @@ CASE_STUDIES_DATA = [
     {
         "id": "pranara",
         "title": "PRANARA",
-        "tag": "Fintech SaaS",
-        "client": "Pranara Global Financial Inc.",
-        "year": "2025",
-        "description": "A high-velocity financial analytics platform providing real-time multi-currency portfolio tracking, automated risk mitigation, and instant settlement flows.",
-        "stats": [
-            {"label": "User Growth", "value": "+180%"},
-            {"label": "App Store Rating", "value": "4.9"},
-            {"label": "Delivery Timeline", "value": "12wk"}
-        ],
-        "techStack": ["React", "Flask", "TypeScript", "PostgreSQL", "TailwindCSS", "Chart.js"],
-        "challenge": "Pranara needed to transition from legacy spreadsheets to a zero-latency web dashboard capable of processing 25,000 live market transactions per second.",
-        "solution": "We designed an obsidian glassmorphic UI paired with optimized WebSockets and cached Python endpoints, decreasing user onboarding drop-off by 62%."
+        "tag": "Travel & Tourism",
+        "client": "PRANARA",
+        "year": "2026",
+        "image": "/images/casestudy/paranara.png",
+        "category": "Frontend",
+        "description": "A responsive travel and tourism website that helps visitors discover Munnar destinations, experiences, and tour packages.",
+        "stats": [],
+        "techStack": ["Figma", "HTML", "CSS", "JavaScript", "Vercel", "Hostinger"],
+        "challenge": "Travelers need one clear place to explore Munnar destinations, compare experiences, find tour packages, and enquire about trips.",
+        "process": "Designed a mobile-responsive experience around spacious layouts, nature-inspired visuals, clear navigation, destination storytelling, and a simple enquiry flow.",
+        "solution": "A travel platform organized into destination, tour package, experience, gallery, and contact sections, with trip planning information easy to find.",
+        "outcome": "PRANARA gives the travel brand a modern digital presence and makes it easier for visitors to discover and enquire about travel offerings.",
+        "features": ["Munnar destination discovery", "Tour packages and travel experiences", "Destination details and gallery", "Responsive layouts", "Trip enquiry flow"],
+        "externalLinks": [{"label": "Visit Website", "url": "https://www.pranaramunnar.com/"}]
     },
     {
         "id": "visitmax",
         "title": "VisitMax",
-        "tag": "Travel & Hospitality",
-        "client": "VisitMax International",
-        "year": "2024",
-        "description": "An intuitive booking and travel recommendation engine delivering bespoke itineraries, immersive destination previews, and lightning-fast checkout.",
-        "stats": [
-            {"label": "Conversion Rate", "value": "2.5x"},
-            {"label": "Bounce Rate", "value": "-40%"},
-            {"label": "Avg Load Time", "value": "1.2s"}
-        ],
-        "techStack": ["React", "Python", "Vite", "Redis", "Figma", "Stripe API"],
-        "challenge": "VisitMax faced severe mobile cart abandonment due to cluttered layouts and slow search queries across 1.4 million hotel inventories.",
-        "solution": "We restructured the discovery funnel with tactile micro-interactions, responsive modular filters, and a unified 2-step booking flow."
+        "tag": "Healthcare · Mobile Application",
+        "client": "VisitMax",
+        "year": "2025",
+        "image": "/images/casestudy/Visitmax.png",
+        "category": "Design",
+        "description": "A mobile field-visit management app for healthcare executives to record visits, validate locations, upload evidence, and manage reports.",
+        "stats": [],
+        "techStack": ["Figma", "React Native", "Web API", "MySQL", "Android Studio"],
+        "challenge": "Healthcare field executives need a structured way to manage daily visits and replace scattered manual tracking with reliable visit records.",
+        "process": "Designed a mobile-first flow with quick actions, clear information hierarchy, OTP login, GPS validation, evidence capture, and minimal steps for recording a visit.",
+        "solution": "A centralized app experience for visit tracking, visit reasons, photo evidence, visit history, reports, profiles, and settings.",
+        "outcome": "VisitMax makes field-visit reporting more structured and brings visit management into one mobile application.",
+        "features": ["Login and OTP authentication", "Daily dashboard and visit tracking", "GPS location validation", "Evidence photo upload", "Visit reasons, history, and reports", "Profile and settings"],
+        "externalLinks": [{"label": "View Figma Design", "url": "https://www.figma.com/design/KOfwcWwrgEqqUZwfbwfHiq/visitmax?node-id=0-1&p=f&t=b5PNiqgyHCgXPBaQ-0"}]
+    },
+    {
+        "id": "yrc-xerox",
+        "title": "YRC Xerox",
+        "tag": "E-Commerce · Marketplace",
+        "client": "YRC Xerox",
+        "year": "2026",
+        "image": "/images/casestudy/YRC.png",
+        "category": "Design",
+        "description": "A product-focused e-commerce marketplace design for browsing and purchasing Xerox and printing machines.",
+        "stats": [],
+        "techStack": ["Figma", "Adobe Photoshop", "Canva"],
+        "challenge": "Customers need a straightforward way to discover printing machines, understand product details, compare options, and complete a purchase.",
+        "process": "Designed a professional responsive shopping experience around clear product hierarchy, simple navigation, consistent UI, product discovery, and a structured checkout.",
+        "solution": "A marketplace flow that connects product listings and categories to product details, cart, checkout, payment, accounts, and order management.",
+        "outcome": "The design gives YRC Xerox a structured digital marketplace for showcasing machines and supporting a clearer purchasing journey.",
+        "features": ["Product listing and categories", "Search and filtering", "Detailed product pages", "Shopping cart and checkout", "Payment flow", "User accounts and order management"],
+        "externalLinks": [{"label": "View Figma Design", "url": "https://www.figma.com/design/dYvw5l0RVObm1x7BNiMsUc/Untitled?node-id=0-1&p=f&t=oWIpgip7a7YusCA9-0"}]
     }
 ]
 
@@ -208,7 +237,16 @@ TECH_DATA = [
     {"name": "MySQL", "category": "Database", "icon": "Database", "description": "ACID-compliant relational database management system for structured data"},
     {"name": "Supabase", "category": "Database", "icon": "Database", "description": "Open-source Firebase alternative with instant Postgres, realtime subscriptions, and auth"},
     {"name": "Figma", "category": "Design", "icon": "PenTool", "description": "Collaborative design systems, auto-layout UI components, and prototypes"},
-    {"name": "Canva", "category": "Design", "icon": "Palette", "description": "Visual graphics, brand identity collateral, and marketing assets"}
+    {"name": "Mural", "category": "Design", "icon": "Layers", "description": "Collaborative visual workspace for workshops, mapping, and ideation"},
+    {"name": "Balsamiq", "category": "Design", "icon": "PenTool", "description": "Low-fidelity wireframing for rapid interface planning"},
+    {"name": "Whimsical", "category": "Design", "icon": "Layers", "description": "Visual collaboration for flowcharts, wireframes, and product planning"},
+    {"name": "CorelDRAW", "category": "Design", "icon": "Palette", "description": "Vector illustration, page layout, and graphic design"},
+    {"name": "Penpot", "category": "Design", "icon": "PenTool", "description": "Open-source interface design and interactive prototyping"},
+    {"name": "Stitch", "category": "Design", "icon": "Layers", "description": "AI-assisted interface design and UI prototyping"},
+    {"name": "Adobe XD", "category": "Design", "icon": "PenTool", "description": "UI/UX design and interactive prototyping"},
+    {"name": "Framer", "category": "Design", "icon": "Layers", "description": "Interactive website design and visual prototyping"},
+    {"name": "Canva", "category": "Design", "icon": "Palette", "description": "Visual graphics, brand identity collateral, and marketing assets"},
+    {"name": "Power BI", "category": "Analytics", "icon": "Database", "description": "Business intelligence dashboards, reporting, and data visualization"}
 ]
 
 TESTIMONIALS_DATA = [

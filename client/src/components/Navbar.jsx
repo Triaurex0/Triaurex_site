@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Menu, X } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { pathname } = useLocation();
+  const homePath = pathname === '/';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,19 +17,20 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: 'About', href: '#about' },
-    { name: 'Services', href: '#services' },
-    { name: 'Case Studies', href: '#case-studies' },
-    { name: 'Process', href: '#process' },
-    { name: 'Tech Stack', href: '#technologies' },
-    { name: 'FAQ', href: '#faq' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'About', href: homePath ? '#about' : '/#about' },
+    { name: 'Services', href: homePath ? '#services' : '/#services' },
+    { name: 'Projects', href: '/projects' },
+    { name: 'Case Studies', href: '/case-studies' },
+    { name: 'Process', href: homePath ? '#process' : '/#process' },
+    { name: 'Tech Stack', href: homePath ? '#technologies' : '/#technologies' },
+    { name: 'FAQ', href: homePath ? '#faq' : '/#faq' },
+    { name: 'Contact', href: homePath ? '#contact' : '/#contact' },
   ];
 
   return (
     <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="container nav-container">
-        <a href="#" className="nav-logo">
+        <a href="/" className="nav-logo">
           <img src="/triaurex-logo.png" alt="TRIAUREX Logo" className="logo-brand-img" />
           <span>TRIAUREX</span>
         </a>
@@ -46,7 +50,7 @@ export default function Navbar() {
 
         {/* Actions */}
         <div className="nav-actions">
-          <a href="#contact" className="btn-primary" style={{ padding: '9px 20px', fontSize: '0.88rem' }}>
+          <a href={homePath ? '#contact' : '/#contact'} className="btn-primary" style={{ padding: '9px 20px', fontSize: '0.88rem' }}>
             <span>Start a Project</span>
             <ArrowRight size={15} />
           </a>
@@ -84,7 +88,7 @@ export default function Navbar() {
             </a>
           ))}
           <a 
-            href="#contact" 
+            href={homePath ? '#contact' : '/#contact'}
             className="btn-primary" 
             style={{ width: '100%', marginTop: '10px' }}
             onClick={() => setMobileMenuOpen(false)}

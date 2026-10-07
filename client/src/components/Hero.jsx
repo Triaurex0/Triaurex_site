@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight, Play, CheckCircle, Sparkles, Zap, Globe, Briefcase } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export default function Hero({ companyData }) {
   const [activeTab, setActiveTab] = useState('Projects');
@@ -57,21 +58,17 @@ export default function Hero({ companyData }) {
                 <ArrowRight size={17} />
               </a>
 
-              <a href="#case-studies" className="btn-secondary">
+              <Link to="/case-studies" className="btn-secondary">
                 <Play size={16} fill="currentColor" />
                 <span>View Case Studies</span>
-              </a>
+              </Link>
+
+              <Link to="/projects" className="btn-secondary">
+                <Briefcase size={16} />
+                <span>View Project</span>
+              </Link>
             </div>
 
-            {/* Metric counters directly under hero */}
-            <div className="hero-stats-bar">
-              {stats.map((s, index) => (
-                <div key={index} className="stat-item">
-                  <div className="stat-number">{s.value}</div>
-                  <div className="stat-label">{s.label}</div>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* Right Column: Interactive Work Representation Card */}
@@ -113,6 +110,15 @@ export default function Hero({ companyData }) {
                       }}
                     />
                     <span className="chart-bar-label">{item.label}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="hero-stats-bar">
+                {stats.map((s, index) => (
+                  <div key={index} className="stat-item">
+                    <div className="stat-number">{s.value}</div>
+                    <div className="stat-label">{s.label}</div>
                   </div>
                 ))}
               </div>
