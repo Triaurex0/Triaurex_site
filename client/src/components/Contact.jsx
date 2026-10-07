@@ -6,8 +6,8 @@ export default function Contact({ apiBaseUrl }) {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     project_type: 'Full-Stack React + Flask / Django Web App',
-    budget: '₹20,000 - ₹30,000',
     message: ''
   });
 
@@ -53,8 +53,8 @@ export default function Contact({ apiBaseUrl }) {
         setFormData({
           name: '',
           email: '',
+          phone: '',
           project_type: 'Full-Stack React + Flask / Django Web App',
-          budget: '₹20,000 - ₹30,000',
           message: ''
         });
       } else {
@@ -221,18 +221,16 @@ export default function Contact({ apiBaseUrl }) {
                   </div>
 
                   <div className="form-group">
-                    <label className="form-label" htmlFor="budget">Anticipated Budget</label>
-                    <select
-                      id="budget"
-                      name="budget"
-                      className="form-select"
-                      value={formData.budget}
+                    <label className="form-label" htmlFor="phone">Phone Number</label>
+                    <input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      className="form-input"
+                      placeholder="e.g. +91 80157 12990"
+                      value={formData.phone}
                       onChange={handleChange}
-                    >
-                      <option value="₹25,000 - ₹50,000">₹25,000 - ₹50,000</option>
-                      <option value="₹50,000 - ₹1,00,000">₹50,000 - ₹1,00,000</option>
-                      <option value="₹1,00,000 - ₹3,00,000">₹1,00,000 - ₹3,00,000</option>
-                    </select>
+                    />
                   </div>
                 </div>
 

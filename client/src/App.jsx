@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ArrowLeft } from 'lucide-react';
 import { BrowserRouter, Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -33,13 +33,19 @@ function SiteLayout({ children, apiBaseUrl }) {
 
 function PortfolioChooser() {
   const choices = [
-    { title: 'Portfolio', to: '/projects' },
-    { title: 'Case Studies', to: '/case-studies' }
+    { title: 'Case Studies', to: '/projects' },
+    { title: 'Projects', to: '/case-studies' }
   ];
 
   return (
-    <section className="portfolio-choice-section section" aria-label="Explore our work">
+    <section className="portfolio-choice-section section" id="portfolio" aria-label="Explore our work">
       <div className="container">
+        <div className="section-header" style={{ marginBottom: '28px' }}>
+          <h2 className="section-title">Our Work & Case Studies</h2>
+          <p className="section-subtitle">
+            Explore our curated portfolio of projects and deep-dive technical case studies.
+          </p>
+        </div>
         <div className="portfolio-selector">
           {choices.map((choice) => (
             <Link className="portfolio-selector-card" to={choice.to} key={choice.title}>
@@ -76,9 +82,17 @@ function PortfolioPage({ title, apiBaseUrl, children }) {
     <SiteLayout apiBaseUrl={apiBaseUrl}>
       <main>
         <header className="portfolio-route-heading">
-          <div className="container">
-            <Link className="portfolio-back-link" to="/">Home</Link>
-            <h1>{title}</h1>
+          <div className="container portfolio-route-header-container">
+            <Link
+              className="portfolio-back-btn"
+              to="/#portfolio"
+              aria-label="Back to Portfolio section"
+              title="Back to Portfolio"
+            >
+              <ArrowLeft size={20} />
+            </Link>
+            <h1 className="portfolio-route-title">{title}</h1>
+            <div className="portfolio-route-spacer" aria-hidden="true" />
           </div>
         </header>
         {children}
@@ -88,11 +102,22 @@ function PortfolioPage({ title, apiBaseUrl, children }) {
 }
 
 function RouteScrollReset() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+    if (hash) {
+      const timer = setTimeout(() => {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 80);
+      return () => clearTimeout(timer);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [pathname, hash]);
 
   return null;
 }
@@ -169,7 +194,7 @@ export default function App() {
         <Route
           path="/projects"
           element={(
-            <PortfolioPage title="Projects" apiBaseUrl={API_BASE_URL}>
+            <PortfolioPage title="Case Studies" apiBaseUrl={API_BASE_URL}>
               <Projrct sectionId="projects" />
             </PortfolioPage>
           )}
@@ -177,7 +202,7 @@ export default function App() {
         <Route
           path="/case-studies"
           element={(
-            <PortfolioPage title="Case Studies" apiBaseUrl={API_BASE_URL}>
+            <PortfolioPage title="Projects" apiBaseUrl={API_BASE_URL}>
               <CaseStudies caseStudies={caseStudies} sectionId="case-studies" />
             </PortfolioPage>
           )}

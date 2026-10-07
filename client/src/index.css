@@ -379,33 +379,120 @@ button {
    ========================================================================== */
 
 .hero-section {
-  padding-top: 170px;
-  padding-bottom: 100px;
+  padding-top: 110px;
+  padding-bottom: 50px;
   position: relative;
   overflow: hidden;
 }
 
-/* Image-led brand hero, using the supplied artwork without color or crop changes. */
+/* Image-led brand hero with full-screen coverage, balanced logo & typography */
 .hero1-section {
-  width: min(100%, 1280px);
-  margin: 74px auto 0;
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
   overflow: hidden;
-  line-height: 0;
-  background: #06101c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #040c17;
+  padding: 80px 24px 44px;
+}
+
+.hero1-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero1-bg-blur {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  filter: blur(28px) brightness(0.65);
+  transform: scale(1.15);
+}
+
+.hero1-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, rgba(4, 12, 23, 0.2) 0%, rgba(4, 12, 23, 0.75) 80%, #040c17 100%),
+              linear-gradient(180deg, rgba(6, 16, 28, 0.5) 0%, transparent 25%, transparent 75%, #040c17 100%);
+}
+
+.hero1-visual-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1440px;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
 }
 
 .hero1-image {
   display: block;
   width: 100%;
-  max-width: 100%;
-  height: clamp(520px, 72vh, 760px);
-  object-fit: cover;
+  max-width: 1280px;
+  max-height: calc(100vh - 140px);
+  max-height: calc(100dvh - 140px);
+  object-fit: contain;
   object-position: center center;
-  margin: 0 auto;
+  filter: drop-shadow(0 15px 35px rgba(0, 0, 0, 0.5));
+  transition: transform 0.4s ease;
+}
+
+@media (min-width: 1200px) and (min-aspect-ratio: 16/10) {
+  .hero1-visual-container {
+    max-width: 100%;
+    max-height: 100vh;
+  }
+  .hero1-image {
+    max-width: 100%;
+    max-height: calc(100vh - 90px);
+    object-fit: cover;
+  }
+}
+
+.hero1-scroll-btn {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--primary-cyan);
+  font-size: 0.75rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  opacity: 0.85;
+  transition: all var(--transition-fast);
+}
+
+.hero1-scroll-btn:hover {
+  opacity: 1;
+  transform: translateX(-50%) translateY(2px);
+  color: #fff;
+}
+
+.hero1-scroll-icon {
+  animation: heroBounce 2s infinite ease-in-out;
+}
+
+@keyframes heroBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
 }
 
 .hero-grid {
@@ -623,11 +710,21 @@ button {
    About Section
    ========================================================================== */
 
+#about {
+  padding-top: 48px;
+  padding-bottom: 48px;
+  scroll-margin-top: 85px;
+}
+
+#about .section-header {
+  margin-bottom: 32px;
+}
+
 .pillars-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
-  margin-bottom: 48px;
+  margin-bottom: 0;
 }
 
 .pillar-card {
@@ -690,6 +787,16 @@ button {
 /* ==========================================================================
    Services Section
    ========================================================================== */
+
+#services {
+  padding-top: 48px;
+  padding-bottom: 50px;
+  scroll-margin-top: 85px;
+}
+
+#services .section-header {
+  margin-bottom: 30px;
+}
 
 .services-grid {
   display: grid;
@@ -799,6 +906,13 @@ button {
   margin-bottom: 32px;
 }
 
+.portfolio-choice-section,
+#portfolio {
+  padding-top: 48px;
+  padding-bottom: 52px;
+  scroll-margin-top: 85px;
+}
+
 .portfolio-selector {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -863,21 +977,53 @@ button {
 }
 
 .portfolio-route-heading {
-  padding: 132px 0 0;
+  padding: 120px 0 20px;
 }
 
-.portfolio-route-heading h1 {
-  margin-top: 20px;
-  font-size: 2.5rem;
+.portfolio-route-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  gap: 16px;
 }
 
-.portfolio-back-link {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-}
-
-.portfolio-back-link:hover {
+.portfolio-back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(0, 240, 255, 0.3);
   color: var(--primary-cyan);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+  flex-shrink: 0;
+}
+
+.portfolio-back-btn:hover {
+  background: rgba(0, 240, 255, 0.2);
+  border-color: var(--primary-cyan);
+  color: #ffffff;
+  transform: translateX(-3px);
+  box-shadow: 0 0 18px rgba(0, 240, 255, 0.45);
+}
+
+.portfolio-route-title {
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  font-weight: 800;
+  text-align: center;
+  margin: 0;
+  flex: 1;
+}
+
+.portfolio-route-spacer {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
 }
 
 @media (max-width: 520px) {
@@ -1713,14 +1859,26 @@ button {
 
 .tech-marquee {
   width: 100%;
-  overflow: hidden;
+  overflow: hidden !important;
+  overflow-x: hidden !important;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  position: relative;
   mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+}
+
+.tech-marquee::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }
 
 .tech-track {
   display: flex;
   width: max-content;
-  animation: tech-scroll-right 38s linear infinite;
+  will-change: transform;
+  animation: tech-marquee-scroll 35s linear infinite !important;
 }
 
 .tech-marquee:hover .tech-track,
@@ -1735,9 +1893,13 @@ button {
   padding-right: 20px;
 }
 
-@keyframes tech-scroll-right {
-  from { transform: translateX(-50%); }
-  to { transform: translateX(0); }
+@keyframes tech-marquee-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+#technologies {
+  scroll-margin-top: 85px;
 }
 
 .tech-card {
@@ -1947,11 +2109,14 @@ button {
 /* ==========================================================================
    Team Introduction
    ========================================================================== */
+#team {
+  padding-top: 28px;
+  padding-bottom: 48px;
+  scroll-margin-top: 70px;
+}
 .team-section { background: linear-gradient(180deg, rgba(6, 14, 27, .78), rgba(6, 14, 27, .42)); }
-.team-section-header { text-align: center; margin: 0 auto 42px; }
-.team-section-header h2 { color: #d7e4f7; font-size: clamp(2rem, 4vw, 3rem); margin-top: 22px; }
-.team-eyebrow { display: inline-flex; align-items: center; gap: 9px; border: 1px solid rgba(0, 190, 230, .48); border-radius: 999px; padding: 6px 14px; color: var(--primary-cyan); font: 600 .65rem var(--font-body); letter-spacing: .08em; text-transform: uppercase; }
-.team-eyebrow span { width: 8px; height: 8px; border-radius: 50%; background: var(--primary-cyan); }
+.team-section-header { text-align: center; margin: 0 auto 24px; }
+.team-section-header h2 { color: #d7e4f7; font-size: clamp(2rem, 4vw, 3rem); margin-top: 0; margin-bottom: 0; }
 .team-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
 .team-card { min-width: 0; display: flex; flex-direction: column; align-items: center; padding: 20px; border: 1px solid rgba(0, 190, 230, .3); border-radius: 13px; background: rgba(19, 31, 47, .88); box-shadow: 0 18px 44px rgba(0, 0, 0, .16); text-align: center; transition: transform var(--transition-smooth), border-color var(--transition-smooth); }
 .team-card:hover { transform: translateY(-4px); border-color: rgba(0, 240, 255, .62); }
@@ -2144,34 +2309,34 @@ button {
    ========================================================================== */
 
 .footer {
-  padding: 80px 0 40px 0;
+  padding: 44px 0 24px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   background: #04060d;
 }
 
 .footer-top {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  margin-bottom: 18px;
+  grid-template-columns: 1.15fr 1.6fr 1.25fr;
+  gap: 32px;
+  margin-bottom: 22px;
   align-items: start;
 }
 
 .footer-brand {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
   max-width: 100%;
 }
 
 .footer-desc {
-  font-size: 0.92rem;
+  font-size: 0.88rem;
   color: var(--text-muted);
-  line-height: 1.65;
+  line-height: 1.55;
 }
 
 .footer-col-title {
-  font-size: 0.95rem;
+  font-size: 0.88rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -2188,16 +2353,17 @@ button {
 
 .footer-navigation-links {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 6px 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px 14px;
   justify-items: start;
   align-content: start;
 }
 
 .footer-link {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--text-secondary);
   transition: color var(--transition-fast);
+  white-space: nowrap;
 }
 
 .footer-link:hover {
@@ -2207,19 +2373,19 @@ button {
 .newsletter-form {
   display: flex;
   gap: 8px;
-  margin-top: 10px;
+  margin-top: 8px;
   align-items: center;
   max-width: 340px;
 }
 
 .newsletter-input {
   flex: 1;
-  padding: 10px 14px;
+  padding: 9px 13px;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius-sm);
   color: #fff;
-  font-size: 0.88rem;
+  font-size: 0.86rem;
 }
 
 .newsletter-input:focus {
@@ -2231,9 +2397,9 @@ button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 32px;
+  padding-top: 18px;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--text-muted);
 }
 
@@ -2412,12 +2578,12 @@ button {
 
 @media (prefers-reduced-motion: reduce) {
   .tech-track {
-    animation: none;
-    transform: none;
+    animation-duration: 60s !important;
   }
 
   .tech-marquee {
-    overflow-x: auto;
+    overflow: hidden !important;
+    overflow-x: hidden !important;
   }
 }
 
@@ -2668,13 +2834,8 @@ button {
     height: 20px;
   }
 
-  .hero1-image {
-    height: 420px;
-    object-position: center center;
-  }
-
   .section {
-    padding: 56px 0;
+    padding: 44px 0;
   }
 
   .footer-top {
@@ -2690,11 +2851,6 @@ button {
 @media (max-width: 375px) {
   .nav-logo {
     font-size: 0.95rem;
-  }
-
-  .hero1-image {
-    height: 360px;
-    object-position: center center;
   }
 
   .section-title {
@@ -2724,11 +2880,6 @@ button {
 
   .logo-brand-img {
     height: 18px;
-  }
-
-  .hero1-image {
-    height: 330px;
-    object-position: center center;
   }
 
   .btn-primary,

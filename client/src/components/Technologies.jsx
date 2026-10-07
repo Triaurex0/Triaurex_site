@@ -45,10 +45,20 @@ export default function Technologies({ techList }) {
     ? items 
     : items.filter(t => t.category.toLowerCase().includes(activeCategory.toLowerCase()));
 
-  const renderTechCards = (copy) => filteredItems.map((tech) => {
+  // Seamless looping requires the track width to exceed viewport width even when filtered
+  const loopedItems = React.useMemo(() => {
+    const base = filteredItems.length > 0 ? filteredItems : items;
+    let list = [...base];
+    while (list.length < 12) {
+      list = [...list, ...base];
+    }
+    return list;
+  }, [filteredItems, items]);
+
+  const renderTechCards = (copy) => loopedItems.map((tech, idx) => {
     const Icon = iconTechMap[tech.icon] || Layers;
     return (
-      <div key={`${copy}-${tech.name}`} className="glass-card tech-card">
+      <div key={`${copy}-${tech.name}-${idx}`} className="glass-card tech-card">
         <div className="tech-icon-wrap">
           <Icon size={24} />
         </div>

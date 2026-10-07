@@ -32,6 +32,10 @@ def init_db():
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )
     ''')
+    try:
+        cursor.execute("ALTER TABLE contacts ADD COLUMN phone TEXT")
+    except Exception:
+        pass
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS newsletter (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -423,8 +427,9 @@ def submit_contact():
     data = request.get_json() or {}
     name = data.get('name', '').strip()
     email = data.get('email', '').strip()
+    phone = data.get('phone', '').strip()
     project_type = data.get('project_type', 'Full-Stack Development').strip()
-    budget = data.get('budget', '$10k - $25k').strip()
+    budget = data.get('budget', '').strip() or phone
     message = data.get('message', '').strip()
 
     if not name or not email or not message:
@@ -436,9 +441,9 @@ def submit_contact():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
     cursor.execute('''
-        INSERT INTO contacts (name, email, project_type, budget, message)
-        VALUES (?, ?, ?, ?, ?)
-    ''', (name, email, project_type, budget, message))
+        INSERT INTO contacts (name, email, phone, project_type, budget, message)
+        VALUES (?, ?, ?, ?, ?, ?)
+    ''', (name, email, phone, project_type, budget, message))
     contact_id = cursor.lastrowid
     conn.commit()
     conn.close()

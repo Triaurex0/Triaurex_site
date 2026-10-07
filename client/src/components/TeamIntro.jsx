@@ -6,7 +6,6 @@ export default function TeamIntro({ section }) {
     <section className="team-section section" id="team">
       <div className="container">
         <header className="team-section-header">
-          <span className="team-eyebrow"><span />{section.eyebrow}</span>
           <h2>{section.title}</h2>
         </header>
         <div className="team-grid">

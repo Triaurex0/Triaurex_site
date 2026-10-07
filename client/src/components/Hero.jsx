@@ -58,12 +58,12 @@ export default function Hero({ companyData }) {
                 <ArrowRight size={17} />
               </a>
 
-              <Link to="/case-studies" className="btn-secondary">
+              <Link to="/projects" className="btn-secondary">
                 <Play size={16} fill="currentColor" />
                 <span>View Case Studies</span>
               </Link>
 
-              <Link to="/projects" className="btn-secondary">
+              <Link to="/case-studies" className="btn-secondary">
                 <Briefcase size={16} />
                 <span>View Portfolio</span>
               </Link>
