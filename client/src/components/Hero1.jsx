@@ -6,7 +6,7 @@ export default function Hero1() {
       <img
         className="hero1-image"
         src="/hero1.jpg"
-        alt="Triaurex — Creative Thinking. Digital Building."
+        alt="Triaurex — Where Creative Thinking Meets Digital Building."
         fetchPriority="high"
       />
     </section>
