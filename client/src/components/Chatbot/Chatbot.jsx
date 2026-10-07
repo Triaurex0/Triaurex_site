@@ -35,7 +35,7 @@ function getOfflineReply(query) {
   }
 
   if (/\b(timeline|pricing|price|cost|budget|duration|estimate|quote|how long|how much)\b/.test(normalizedQuery)) {
-    return "**Typical project timeline & pricing:**\n\n• **Focused MVP**: ₹50,000–₹1,50,000, usually 4–6 weeks\n• **Custom product**: ₹1,50,000–₹3,50,000, usually 6–10 weeks\n• **Enterprise platform**: ₹3,50,000+, scoped after a discovery call\n\nFinal pricing depends on project requirements.";
+    return "**TRIAUREX Project Pricing & Budget:**\n\nOur project budget strictly ranges from **₹20,000 to ₹50,000** based on requirements:\n\n• **Starter / MVP**: ₹20,000 – ₹30,000 (3–5 weeks)\n• **Custom Web / Mobile App**: ₹30,000 – ₹40,000 (4–6 weeks)\n• **Full-Featured Platform**: ₹40,000 – ₹50,000 (6–8 weeks)\n\nAll projects are priced strictly within the ₹20,000 – ₹50,000 range with transparent milestone billing and zero additional charges.";
   }
 
   if (/\b(android|kotlin|jetpack compose|native mobile|mobile app)\b/.test(normalizedQuery)) {
@@ -46,7 +46,11 @@ function getOfflineReply(query) {
     return "**TRIAUREX services:**\n\n• UI/UX design and prototyping\n• Web development with React and Python backends\n• Native Android app development\n• Branding and visual identity\n• Data analysis and dashboards";
   }
 
-  return "I can only answer the four suggested topics while the AI service is unavailable. For help with this question, please contact the owner at [triaurex0@gmail.com](mailto:triaurex0@gmail.com) or [+91 80157 12990](tel:+918015712990).";
+  if (/\b(maintenance|maintain|maintainence|support|warranty|bug|post-launch|post launch)\b/.test(normalizedQuery)) {
+    return "**Warranty & Support:**\n\n• **30-Day Warranty**: Every delivered project includes 30 days of free bug-fixing and regression support.\n• **Ongoing Maintenance**: Optional growth & maintenance retainers covering security patches and performance optimization.";
+  }
+
+  return "I'd love to help you! At **TRIAUREX**, our project budgets strictly range between **₹20,000 and ₹50,000** with no extra charges. Feel free to ask about our web development, Android apps, UI/UX design, or pricing!";
 }
 
 // Lightweight, secure Markdown renderer for chat responses

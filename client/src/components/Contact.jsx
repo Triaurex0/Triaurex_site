@@ -7,7 +7,7 @@ export default function Contact({ apiBaseUrl }) {
     name: '',
     email: '',
     project_type: 'Full-Stack React + Flask / Django Web App',
-    budget: '₹50,000 - ₹1,00,000',
+    budget: '₹20,000 - ₹30,000',
     message: ''
   });
 
@@ -54,7 +54,7 @@ export default function Contact({ apiBaseUrl }) {
           name: '',
           email: '',
           project_type: 'Full-Stack React + Flask / Django Web App',
-          budget: '₹50,000 - ₹1,00,000',
+          budget: '₹20,000 - ₹30,000',
           message: ''
         });
       } else {
@@ -229,11 +229,9 @@ export default function Contact({ apiBaseUrl }) {
                       value={formData.budget}
                       onChange={handleChange}
                     >
-                      <option value="₹25,000 - ₹50,000">₹25,000 - ₹50,000</option>
-                      <option value="₹50,000 - ₹1,00,000">₹50,000 - ₹1,00,000</option>
-                      <option value="₹1,00,000 - ₹3,00,000">₹1,00,000 - ₹3,00,000</option>
-                      <option value="₹3,00,000 - ₹5,00,000">₹3,00,000 - ₹5,00,000</option>
-                      <option value="₹5,00,000+">₹5,00,000+</option>
+                      <option value="₹20,000 - ₹30,000">₹20,000 - ₹30,000 (Starter MVP)</option>
+                      <option value="₹30,000 - ₹40,000">₹30,000 - ₹40,000 (Custom Build)</option>
+                      <option value="₹40,000 - ₹50,000">₹40,000 - ₹50,000 (Full-Featured Solution)</option>
                     </select>
                   </div>
                 </div>

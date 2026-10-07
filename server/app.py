@@ -286,7 +286,7 @@ FAQS_DATA = [
     },
     {
         "question": "How do you handle pricing & project milestones?",
-        "answer": "We offer transparent milestone-based fixed pricing as well as dedicated agile sprint retainers. Every project proposal includes detailed deliverables, defined acceptance criteria, and clear phase sign-offs so there are never any unexpected surprises."
+        "answer": "Our project budgets strictly range between ₹20,000 and ₹50,000 based on project scope (Starter MVP: ₹20,000–₹30,000, Custom Web/Mobile App: ₹30,000–₹40,000, Full-Featured Platform: ₹40,000–₹50,000). We work with transparent milestone-based payments and there are no extra charges."
     },
     {
         "question": "Do you provide ongoing support & maintenance?",

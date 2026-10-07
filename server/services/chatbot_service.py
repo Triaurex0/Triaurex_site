@@ -371,7 +371,18 @@ class ChatbotService:
             if len(overlap) >= 2:
                 return f"**{f['question']}**\n\n{f['answer']}"
 
-        # 4. Web Development & Websites
+        # 4. Pricing, Cost & Budget (prioritized)
+        if any(w in q_lower for w in ['price', 'pricing', 'cost', 'rate', 'how much', 'budget', 'quote', 'fee', 'expense', 'cheap', 'discount', 'charges', 'charge']):
+            return (
+                "**TRIAUREX Project Pricing & Budget:**\n\n"
+                "Our project budget strictly ranges from **₹20,000 to ₹50,000** based on scope and deliverables:\n\n"
+                "• **Starter / MVP Build**: ₹20,000 – ₹30,000 (Focused MVP launch, core features, 3–5 weeks)\n"
+                "• **Custom Web / Mobile App**: ₹30,000 – ₹40,000 (Custom design, API integration, responsive flows, 4–6 weeks)\n"
+                "• **Full-Featured Platform**: ₹40,000 – ₹50,000 (Comprehensive build, advanced animations, complete QA, 6–8 weeks)\n\n"
+                "All projects are quoted strictly within this ₹20,000 – ₹50,000 range with milestone-based sign-offs and zero extra charges."
+            )
+
+        # 5. Web Development & Websites
         if any(w in q_lower for w in ['website', 'web dev', 'web application', 'landing page', 'frontend', 'backend', 'full stack', 'web app']):
             return (
                 "**Web Development at TRIAUREX:**\n\n"
@@ -383,8 +394,8 @@ class ChatbotService:
                 "Would you like to discuss the scope of your website or get a milestone-based estimate?"
             )
 
-        # 5. Mobile & Android Apps
-        if any(w in q_lower for w in ['android', 'mobile', 'ios', 'phone app', 'play store', 'kotlin', 'app dev', 'build an app']):
+        # 6. Mobile & Android Apps
+        if any(w in q_lower for w in ['android', 'mobile', 'phone app', 'play store', 'kotlin', 'app dev', 'build an app']) or re.search(r'\b(ios|apk)\b', q_lower):
             return (
                 "**Mobile App Development at TRIAUREX:**\n\n"
                 "We craft high-performance **Native Android Applications** using modern **Kotlin** and **Jetpack Compose**:\n\n"
@@ -395,8 +406,8 @@ class ChatbotService:
                 "Are you planning an MVP from scratch or modernizing an existing mobile product?"
             )
 
-        # 6. UI/UX Design & Branding
-        if any(w in q_lower for w in ['design', 'ui/ux', 'ui', 'ux', 'wireframe', 'figma', 'prototype', 'branding', 'logo', 'identity']):
+        # 7. UI/UX Design & Branding
+        if any(w in q_lower for w in ['design', 'wireframe', 'figma', 'prototype', 'branding', 'logo', 'identity']) or re.search(r'\b(ui|ux|ui/ux)\b', q_lower):
             return (
                 "**UI/UX Design & Branding at TRIAUREX:**\n\n"
                 "We create user-first digital experiences engineered for maximum conversion and delight:\n\n"
@@ -407,7 +418,7 @@ class ChatbotService:
                 "Would you like to review our design case studies or discuss a redesign?"
             )
 
-        # 7. Services (General)
+        # 8. Services (General)
         if any(w in q_lower for w in ['service', 'offer', 'what do you do', 'what can you build', 'capabilities', 'what can you do']):
             services = self.data_sources.get('services_data', [])
             if services:
@@ -424,17 +435,6 @@ class ChatbotService:
                 "• **Android App Development**: Native Kotlin and Jetpack Compose mobile apps\n"
                 "• **Branding & Identity**: Strategic brand positioning, typography, and logos\n\n"
                 "Which service aligns best with your goals?"
-            )
-
-        # 8. Pricing, Cost & Budget
-        if any(w in q_lower for w in ['price', 'pricing', 'cost', 'rate', 'how much', 'budget', 'quote', 'fee', 'expense', 'cheap', 'discount']):
-            return (
-                "**TRIAUREX Pricing & Engagement Guidelines:**\n\n"
-                "We provide transparent, milestone-based fixed pricing so there are zero surprises:\n\n"
-                "• **Starter MVP**: ₹50,000 - ₹1,50,000 ($700 - $2,000 USD) • Focused MVP launch (4-6 weeks)\n"
-                "• **Custom Product**: ₹1,50,000 - ₹3,50,000 ($2,000 - $4,500 USD) • Full-featured web or mobile app (6-10 weeks)\n"
-                "• **Enterprise Platform**: ₹3,50,000+ ($4,500+ USD) • Bespoke architecture, high-concurrency systems & custom SLAs\n\n"
-                "**Terms**: You only approve and pay per completed milestone. Every project also includes a complimentary 30-day post-launch warranty."
             )
 
         # 9. Timeline, Duration & Schedule
