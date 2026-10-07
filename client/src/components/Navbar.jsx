@@ -20,9 +20,6 @@ export default function Navbar() {
     { name: 'About', href: homePath ? '#about' : '/#about' },
     { name: 'Services', href: homePath ? '#services' : '/#services' },
     { name: 'Projects', href: '/projects' },
-    { name: 'Case Studies', href: '/case-studies' },
-    { name: 'Process', href: homePath ? '#process' : '/#process' },
-    { name: 'Tech Stack', href: homePath ? '#technologies' : '/#technologies' },
     { name: 'FAQ', href: homePath ? '#faq' : '/#faq' },
     { name: 'Contact', href: homePath ? '#contact' : '/#contact' },
   ];

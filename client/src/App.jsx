@@ -13,6 +13,8 @@ import Technologies from './components/Technologies';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
+import TeamIntro from './components/TeamIntro';
+import { teamSection } from './data/teamMembers';
 import Footer from './components/Footer';
 import Chatbot from './components/Chatbot/Chatbot';
 
@@ -63,6 +65,7 @@ function HomePage({ companyInfo, services, processSteps, techList, testimonials,
       <Technologies techList={techList} />
       <Testimonials testimonials={testimonials} apiBaseUrl={apiBaseUrl} />
       <FAQ faqs={faqs} />
+      <TeamIntro section={teamSection} />
       <Contact apiBaseUrl={apiBaseUrl} />
     </SiteLayout>
   );
