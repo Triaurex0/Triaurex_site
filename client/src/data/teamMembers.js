@@ -5,7 +5,7 @@ export const teamSection = {
   title: 'The Visionaries Behind Our Mission',
   members: [
     { name: 'Aishwarya K S', designation: 'Data Analyst & Frontend Developer', description: 'Driving overarching strategy, product vision, and long-term ecosystem innovation across planetary enterprise deployments.', photo: 'https://i.pravatar.cc/320?img=47', email: 'mailto:triaurex0@gmail.com', linkedin: 'https://www.linkedin.com/', portfolio: '/projects', label: 'Founder', number: 'Exec #01' },
-    { name: 'Majul Raj R', designation: 'Fullstack Developer & Team Lead', description: 'Spearheading core architecture, technical scalability, and engineering excellence across distributed low-latency protocols.', photo: 'https://i.pravatar.cc/320?img=12', email: 'mailto:triaurex0@gmail.com', linkedin: 'https://www.linkedin.com/', portfolio: '/projects', label: 'Co-founder', number: 'Exec #02' },
+    { name: 'Majul Raj R', designation: 'Fullstack Developer & Team Lead', description: 'Spearheading core architecture, technical scalability, and engineering excellence across distributed low-latency protocols.', photo: 'https://i.pravatar.cc/320?img=12', email: 'mailto:mayilraj1314@gmail.com', linkedin: 'https://www.linkedin.com/in/mayilraj13', github: 'https://github.com/Mayilraj13', label: 'Co-founder', number: 'Exec #02' },
     { name: 'Vasanth Selvaraj', designation: 'Product Developer & UI/UX Designer', description: 'Leading strategic partnerships, market expansion, and user growth operations across key international technological corridors.', photo: 'https://i.pravatar.cc/320?img=11', email: 'mailto:triaurex0@gmail.com', linkedin: 'https://www.linkedin.com/', portfolio: '/projects', label: 'Co-founder', number: 'Exec #03' },
   ],
 };
