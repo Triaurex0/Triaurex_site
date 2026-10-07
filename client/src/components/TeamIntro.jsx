@@ -26,7 +26,12 @@ export default function TeamIntro({ section }) {
                   </a>
                   {member.github ? (
                     <>
-                      <a href={member.email} aria-label={`Email ${member.name}`}>
+                      <a 
+                        href={member.email.startsWith('mailto:') ? `https://mail.google.com/mail/?view=cm&fs=1&to=${member.email.replace('mailto:', '')}` : member.email} 
+                        aria-label={`Email ${member.name}`}
+                        target="_blank" 
+                        rel="noreferrer"
+                      >
                         <Mail size={16} />
                       </a>
                       <a href={member.github} aria-label={`${member.name} on GitHub`} target="_blank" rel="noreferrer">
