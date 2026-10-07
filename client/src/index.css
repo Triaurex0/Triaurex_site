@@ -121,7 +121,7 @@ button {
 }
 
 .section {
-  padding: 100px 0;
+  padding: 72px 0;
   position: relative;
   scroll-margin-top: 110px;
 }
@@ -129,7 +129,7 @@ button {
 .section-header {
   text-align: center;
   max-width: 760px;
-  margin: 0 auto 64px auto;
+  margin: 0 auto 42px auto;
 }
 
 .section-pill {
@@ -151,7 +151,7 @@ button {
 
 .section-title {
   font-size: clamp(2.2rem, 4vw, 3.2rem);
-  margin-bottom: 18px;
+  margin-bottom: 12px;
   background: linear-gradient(180deg, #ffffff 40%, #94a3b8 100%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -159,10 +159,11 @@ button {
 }
 
 .section-subtitle {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--text-secondary);
   font-weight: 400;
-  line-height: 1.65;
+  line-height: 1.6;
+  margin-bottom: 0;
 }
 
 /* Gradient text accents */
@@ -262,6 +263,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
 }
 
 .nav-logo {
@@ -304,7 +306,7 @@ button {
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: clamp(12px, 1.6vw, 26px);
   list-style: none;
 }
 
@@ -314,6 +316,7 @@ button {
   font-weight: 500;
   transition: color var(--transition-fast);
   position: relative;
+  white-space: nowrap;
 }
 
 .nav-link:hover, .nav-link.active {
@@ -384,17 +387,25 @@ button {
 
 /* Image-led brand hero, using the supplied artwork without color or crop changes. */
 .hero1-section {
-  width: 100%;
-  margin-top: 74px;
+  width: min(100%, 1280px);
+  margin: 74px auto 0;
   overflow: hidden;
   line-height: 0;
   background: #06101c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .hero1-image {
   display: block;
   width: 100%;
-  height: auto;
+  max-width: 100%;
+  height: clamp(520px, 72vh, 760px);
+  object-fit: cover;
+  object-position: center center;
+  margin: 0 auto;
 }
 
 .hero-grid {
@@ -1957,10 +1968,8 @@ button {
 .team-social-links a { display: grid; width: 38px; height: 38px; place-items: center; border: 1px solid rgba(255,255,255,.09); border-radius: 9px; color: #c2d0da; transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast); }
 .team-social-links a:hover { border-color: var(--primary-cyan); background: rgba(0, 240, 255, .08); color: var(--primary-cyan); }
 
-   ========================================================================== */
 /* ==========================================================================
    Contact Section
-   ========================================================================== */
    ========================================================================== */
 
 .contact-card-wrapper {
@@ -2142,16 +2151,17 @@ button {
 
 .footer-top {
   display: grid;
-  grid-template-columns: 2fr 1fr 1.5fr;
-  gap: 48px;
-  margin-bottom: 60px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin-bottom: 18px;
+  align-items: start;
 }
 
 .footer-brand {
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  max-width: 320px;
+  gap: 14px;
+  max-width: 100%;
 }
 
 .footer-desc {
@@ -2166,20 +2176,22 @@ button {
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #ffffff;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .footer-links {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 5px;
 }
 
 .footer-navigation-links {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px 20px;
+  gap: 6px 16px;
+  justify-items: start;
+  align-content: start;
 }
 
 .footer-link {
@@ -2195,7 +2207,9 @@ button {
 .newsletter-form {
   display: flex;
   gap: 8px;
-  margin-top: 12px;
+  margin-top: 10px;
+  align-items: center;
+  max-width: 340px;
 }
 
 .newsletter-input {
@@ -2309,6 +2323,26 @@ button {
    Responsive Breakpoints
    ========================================================================== */
 
+@media (min-width: 2561px) {
+  .container {
+    max-width: 1500px;
+  }
+
+  .nav-container,
+  .section,
+  .footer {
+    max-width: 1800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 1440px) {
+  .container {
+    max-width: 1180px;
+  }
+}
+
 @media (max-width: 1024px) {
   .nav-menu {
     gap: 16px;
@@ -2387,11 +2421,34 @@ button {
   }
 }
 
+@media (max-width: 1024px) {
+  .nav-menu {
+    gap: 10px;
+  }
+
+  .nav-link {
+    font-size: 0.8rem;
+  }
+
+  .footer-top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px 20px;
+  }
+
+  .footer-top > :last-child {
+    grid-column: 1 / -1;
+  }
+}
+
 @media (max-width: 768px) {
   .nav-menu {
     display: none;
   }
-  
+
+  .nav-container {
+    gap: 12px;
+  }
+
   .mobile-toggle {
     display: block;
   }
@@ -2472,6 +2529,15 @@ button {
 
   .footer-top {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .footer-brand {
+    max-width: none;
+  }
+
+  .newsletter-form {
+    flex-wrap: wrap;
   }
 
   .footer-bottom {
@@ -2506,6 +2572,218 @@ button {
   .case-study-card-reversed .case-study-content {
     grid-column: 1;
     grid-row: 2;
+  }
+}
+
+/* Wider canvas on large displays and tighter layouts on small screens. */
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1440px;
+  }
+}
+
+@media (max-width: 640px) {
+  .services-container-custom {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .service-col-top,
+  .service-col-bottom {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+
+  .hero-grid > * {
+    min-width: 0;
+  }
+
+  .hero-content,
+  .hero-visual,
+  .dashboard-card {
+    width: 100%;
+  }
+
+  .card-topbar {
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .card-metric-badge {
+    flex-wrap: wrap;
+  }
+
+  .dashboard-footer {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .mini-metric {
+    flex: 1 1 125px;
+    min-width: 0;
+  }
+
+  .mini-metric-value {
+    font-size: clamp(0.85rem, 3.8vw, 1.05rem);
+  }
+
+  .process-detail-card {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 24px 20px;
+  }
+
+  .process-detail-card > div:first-child {
+    width: 100%;
+    max-width: none !important;
+    min-width: 0;
+  }
+
+  .process-detail-card > div:last-child {
+    width: 100%;
+    min-width: 0 !important;
+    padding: 16px 0 0 !important;
+    border-left: 0 !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media (max-width: 425px) {
+  .container {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .nav-logo {
+    font-size: 1.05rem;
+  }
+
+  .logo-brand-img {
+    height: 20px;
+  }
+
+  .hero1-image {
+    height: 420px;
+    object-position: center center;
+  }
+
+  .section {
+    padding: 56px 0;
+  }
+
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .newsletter-form {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 375px) {
+  .nav-logo {
+    font-size: 0.95rem;
+  }
+
+  .hero1-image {
+    height: 360px;
+    object-position: center center;
+  }
+
+  .section-title {
+    font-size: clamp(1.7rem, 7vw, 2.2rem);
+  }
+
+  .footer-col-title {
+    font-size: 0.8rem;
+  }
+
+  .footer-link,
+  .footer-desc,
+  .newsletter-input {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .container {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .nav-logo {
+    gap: 8px;
+  }
+
+  .logo-brand-img {
+    height: 18px;
+  }
+
+  .hero1-image {
+    height: 330px;
+    object-position: center center;
+  }
+
+  .btn-primary,
+  .newsletter-input {
+    min-height: 38px;
+  }
+}
+
+@media (max-width: 520px) {
+  .container {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .nav-actions > .btn-primary {
+    display: none;
+  }
+
+  .hero-section {
+    padding-top: 126px;
+    padding-bottom: 64px;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 9vw, 2.8rem);
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+
+  .dashboard-card {
+    padding: 20px;
+  }
+
+  .card-tabs {
+    max-width: 100%;
+  }
+
+  .card-tab {
+    padding-right: 9px;
+    padding-left: 9px;
+  }
+
+  .section {
+    padding-top: 68px;
+    padding-bottom: 68px;
+  }
+
+  .section-header {
+    margin-bottom: 38px;
+  }
+
+  .contact-card-wrapper {
+    padding: 24px 16px;
   }
 }
 

@@ -8,6 +8,8 @@ export default function Hero1() {
         src="/hero1.jpg"
         alt="Triaurex — Where Creative Thinking Meets Digital Building."
         fetchPriority="high"
+        loading="eager"
+        decoding="async"
       />
     </section>
   );

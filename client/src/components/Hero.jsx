@@ -65,7 +65,7 @@ export default function Hero({ companyData }) {
 
               <Link to="/projects" className="btn-secondary">
                 <Briefcase size={16} />
-                <span>View Project</span>
+                <span>View Portfolio</span>
               </Link>
             </div>
 

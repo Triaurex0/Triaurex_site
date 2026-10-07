@@ -7,6 +7,7 @@ export default function Contact({ apiBaseUrl }) {
     name: '',
     email: '',
     project_type: 'Full-Stack React + Flask / Django Web App',
+    budget: '₹20,000 - ₹30,000',
     message: ''
   });
 
@@ -53,6 +54,7 @@ export default function Contact({ apiBaseUrl }) {
           name: '',
           email: '',
           project_type: 'Full-Stack React + Flask / Django Web App',
+          budget: '₹20,000 - ₹30,000',
           message: ''
         });
       } else {
@@ -257,7 +259,7 @@ export default function Contact({ apiBaseUrl }) {
                     <span>Transmitting to Flask API...</span>
                   ) : (
                     <>
-                      <span>Send Project Inquiry</span>
+                      <span>Send Project Enquiry</span>
                       <Send size={17} />
                     </>
                   )}

@@ -246,7 +246,9 @@ TECH_DATA = [
     {"name": "Adobe XD", "category": "Design", "icon": "PenTool", "description": "UI/UX design and interactive prototyping"},
     {"name": "Framer", "category": "Design", "icon": "Layers", "description": "Interactive website design and visual prototyping"},
     {"name": "Canva", "category": "Design", "icon": "Palette", "description": "Visual graphics, brand identity collateral, and marketing assets"},
-    {"name": "Power BI", "category": "Analytics", "icon": "Database", "description": "Business intelligence dashboards, reporting, and data visualization"}
+    {"name": "Power BI", "category": "Analytics", "icon": "Database", "description": "Business intelligence dashboards, reporting, and data visualization"},
+    {"name": "Excel", "category": "Analytics", "icon": "Database", "description": "Spreadsheet application for data analysis and visualization"},
+    {"name": "Tableau", "category": "Analytics", "icon": "Database", "description": "Data visualization and business intelligence platform"}
 ]
 
 TESTIMONIALS_DATA = [

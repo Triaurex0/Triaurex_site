@@ -18,7 +18,7 @@ import { teamSection } from './data/teamMembers';
 import Footer from './components/Footer';
 import Chatbot from './components/Chatbot/Chatbot';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://triaurex-site.onrender.com';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:5000';
 
 function SiteLayout({ children, apiBaseUrl }) {
   return (
@@ -33,7 +33,7 @@ function SiteLayout({ children, apiBaseUrl }) {
 
 function PortfolioChooser() {
   const choices = [
-    { title: 'Projects', to: '/projects' },
+    { title: 'Portfolio', to: '/projects' },
     { title: 'Case Studies', to: '/case-studies' }
   ];
 
