@@ -336,15 +336,6 @@ class ChatbotService:
                 "The team will arrange a discovery call and prepare a scope and estimate."
             )
 
-        is_pricing_or_timeline = bool(re.search(
-            r'\b(timeline|pricing|price|cost|budget|duration|how long|how much)\b', q_lower
-        ))
-        is_android = bool(re.search(r'\b(android|kotlin|jetpack compose|native mobile)\b', q_lower))
-        is_services = bool(re.search(r'\b(services?|offer|offerings|what can you build)\b', q_lower))
-
-        if not (is_pricing_or_timeline or is_android or is_services):
-            return contact_reply
-
         # 1. Greetings & Casual Chit-Chat
         if re.search(r'\b(hi|hello|hey|good morning|good afternoon|good evening|greetings|howdy)\b', q_lower):
             return (
@@ -511,7 +502,7 @@ class ChatbotService:
             )
 
         # 14. Warranty & Support
-        if any(w in q_lower for w in ['warranty', 'support', 'maintenance', 'bug', 'sla', 'after launch', 'guarantee']):
+        if any(w in q_lower for w in ['warranty', 'support', 'maintenance', 'maintain', 'maintainence', 'bug', 'sla', 'after launch', 'post launch', 'post-launch', 'post land', 'guarantee']):
             return (
                 "**Warranty & Ongoing Support:**\n\n"
                 "• **Complimentary 30-Day Warranty**: Every shipped project includes 30 days of free bug-fixing and regression support.\n"
