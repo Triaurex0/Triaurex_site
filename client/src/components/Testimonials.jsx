@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Star, Quote, Plus, X, CheckCircle2, MessageSquarePlus, ArrowLeft, ArrowRight } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
-export default function Testimonials({ testimonials, apiBaseUrl = 'http://127.0.0.1:5000' }) {
+export default function Testimonials({ testimonials, apiBaseUrl = 'https://triaurex-site.onrender.com' }) {
   const defaultTestimonials = [
     {
       id: 1,

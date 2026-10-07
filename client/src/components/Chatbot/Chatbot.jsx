@@ -105,7 +105,7 @@ function formatMarkdown(text) {
   return { __html: formatted };
 }
 
-export default function Chatbot({ apiBaseUrl = 'http://127.0.0.1:5000' }) {
+export default function Chatbot({ apiBaseUrl = 'https://triaurex-site.onrender.com' }) {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState(() => {
     try {
