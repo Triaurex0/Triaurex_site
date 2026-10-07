@@ -111,14 +111,11 @@ function formatMarkdown(text) {
 
 export default function Chatbot({ apiBaseUrl = 'https://triaurex-site.onrender.com' }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState(() => {
-    try {
-      const saved = sessionStorage.getItem('triaurex_chat_messages');
-      return saved ? JSON.parse(saved) : [DEFAULT_WELCOME_MESSAGE];
-    } catch {
-      return [DEFAULT_WELCOME_MESSAGE];
-    }
-  });
+  // Fresh conversation on every page load/refresh
+  const [messages, setMessages] = useState([{
+    ...DEFAULT_WELCOME_MESSAGE,
+    timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+  }]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [suggestedQuestions, setSuggestedQuestions] = useState(DEFAULT_SUGGESTIONS);
@@ -129,14 +126,13 @@ export default function Chatbot({ apiBaseUrl = 'https://triaurex-site.onrender.c
   const messagesEndRef = useRef(null);
   const inputRef = useRef(null);
 
-  // Persist messages in sessionStorage for the browser session
+  // Clear any previous session messages so page refresh always starts fresh
   useEffect(() => {
     try {
-      sessionStorage.setItem('triaurex_chat_messages', JSON.stringify(messages));
-    } catch (e) {
-      // sessionStorage disabled or quota exceeded
-    }
-  }, [messages]);
+      sessionStorage.removeItem('triaurex_chat_messages');
+      localStorage.removeItem('triaurex_chat_messages');
+    } catch (e) {}
+  }, []);
 
   // Auto-scroll to bottom of chat
   useEffect(() => {
