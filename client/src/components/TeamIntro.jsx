@@ -1,5 +1,5 @@
 import React from 'react';
-import { BriefcaseBusiness, Linkedin, Mail } from 'lucide-react';
+import { BriefcaseBusiness, Globe, Mail } from 'lucide-react';
 
 export default function TeamIntro({ section }) {
   return (
@@ -20,7 +20,7 @@ export default function TeamIntro({ section }) {
               <div className="team-card-footer">
                 <span>Direct channels</span>
                 <div className="team-social-links">
-                  <a href={member.linkedin} aria-label={`${member.name} on LinkedIn`} target="_blank" rel="noreferrer"><Linkedin size={16} /></a>
+                  <a href={member.linkedin} aria-label={`${member.name} on LinkedIn`} target="_blank" rel="noreferrer"><Globe size={16} /></a>
                   <a href={member.portfolio} aria-label={`${member.name} portfolio`}><BriefcaseBusiness size={16} /></a>
                   <a href={member.email} aria-label={`Email ${member.name}`}><Mail size={16} /></a>
                 </div>
