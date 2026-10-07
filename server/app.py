@@ -274,6 +274,15 @@ chatbot_service = ChatbotService(data_sources={
     "faqs_data": FAQS_DATA
 })
 
+@app.route('/', methods=['GET'])
+def index():
+    return jsonify({
+        "status": "online",
+        "service": "TRIAUREX Backend API",
+        "health": "/api/health",
+        "company": "/api/company-info"
+    })
+
 @app.route('/api/health', methods=['GET'])
 def health_check():
     return jsonify({
