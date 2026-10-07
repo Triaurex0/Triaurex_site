@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Menu, X } from 'lucide-react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -19,7 +19,7 @@ export default function Navbar() {
   const navLinks = [
     { name: 'About', href: homePath ? '#about' : '/#about' },
     { name: 'Services', href: homePath ? '#services' : '/#services' },
-    { name: 'Portfolio', href: homePath ? '#portfolio' : '/#portfolio' },
+    { name: 'Case Studies', href: '/projects' },
     { name: 'Technologies', href: homePath ? '#technologies' : '/#technologies' },
     { name: 'FAQ', href: homePath ? '#faq' : '/#faq' },
     { name: 'Contact', href: homePath ? '#contact' : '/#contact' },
@@ -28,21 +28,30 @@ export default function Navbar() {
   return (
     <header className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="container nav-container">
-        <a href="/" className="nav-logo">
+        <Link to="/" className="nav-logo">
           <img src="/triaurex-logo.png" alt="TRIAUREX Logo" className="logo-brand-img" />
           <span>TRIAUREX</span>
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <nav>
           <ul className="nav-menu">
-            {navLinks.map((link) => (
-              <li key={link.name}>
-                <a href={link.href} className="nav-link">
-                  {link.name}
-                </a>
-              </li>
-            ))}
+            {navLinks.map((link) => {
+              const isInternal = link.href.startsWith('/') && !link.href.includes('#');
+              return (
+                <li key={link.name}>
+                  {isInternal ? (
+                    <Link to={link.href} className="nav-link">
+                      {link.name}
+                    </Link>
+                  ) : (
+                    <a href={link.href} className="nav-link">
+                      {link.name}
+                    </a>
+                  )}
+                </li>
+              );
+            })}
           </ul>
         </nav>
 
@@ -74,17 +83,30 @@ export default function Navbar() {
           gap: '18px',
           backdropFilter: 'blur(20px)'
         }}>
-          {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href}
-              className="nav-link"
-              onClick={() => setMobileMenuOpen(false)}
-              style={{ fontSize: '1.1rem', padding: '8px 0' }}
-            >
-              {link.name}
-            </a>
-          ))}
+          {navLinks.map((link) => {
+            const isInternal = link.href.startsWith('/') && !link.href.includes('#');
+            return isInternal ? (
+              <Link 
+                key={link.name} 
+                to={link.href}
+                className="nav-link"
+                onClick={() => setMobileMenuOpen(false)}
+                style={{ fontSize: '1.1rem', padding: '8px 0' }}
+              >
+                {link.name}
+              </Link>
+            ) : (
+              <a 
+                key={link.name} 
+                href={link.href}
+                className="nav-link"
+                onClick={() => setMobileMenuOpen(false)}
+                style={{ fontSize: '1.1rem', padding: '8px 0' }}
+              >
+                {link.name}
+              </a>
+            );
+          })}
           <a 
             href={homePath ? '#contact' : '/#contact'}
             className="btn-primary" 
