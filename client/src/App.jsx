@@ -33,8 +33,8 @@ function SiteLayout({ children, apiBaseUrl }) {
 
 function PortfolioChooser() {
   const choices = [
-    { title: 'Case Studies', to: '/case-studies' },
-    { title: 'Projects', to: '/projects' }
+    { title: 'Projects', to: '/projects' },
+    { title: 'Case Studies', to: '/case-studies' }
   ];
 
   return (
@@ -196,7 +196,7 @@ export default function App() {
           path="/projects"
           element={(
             <PortfolioPage title="Projects" apiBaseUrl={API_BASE_URL}>
-              <Projrct sectionId="projects" />
+              <CaseStudies caseStudies={caseStudies} sectionId="projects" />
             </PortfolioPage>
           )}
         />
@@ -204,7 +204,7 @@ export default function App() {
           path="/case-studies"
           element={(
             <PortfolioPage title="Case Studies" apiBaseUrl={API_BASE_URL}>
-              <CaseStudies caseStudies={caseStudies} sectionId="case-studies" />
+              <Projrct sectionId="case-studies" />
             </PortfolioPage>
           )}
         />

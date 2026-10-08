@@ -37,7 +37,7 @@ export default function Contact({ apiBaseUrl }) {
           message: data.message || "Your project inquiry has been logged! We'll reply within 2 hours.",
           inquiryId: data.inquiryId
         });
-        
+
         // Trigger celebratory confetti effect
         try {
           confetti({
@@ -73,7 +73,7 @@ export default function Contact({ apiBaseUrl }) {
       });
       try {
         confetti({ particleCount: 60, spread: 60, origin: { y: 0.6 } });
-      } catch (e) {}
+      } catch (e) { }
     } finally {
       setLoading(false);
     }
@@ -82,10 +82,10 @@ export default function Contact({ apiBaseUrl }) {
   return (
     <section className="section" id="contact">
       <div className="container">
-        
+
         <div className="contact-card-wrapper">
           <div className="contact-grid">
-            
+
             {/* Left Column: Studio Info */}
             <div className="contact-left">
               <div>
@@ -154,7 +154,7 @@ export default function Contact({ apiBaseUrl }) {
             {/* Right Column: Interactive Form */}
             <div>
               <form className="contact-form" onSubmit={handleSubmit}>
-                
+
                 {responseStatus && (
                   <div className={responseStatus.success ? "form-alert-success" : "form-alert-error"}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
@@ -227,7 +227,7 @@ export default function Contact({ apiBaseUrl }) {
                       name="phone"
                       type="tel"
                       className="form-input"
-                      placeholder="e.g. +91 80157 12990"
+                      placeholder="e.g. 1234567890"
                       value={formData.phone}
                       onChange={handleChange}
                     />
