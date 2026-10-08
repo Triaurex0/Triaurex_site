@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Layers, ArrowRight, CheckCircle2, Mail } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
 
 const legalContent = {
   privacy: {
@@ -39,6 +40,8 @@ export default function Footer({ apiBaseUrl }) {
   const [subStatus, setSubStatus] = useState(null);
   const [submitting, setSubmitting] = useState(false);
   const [activeLegal, setActiveLegal] = useState(null);
+  const { pathname } = useLocation();
+  const homePath = pathname === '/';
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
@@ -76,10 +79,10 @@ export default function Footer({ apiBaseUrl }) {
           
           {/* Brand Info */}
           <div className="footer-brand">
-            <a href="#" className="nav-logo">
+            <Link to="/" className="nav-logo" onClick={() => { if (homePath) window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
               <img src="/triaurex-logo.png" alt="TRIAUREX Logo" className="logo-brand-img" />
               <span>TRIAUREX</span>
-            </a>
+            </Link>
             <p className="footer-desc">
               We design and engineer high-performance web products, digital interfaces, and modern backend architectures for ambitious global teams.
             </p>
@@ -100,14 +103,15 @@ export default function Footer({ apiBaseUrl }) {
           <div>
             <div className="footer-col-title">Navigation</div>
             <ul className="footer-links footer-navigation-links">
-              <li><a href="/#about" className="footer-link">About Studio</a></li>
-              <li><a href="/#services" className="footer-link">Our Services</a></li>
-              <li><a href="/projects" className="footer-link">Projects</a></li>
-              <li><a href="/#process" className="footer-link">Methodology</a></li>
-              <li><a href="/#technologies" className="footer-link">Tech Stack</a></li>
-              <li><a href="/#team" className="footer-link">Our Team</a></li>
-              <li><a href="/#faq" className="footer-link">Common FAQs</a></li>
-              <li><a href="/#contact" className="footer-link">Contact Us</a></li>
+              <li><a href={homePath ? '#about' : '/#about'} className="footer-link">About Studio</a></li>
+              <li><a href={homePath ? '#services' : '/#services'} className="footer-link">Our Services</a></li>
+              <li><Link to="/projects" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Projects</Link></li>
+              <li><Link to="/case-studies" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Case Studies</Link></li>
+              <li><a href={homePath ? '#process' : '/#process'} className="footer-link">Methodology</a></li>
+              <li><a href={homePath ? '#technologies' : '/#technologies'} className="footer-link">Tech Stack</a></li>
+              <li><a href={homePath ? '#team' : '/#team'} className="footer-link">Our Team</a></li>
+              <li><a href={homePath ? '#faq' : '/#faq'} className="footer-link">Common FAQs</a></li>
+              <li><a href={homePath ? '#contact' : '/#contact'} className="footer-link">Contact Us</a></li>
             </ul>
           </div>
 
