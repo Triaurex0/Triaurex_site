@@ -19,7 +19,8 @@ export default function Navbar() {
   const navLinks = [
     { name: 'About', href: homePath ? '#about' : '/#about' },
     { name: 'Services', href: homePath ? '#services' : '/#services' },
-    { name: 'Case Studies', href: '/projects' },
+    { name: 'Projects', href: '/projects' },
+    { name: 'Case Studies', href: '/case-studies' },
     { name: 'Technologies', href: homePath ? '#technologies' : '/#technologies' },
     { name: 'FAQ', href: homePath ? '#faq' : '/#faq' },
     { name: 'Contact', href: homePath ? '#contact' : '/#contact' },

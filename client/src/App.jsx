@@ -33,12 +33,13 @@ function SiteLayout({ children, apiBaseUrl }) {
 
 function PortfolioChooser() {
   const choices = [
-    { title: 'Case Studies', to: '/projects' },
-    { title: 'Projects', to: '/case-studies' }
+    { title: 'Case Studies', to: '/case-studies' },
+    { title: 'Projects', to: '/projects' }
   ];
 
   return (
-    <section className="portfolio-choice-section section" id="portfolio" aria-label="Explore our work">
+    <section className="portfolio-choice-section section" id="projects" aria-label="Explore our work">
+      <div id="portfolio" style={{ position: 'absolute' }} aria-hidden="true" />
       <div className="container">
         <div className="section-header" style={{ marginBottom: '28px' }}>
           <h2 className="section-title">Our Work & Case Studies</h2>
@@ -194,7 +195,7 @@ export default function App() {
         <Route
           path="/projects"
           element={(
-            <PortfolioPage title="Case Studies" apiBaseUrl={API_BASE_URL}>
+            <PortfolioPage title="Projects" apiBaseUrl={API_BASE_URL}>
               <Projrct sectionId="projects" />
             </PortfolioPage>
           )}
@@ -202,7 +203,7 @@ export default function App() {
         <Route
           path="/case-studies"
           element={(
-            <PortfolioPage title="Projects" apiBaseUrl={API_BASE_URL}>
+            <PortfolioPage title="Case Studies" apiBaseUrl={API_BASE_URL}>
               <CaseStudies caseStudies={caseStudies} sectionId="case-studies" />
             </PortfolioPage>
           )}

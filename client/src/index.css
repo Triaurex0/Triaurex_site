@@ -907,7 +907,8 @@ button {
 }
 
 .portfolio-choice-section,
-#portfolio {
+#portfolio,
+#projects {
   padding-top: 48px;
   padding-bottom: 52px;
   scroll-margin-top: 85px;

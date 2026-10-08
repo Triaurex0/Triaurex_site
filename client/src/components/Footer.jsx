@@ -102,8 +102,7 @@ export default function Footer({ apiBaseUrl }) {
             <ul className="footer-links footer-navigation-links">
               <li><a href="/#about" className="footer-link">About Studio</a></li>
               <li><a href="/#services" className="footer-link">Our Services</a></li>
-              <li><a href="/#portfolio" className="footer-link">Portfolio</a></li>
-              <li><a href="/projects" className="footer-link">Case Studies</a></li>
+              <li><a href="/projects" className="footer-link">Projects</a></li>
               <li><a href="/#process" className="footer-link">Methodology</a></li>
               <li><a href="/#technologies" className="footer-link">Tech Stack</a></li>
               <li><a href="/#team" className="footer-link">Our Team</a></li>
