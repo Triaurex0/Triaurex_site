@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="88" y1="36" x2="1060" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#102A25"/>
+      <stop offset="1" stop-color="#183D35"/>
+    </linearGradient>
+    <linearGradient id="chart" x1="245" y1="490" x2="1014" y2="182" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#65D8A6"/>
+      <stop offset="1" stop-color="#F3C969"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="760" rx="28" fill="url(#bg)"/>
+  <circle cx="1055" cy="115" r="170" fill="#39705D" fill-opacity=".18"/>
+  <rect x="54" y="48" width="1092" height="664" rx="20" fill="#F9FAF7"/>
+  <rect x="54" y="48" width="1092" height="62" rx="20" fill="#fff"/>
+  <path d="M54 90h1092" stroke="#E9EDE9"/>
+  <circle cx="89" cy="79" r="12" fill="#198A63"/>
+  <path d="m83 79 4 4 8-9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="113" y="85" fill="#172B25" font-family="Arial,sans-serif" font-size="19" font-weight="700">INVESTPRO</text>
+  <rect x="931" y="65" width="85" height="28" rx="14" fill="#E9F5EF"/>
+  <circle cx="949" cy="79" r="4" fill="#198A63"/>
+  <text x="960" y="83" fill="#198A63" font-family="Arial,sans-serif" font-size="10" font-weight="700">MARKET OPEN</text>
+  <circle cx="1060" cy="79" r="16" fill="#E8EFEA"/>
+  <text x="78" y="151" fill="#182B25" font-family="Arial,sans-serif" font-size="22" font-weight="700">Your market, in focus</text>
+  <text x="78" y="175" fill="#75827B" font-family="Arial,sans-serif" font-size="12">Portfolio performance and live Indian market movement</text>
+  <rect x="78" y="198" width="318" height="104" rx="12" fill="#173E33"/>
+  <text x="98" y="225" fill="#C2D5CC" font-family="Arial,sans-serif" font-size="12">PORTFOLIO VALUE</text>
+  <text x="98" y="263" fill="#fff" font-family="Arial,sans-serif" font-size="30" font-weight="700">Rs 8,42,650</text>
+  <text x="98" y="284" fill="#79D4A9" font-family="Arial,sans-serif" font-size="12">+4.82%  total returns</text>
+  <rect x="414" y="198" width="218" height="104" rx="12" fill="#F5F7F4" stroke="#E7ECE8"/>
+  <text x="434" y="226" fill="#75827B" font-family="Arial,sans-serif" font-size="12">NIFTY 50</text>
+  <text x="434" y="258" fill="#182B25" font-family="Arial,sans-serif" font-size="22" font-weight="700">23,482.15</text>
+  <text x="434" y="283" fill="#198A63" font-family="Arial,sans-serif" font-size="12">+0.68% today</text>
+  <rect x="650" y="198" width="218" height="104" rx="12" fill="#F5F7F4" stroke="#E7ECE8"/>
+  <text x="670" y="226" fill="#75827B" font-family="Arial,sans-serif" font-size="12">SENSEX</text>
+  <text x="670" y="258" fill="#182B25" font-family="Arial,sans-serif" font-size="22" font-weight="700">77,860.32</text>
+  <text x="670" y="283" fill="#198A63" font-family="Arial,sans-serif" font-size="12">+0.54% today</text>
+  <rect x="886" y="198" width="236" height="104" rx="12" fill="#F5F7F4" stroke="#E7ECE8"/>
+  <text x="906" y="226" fill="#75827B" font-family="Arial,sans-serif" font-size="12">BANK NIFTY</text>
+  <text x="906" y="258" fill="#182B25" font-family="Arial,sans-serif" font-size="22" font-weight="700">51,244.80</text>
+  <text x="906" y="283" fill="#198A63" font-family="Arial,sans-serif" font-size="12">+0.39% today</text>
+  <rect x="78" y="324" width="684" height="350" rx="12" fill="#fff" stroke="#E7ECE8"/>
+  <text x="100" y="357" fill="#182B25" font-family="Arial,sans-serif" font-size="15" font-weight="700">Portfolio performance</text>
+  <text x="100" y="378" fill="#75827B" font-family="Arial,sans-serif" font-size="11">Investment value over time</text>
+  <path d="M108 594h624M108 538h624M108 482h624M108 426h624" stroke="#EDF0ED" stroke-dasharray="4 6"/>
+  <path d="m114 573 75-28 64 15 72-76 73 24 65-88 76 28 72-102 73 16 78-67" stroke="url(#chart)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M114 573 189 545 253 560 325 484 398 508 463 420 539 448 611 346 684 362 762 295v301H114V573Z" fill="#77CBA4" fill-opacity=".1"/>
+  <text x="100" y="636" fill="#87928D" font-family="Arial,sans-serif" font-size="10">1D</text>
+  <text x="224" y="636" fill="#87928D" font-family="Arial,sans-serif" font-size="10">1W</text>
+  <text x="348" y="636" fill="#87928D" font-family="Arial,sans-serif" font-size="10">1M</text>
+  <text x="472" y="636" fill="#87928D" font-family="Arial,sans-serif" font-size="10">3M</text>
+  <text x="596" y="636" fill="#87928D" font-family="Arial,sans-serif" font-size="10">1Y</text>
+  <text x="720" y="636" fill="#87928D" font-family="Arial,sans-serif" font-size="10">5Y</text>
+  <rect x="780" y="324" width="342" height="350" rx="12" fill="#fff" stroke="#E7ECE8"/>
+  <text x="802" y="357" fill="#182B25" font-family="Arial,sans-serif" font-size="15" font-weight="700">Watchlist</text>
+  <text x="802" y="387" fill="#87928D" font-family="Arial,sans-serif" font-size="10">SYMBOL</text>
+  <text x="1030" y="387" fill="#87928D" font-family="Arial,sans-serif" font-size="10">PRICE</text>
+  <path d="M802 401h298M802 454h298M802 507h298M802 560h298M802 613h298" stroke="#EDF0ED"/>
+  <text x="802" y="433" fill="#182B25" font-family="Arial,sans-serif" font-size="12" font-weight="700">RELIANCE</text>
+  <text x="1030" y="433" fill="#182B25" font-family="Arial,sans-serif" font-size="12" font-weight="700">1,428.50</text>
+  <text x="802" y="486" fill="#182B25" font-family="Arial,sans-serif" font-size="12" font-weight="700">TCS</text>
+  <text x="1030" y="486" fill="#182B25" font-family="Arial,sans-serif" font-size="12" font-weight="700">3,842.10</text>
+  <text x="802" y="539" fill="#182B25" font-family="Arial,sans-serif" font-size="12" font-weight="700">INFY</text>
+  <text x="1030" y="539" fill="#182B25" font-family="Arial,sans-serif" font-size="12" font-weight="700">1,562.75</text>
+  <text x="802" y="592" fill="#182B25" font-family="Arial,sans-serif" font-size="12" font-weight="700">HDFCBANK</text>
+  <text x="1030" y="592" fill="#182B25" font-family="Arial,sans-serif" font-size="12" font-weight="700">1,708.30</text>
+  <text x="802" y="645" fill="#198A63" font-family="Arial,sans-serif" font-size="11" font-weight="700">VIEW STOCKS</text>
+</svg>

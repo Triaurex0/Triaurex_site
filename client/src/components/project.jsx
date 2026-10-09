@@ -20,7 +20,7 @@ function ProjectVisual({ project, large = false }) {
     <div className="project-preview project-preview-pink">
       <div className="project-preview-topbar">
         <span className="project-badge">{project.tags[0]}</span>
-        <span className="project-domain-pill">Analytics</span>
+        <span className="project-domain-pill">Project</span>
       </div>
 
       {project.image ? (

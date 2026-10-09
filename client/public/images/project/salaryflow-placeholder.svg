@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="65" y1="0" x2="1100" y2="760" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#173A43"/>
+      <stop offset="1" stop-color="#275B5B"/>
+    </linearGradient>
+    <linearGradient id="balance" x1="98" y1="196" x2="437" y2="312" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#246B63"/>
+      <stop offset="1" stop-color="#173D49"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="760" rx="28" fill="url(#bg)"/>
+  <circle cx="1090" cy="120" r="175" fill="#F2C66D" fill-opacity=".12"/>
+  <rect x="54" y="48" width="1092" height="664" rx="20" fill="#FBFCFA"/>
+  <rect x="54" y="48" width="1092" height="62" rx="20" fill="#fff"/>
+  <path d="M54 90h1092" stroke="#E9EEEB"/>
+  <rect x="78" y="64" width="30" height="30" rx="9" fill="#2C786D"/>
+  <path d="M88 78h10m-10 5h7m-7 5h10" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+  <text x="120" y="85" fill="#1C302E" font-family="Arial,sans-serif" font-size="19" font-weight="700">SalaryFlow</text>
+  <text x="78" y="151" fill="#1C302E" font-family="Arial,sans-serif" font-size="22" font-weight="700">A clearer view of your month</text>
+  <text x="78" y="175" fill="#788681" font-family="Arial,sans-serif" font-size="12">Salary-cycle budgeting, spending, and savings at a glance</text>
+  <rect x="78" y="198" width="484" height="188" rx="14" fill="url(#balance)"/>
+  <text x="103" y="232" fill="#D5E6DF" font-family="Arial,sans-serif" font-size="12">AVAILABLE BALANCE</text>
+  <text x="103" y="279" fill="#fff" font-family="Arial,sans-serif" font-size="34" font-weight="700">Rs 42,680</text>
+  <text x="103" y="310" fill="#B7D8CA" font-family="Arial,sans-serif" font-size="12">Next salary in 12 days</text>
+  <path d="M103 338h418" stroke="#FFFFFF" stroke-opacity=".18"/>
+  <text x="103" y="365" fill="#E5C87A" font-family="Arial,sans-serif" font-size="12" font-weight="700">SAFE TO SPEND TODAY</text>
+  <text x="379" y="365" fill="#fff" font-family="Arial,sans-serif" font-size="14" font-weight="700">Rs 1,250</text>
+  <rect x="580" y="198" width="258" height="88" rx="12" fill="#F2F7F3" stroke="#E6ECE8"/>
+  <circle cx="609" cy="242" r="18" fill="#DFF2E8"/>
+  <path d="M609 233v18m-6-12 6-6 6 6" stroke="#28785B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="639" y="232" fill="#788681" font-family="Arial,sans-serif" font-size="11">MONTHLY INCOME</text>
+  <text x="639" y="257" fill="#1C302E" font-family="Arial,sans-serif" font-size="19" font-weight="700">Rs 58,000</text>
+  <rect x="856" y="198" width="266" height="88" rx="12" fill="#FBF1ED" stroke="#F0E5DF"/>
+  <circle cx="885" cy="242" r="18" fill="#F8E3DB"/>
+  <path d="M885 233v18m-6-6 6 6 6-6" stroke="#BE664D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="915" y="232" fill="#8C817D" font-family="Arial,sans-serif" font-size="11">MONTHLY EXPENSES</text>
+  <text x="915" y="257" fill="#1C302E" font-family="Arial,sans-serif" font-size="19" font-weight="700">Rs 15,320</text>
+  <rect x="580" y="300" width="258" height="86" rx="12" fill="#F6F3E8" stroke="#ECE8D9"/>
+  <circle cx="609" cy="343" r="18" fill="#F1E9C8"/>
+  <path d="M602 343h14m-12-4 6-5 6 5m-12 8 6 5 6-5" stroke="#8F7836" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="639" y="334" fill="#89816D" font-family="Arial,sans-serif" font-size="11">NET SAVINGS</text>
+  <text x="639" y="359" fill="#1C302E" font-family="Arial,sans-serif" font-size="19" font-weight="700">Rs 42,680</text>
+  <rect x="856" y="300" width="266" height="86" rx="12" fill="#EEF3F7" stroke="#E2E9EF"/>
+  <circle cx="885" cy="343" r="18" fill="#DCE9F1"/>
+  <path d="M876 345h18m-15-4h12m-9-4h6m-9 12h12" stroke="#4F7186" stroke-width="1.8" stroke-linecap="round"/>
+  <text x="915" y="334" fill="#7B858E" font-family="Arial,sans-serif" font-size="11">SALARY CYCLE</text>
+  <text x="915" y="359" fill="#1C302E" font-family="Arial,sans-serif" font-size="19" font-weight="700">12 days left</text>
+  <rect x="78" y="408" width="654" height="266" rx="12" fill="#fff" stroke="#E7ECE8"/>
+  <text x="100" y="442" fill="#1C302E" font-family="Arial,sans-serif" font-size="15" font-weight="700">Income vs expenses</text>
+  <text x="100" y="462" fill="#788681" font-family="Arial,sans-serif" font-size="11">Monthly cash flow</text>
+  <path d="M112 618h592M112 574h592M112 530h592M112 486h592" stroke="#EDF0ED" stroke-dasharray="4 6"/>
+  <rect x="158" y="530" width="22" height="88" rx="4" fill="#4DA782"/>
+  <rect x="187" y="575" width="22" height="43" rx="4" fill="#DF876B"/>
+  <rect x="265" y="510" width="22" height="108" rx="4" fill="#4DA782"/>
+  <rect x="294" y="568" width="22" height="50" rx="4" fill="#DF876B"/>
+  <rect x="372" y="492" width="22" height="126" rx="4" fill="#4DA782"/>
+  <rect x="401" y="555" width="22" height="63" rx="4" fill="#DF876B"/>
+  <rect x="479" y="520" width="22" height="98" rx="4" fill="#4DA782"/>
+  <rect x="508" y="565" width="22" height="53" rx="4" fill="#DF876B"/>
+  <rect x="586" y="480" width="22" height="138" rx="4" fill="#4DA782"/>
+  <rect x="615" y="548" width="22" height="70" rx="4" fill="#DF876B"/>
+  <text x="163" y="641" fill="#788681" font-family="Arial,sans-serif" font-size="10">JAN</text>
+  <text x="270" y="641" fill="#788681" font-family="Arial,sans-serif" font-size="10">FEB</text>
+  <text x="377" y="641" fill="#788681" font-family="Arial,sans-serif" font-size="10">MAR</text>
+  <text x="484" y="641" fill="#788681" font-family="Arial,sans-serif" font-size="10">APR</text>
+  <text x="591" y="641" fill="#788681" font-family="Arial,sans-serif" font-size="10">MAY</text>
+  <rect x="750" y="408" width="372" height="266" rx="12" fill="#fff" stroke="#E7ECE8"/>
+  <text x="774" y="442" fill="#1C302E" font-family="Arial,sans-serif" font-size="15" font-weight="700">Recent activity</text>
+  <text x="774" y="462" fill="#788681" font-family="Arial,sans-serif" font-size="11">This salary cycle</text>
+  <path d="M774 483h324M774 536h324M774 589h324" stroke="#EDF0ED"/>
+  <circle cx="797" cy="509" r="15" fill="#F8E3DB"/>
+  <path d="M797 502v14m-5-5 5 5 5-5" stroke="#BE664D" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="823" y="506" fill="#1C302E" font-family="Arial,sans-serif" font-size="12" font-weight="700">Groceries</text>
+  <text x="823" y="522" fill="#788681" font-family="Arial,sans-serif" font-size="10">Today · Food</text>
+  <text x="1013" y="513" fill="#BE664D" font-family="Arial,sans-serif" font-size="12" font-weight="700">- Rs 1,240</text>
+  <circle cx="797" cy="562" r="15" fill="#DFF2E8"/>
+  <path d="M797 569v-14m-5 5 5-5 5 5" stroke="#28785B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="823" y="559" fill="#1C302E" font-family="Arial,sans-serif" font-size="12" font-weight="700">Monthly salary</text>
+  <text x="823" y="575" fill="#788681" font-family="Arial,sans-serif" font-size="10">Jun 1 · Income</text>
+  <text x="1013" y="566" fill="#28785B" font-family="Arial,sans-serif" font-size="12" font-weight="700">+ Rs 58,000</text>
+  <circle cx="797" cy="615" r="15" fill="#F6F3E8"/>
+  <path d="M790 615h14m-12-4 6-5 6 5m-12 8 6 5 6-5" stroke="#8F7836" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="823" y="612" fill="#1C302E" font-family="Arial,sans-serif" font-size="12" font-weight="700">Savings deposit</text>
+  <text x="823" y="628" fill="#788681" font-family="Arial,sans-serif" font-size="10">May 30 · Savings</text>
+  <text x="1013" y="619" fill="#1C302E" font-family="Arial,sans-serif" font-size="12" font-weight="700">Rs 5,000</text>
+</svg>

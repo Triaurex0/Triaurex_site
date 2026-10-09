@@ -2124,7 +2124,7 @@ button {
 .team-card-meta { width: 100%; display: flex; align-items: center; justify-content: flex-start; margin-bottom: 20px; text-transform: uppercase; }
 .team-member-label { padding: 4px 10px; border: 1px solid rgba(0, 190, 230, .45); border-radius: 4px; color: var(--primary-cyan); font-size: .58rem; font-weight: 700; letter-spacing: .06em; }
 .team-member-number { color: #94a3ad; font-size: .58rem; letter-spacing: .08em; }
-.team-photo { width: 148px; height: 148px; object-fit: cover; border: 3px solid #00bfe8; border-radius: 16px; box-shadow: 0 0 20px rgba(0, 200, 255, .28); }
+.team-photo { width: 148px; height: 148px; object-fit: cover; object-position: center 10%; border: 3px solid #00bfe8; border-radius: 16px; box-shadow: 0 0 20px rgba(0, 200, 255, .28); }
 .team-member-name { margin-top: 16px; color: #d7e4f7; font-size: 1.18rem; }
 .team-member-designation { min-height: 24px; margin-top: 4px; color: var(--primary-cyan); font-size: .68rem; font-weight: 700; letter-spacing: .045em; text-transform: uppercase; }
 .team-member-description { display: flex; flex: 1; align-items: center; min-height: 86px; margin: 15px 0 4px; color: #b5c0cc; font-size: .82rem; line-height: 1.65; }

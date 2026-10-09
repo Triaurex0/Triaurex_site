@@ -187,5 +187,69 @@ export const projects = [
       outcome: 'The analysis presents clear insights into how passenger characteristics related to survival outcomes.'
     },
     links: { github: 'https://github.com/Aishwaryaselvaraju/CODSOFT' }
+  },
+  {
+    title: 'InvestPro',
+    role: 'mobile apps',
+    summary: 'A Flutter investing app for Indian markets with live stock data, portfolio tracking, stock research, and a digital wallet.',
+    description: 'InvestPro brings market monitoring and personal investing tools into one Flutter app. Its dashboard surfaces live Indian market data, portfolio performance, watchlists, trending stocks, and market news, while stock detail views combine historical charts and company fundamentals with buy and sell order flows. A Python FastAPI proxy backed by yfinance provides real-time quotes and market data to the app.',
+    tags: ['Flutter', 'Mobile Apps', 'Dart', 'Riverpod', 'FastAPI', 'Yahoo Finance'],
+    image: '/images/project/investpro-placeholder.svg',
+    imageFit: 'contain',
+    impact: '15',
+    impactLabel: 'Indian Stocks Tracked',
+    features: [
+      'Live quotes for 15 major Indian stocks with automatic refresh and cached-data status',
+      'Market overview for NIFTY 50, SENSEX, and BANK NIFTY with market-open status',
+      'Stock search and detail pages with price, volume, company information, and financial fundamentals',
+      'Interactive historical OHLCV price charts with 1D, 1W, 1M, 3M, 1Y, and 5Y ranges',
+      'Buy and sell share order flows with quantity and order-value calculation',
+      'Portfolio summary with investment value, returns, daily P&L, holdings, and asset allocation',
+      'Watchlist with stock prices, percentage changes, and daily P&L',
+      'Wallet with available balance, linked bank account, add-money and withdrawal flows, and transaction history',
+      'Dashboard views for trending stocks, top gainers, top losers, and market news',
+      'Account access with sign-up, login, OTP verification, password recovery, and biometric login',
+      'Notifications, profile, local secure storage, and refreshable market data',
+      'FastAPI market-data proxy endpoints for quotes, batch quotes, price history, search, news, and market overview'
+    ],
+    caseStudy: {
+      problem: 'Investors need a single, dependable place to follow Indian market movements, research stocks, and understand their holdings without switching between disconnected tools.',
+      process: 'Built a Flutter application with Riverpod state management and interactive charts, then connected market-data services through a Python FastAPI proxy using yfinance to avoid browser-side API restrictions. Added portfolio, watchlist, wallet, and account flows around the market experience.',
+      solution: 'A cross-platform investment tracker that combines live market overviews, stock search and research, historical price charts, buy and sell order flows, portfolio analysis, watchlists, and wallet management.',
+      outcome: 'The app presents quotes and market indexes from a real-time data service, refreshes market information automatically, and indicates when it must fall back to cached data. It includes dedicated screens for core investing and account workflows.'
+    },
+    links: { github: 'https://github.com/Mayilraj13/Investpro' }
+  },
+  {
+    title: 'SalaryFlow',
+    role: 'mobile apps',
+    summary: 'A Flutter personal-finance tracker for salary cycles, income, expenses, savings, rent, and spending insights.',
+    description: 'SalaryFlow helps people organize their finances around their salary date. Its dashboard summarizes available balance, monthly expenses and savings, days until payday, and a safe-to-spend amount. Dedicated areas cover income and expenses, transaction calendar, analytics, savings goals, rent tracking, affordability, reflections, and salary-cycle reports. Data is stored locally in a Drift-backed SQLite database.',
+    tags: ['Flutter', 'Mobile Apps', 'Dart', 'Riverpod', 'Drift', 'SQLite', 'fl_chart'],
+    image: '/images/project/salaryflow-placeholder.svg',
+    imageFit: 'contain',
+    impact: '12',
+    impactLabel: 'Finance Modules',
+    features: [
+      'Salary-aware dashboard with balance, monthly income and expenses, savings, days until payday, and daily safe-to-spend guidance',
+      'Configurable salary date and salary-cycle date ranges',
+      'Income records with add, edit, delete, search, monthly totals, and refresh',
+      'Expense records with add, edit, delete, quick-add actions, search, category filters, and monthly totals',
+      'Calendar with month navigation, income and expense indicators, and per-day transaction details',
+      'Analytics for income, expenses, and net savings with category breakdowns and spending, cash-flow, and savings charts',
+      'Savings tracking with goals, progress, and deposits',
+      'Rent tracking with payment status, due dates, and rent history',
+      'Affordability tools and personal finance reflections',
+      'Salary-cycle reports with income, expenses, savings, rent status, category totals, and past-cycle history',
+      'Local Drift and SQLite data storage, refreshable views, and transaction notifications',
+      'Settings for personal finance preferences, theme, and security, including biometric authentication'
+    ],
+    caseStudy: {
+      problem: 'Monthly budgets often overlook the timing of a paycheck, leaving it difficult to judge what is safe to spend before the next salary arrives or to understand spending across salary periods.',
+      process: 'Organized the app into focused finance modules, used Riverpod for state management and Drift with SQLite for local records, and added chart-based analytics for category totals, monthly expenses, income versus expenses, and savings trends.',
+      solution: 'A salary-cycle-aware personal finance app that brings daily budgeting, income and expense records, calendar views, savings goals, rent tracking, affordability, reflections, and reports together.',
+      outcome: 'Users can review their balance and safe-to-spend guidance, manage and search transactions, inspect patterns across calendar days and salary cycles, and track savings and rent from a locally stored finance history.'
+    },
+    links: { github: 'https://github.com/Mayilraj13/salaryflow' }
   }
 ];
