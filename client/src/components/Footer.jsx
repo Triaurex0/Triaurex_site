@@ -109,7 +109,6 @@ export default function Footer({ apiBaseUrl }) {
               <li><Link to="/case-studies" className="footer-link" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>Case Studies</Link></li>
               <li><a href={homePath ? '#process' : '/#process'} className="footer-link">Methodology</a></li>
               <li><a href={homePath ? '#technologies' : '/#technologies'} className="footer-link">Tech Stack</a></li>
-              <li><a href={homePath ? '#team' : '/#team'} className="footer-link">Our Team</a></li>
               <li><a href={homePath ? '#faq' : '/#faq'} className="footer-link">Common FAQs</a></li>
               <li><a href={homePath ? '#contact' : '/#contact'} className="footer-link">Contact Us</a></li>
             </ul>

@@ -13,10 +13,9 @@ import Technologies from './components/Technologies';
 import Testimonials from './components/Testimonials';
 import FAQ from './components/FAQ';
 import Contact from './components/Contact';
-import TeamIntro from './components/TeamIntro';
-import { teamSection } from './data/teamMembers';
 import Footer from './components/Footer';
 import Chatbot from './components/Chatbot/Chatbot';
+import SEO from './components/SEO';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:5000';
 
@@ -72,7 +71,6 @@ function HomePage({ companyInfo, services, processSteps, techList, testimonials,
       <Technologies techList={techList} />
       <Testimonials testimonials={testimonials} apiBaseUrl={apiBaseUrl} />
       <FAQ faqs={faqs} />
-      <TeamIntro section={teamSection} />
       <Contact apiBaseUrl={apiBaseUrl} />
     </SiteLayout>
   );
@@ -176,6 +174,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      <SEO />
       <RouteScrollReset />
       <Routes>
         <Route

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://triaurex.com/sitemap.xml
+
