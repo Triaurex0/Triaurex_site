@@ -34,25 +34,37 @@ function SiteLayout({ children, apiBaseUrl }) {
 
 function PortfolioChooser() {
   const choices = [
-    { title: 'Projects', to: '/projects' },
-    { title: 'Case Studies', to: '/case-studies' }
+    {
+      title: 'Projects',
+      badge: 'Client Work & Web Platforms',
+      desc: 'Explore shipped client solutions across modern web platforms, healthcare mobile apps, and high-conversion e-commerce marketplaces.',
+      to: '/projects'
+    },
+    {
+      title: 'Case Studies',
+      badge: 'Data & Analytics Deep Dives',
+      desc: 'Dive into technical architectures, Power BI sales & election dashboards, Flutter fintech apps, and data-driven business results.',
+      to: '/case-studies'
+    }
   ];
 
   return (
     <section className="portfolio-choice-section section" id="projects" aria-label="Explore our work">
       <div id="portfolio" style={{ position: 'absolute' }} aria-hidden="true" />
       <div className="container">
-        <div className="section-header" style={{ marginBottom: '28px' }}>
+        <div className="section-header" style={{ marginBottom: '32px' }}>
           <h2 className="section-title">Our Work & Case Studies</h2>
           <p className="section-subtitle">
-            Explore our curated portfolio of projects and deep-dive technical case studies.
+            Explore our curated portfolio of client deliverables and deep-dive technical analytics case studies.
           </p>
         </div>
         <div className="portfolio-selector">
           {choices.map((choice) => (
             <Link className="portfolio-selector-card" to={choice.to} key={choice.title}>
+              <span className="portfolio-choice-badge">{choice.badge}</span>
               <span className="portfolio-choice-title">{choice.title}</span>
-              <span className="portfolio-choice-view">View <ArrowRight size={14} /></span>
+              <p className="portfolio-choice-desc">{choice.desc}</p>
+              <span className="portfolio-choice-view">View {choice.title} <ArrowRight size={14} /></span>
             </Link>
           ))}
         </div>
