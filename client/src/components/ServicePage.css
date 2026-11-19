@@ -1,0 +1,18 @@
+.service-page .sp-h2 { font-size: 1.6rem; margin: 48px 0 20px; text-align: left; }
+.sp-intro { display: flex; gap: 20px; align-items: center; padding: 28px; }
+.sp-intro p { color: var(--text-secondary); font-size: 1.1rem; line-height: 1.7; margin: 0; }
+.sp-intro .service-icon-box { margin-bottom: 0; flex-shrink: 0; }
+.sp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.sp-item { display: flex; gap: 12px; align-items: center; padding: 16px 18px; color: #e2e8f0; }
+.sp-step { padding: 22px; }
+.sp-step h3 { margin: 6px 0; color: #fff; }
+.sp-step p { color: var(--text-secondary); margin: 0; line-height: 1.6; }
+.sp-num { color: #00f0ff; font-weight: 700; font-size: 0.9rem; }
+.sp-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+.sp-tag { padding: 8px 16px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.12); background: rgba(255,255,255,0.04); color: #e2e8f0; font-size: 0.9rem; text-decoration: none; }
+.sp-link:hover { border-color: #00f0ff; color: #00f0ff; }
+.sp-cta { margin-top: 56px; padding: 36px; text-align: center; }
+.sp-cta h2 { color: #fff; margin-bottom: 8px; }
+.sp-cta p { color: var(--text-secondary); margin-bottom: 22px; }
+@media (max-width: 640px) { .sp-intro { flex-direction: column; align-items: flex-start; } }
+

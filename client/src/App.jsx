@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
-import { BrowserRouter, Link, Navigate, Route, Routes, useLocation } from 'react-router-dom';
+import { BrowserRouter, Link, Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Hero1 from './components/Hero1';
 import About from './components/About';
 import Services from './components/Services';
+import ServicePage from './components/ServicePage';
+import { getServiceBySlug } from './data/servicesData';
 import CaseStudies from './components/CaseStudies';
 import Projrct from './components/project';
 import Process from './components/Process';
@@ -17,7 +19,7 @@ import Footer from './components/Footer';
 import Chatbot from './components/Chatbot/Chatbot';
 import SEO from './components/SEO';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://127.0.0.1:5000';
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://triaurex-site.onrender.com';
 
 function SiteLayout({ children, apiBaseUrl }) {
   return (
@@ -65,7 +67,7 @@ function HomePage({ companyInfo, services, processSteps, techList, testimonials,
       <Hero1 />
       <Hero companyData={companyInfo} />
       <About companyData={companyInfo} />
-      <Services services={services} />
+      <Services />
       <PortfolioChooser />
       <Process processSteps={processSteps} />
       <Technologies techList={techList} />
@@ -96,6 +98,17 @@ function PortfolioPage({ title, apiBaseUrl, children }) {
         </header>
         {children}
       </main>
+    </SiteLayout>
+  );
+}
+
+function ServiceRoute({ apiBaseUrl }) {
+  const { slug } = useParams();
+  const service = getServiceBySlug(slug);
+  if (!service) return <Navigate to="/#services" replace />;
+  return (
+    <SiteLayout apiBaseUrl={apiBaseUrl}>
+      <ServicePage service={service} />
     </SiteLayout>
   );
 }
@@ -131,7 +144,7 @@ export default function App() {
   const [testimonials, setTestimonials] = useState([]);
   const [faqs, setFaqs] = useState([]);
 
-  // Fetch data from Flask backend
+  // Fetch data from Flask backend (hosted on Render in production)
   useEffect(() => {
     const checkApiAndLoadData = async () => {
       try {
@@ -161,7 +174,7 @@ export default function App() {
           setApiStatus({ connected: false, loading: false });
         }
       } catch (err) {
-        console.warn('Could not establish connection to Flask backend on :5000. Fallback data active.');
+        console.warn('Could not establish connection to Flask backend on Render. Fallback data active.');
         setApiStatus({ connected: false, loading: false });
       }
     };
@@ -207,6 +220,7 @@ export default function App() {
             </PortfolioPage>
           )}
         />
+        <Route path="/services/:slug" element={<ServiceRoute apiBaseUrl={API_BASE_URL} />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>

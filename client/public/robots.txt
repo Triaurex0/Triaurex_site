@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://triaurex.com/sitemap.xml
-
+Sitemap: https://triaurexsite.vercel.app/sitemap.xml

@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import { getServiceBySlug } from '../data/servicesData';
 
-const DEFAULT_ORIGIN = 'https://triaurex.com';
+const DEFAULT_ORIGIN = 'https://triaurexsite.vercel.app';
 
-const seoConfigs = {
+const staticSeoConfigs = {
   '/': {
     title: 'TRIAUREX | Digital Product Studio | Web, Mobile & UI/UX Design',
     description: 'TRIAUREX is an elite digital product studio crafting high-performance web applications, intuitive UI/UX design systems, and scalable mobile apps for global teams.',
@@ -59,7 +60,27 @@ export default function SEO() {
         ? window.location.origin
         : (import.meta.env.VITE_SITE_URL || DEFAULT_ORIGIN);
 
-    const config = seoConfigs[pathname] || seoConfigs['/'];
+    let config = staticSeoConfigs[pathname];
+
+    // Check if it's a dynamic service page
+    if (!config && pathname.startsWith('/services/')) {
+      const slug = pathname.replace('/services/', '').split('/')[0];
+      const service = getServiceBySlug(slug);
+      if (service) {
+        config = {
+          title: service.seoTitle,
+          description: service.seoDescription,
+          keywords: `${service.title}, ${service.tech?.join(', ')}, TRIAUREX services`,
+          image: '/hero1.jpg',
+          imageAlt: `${service.title} - TRIAUREX`
+        };
+      }
+    }
+
+    if (!config) {
+      config = staticSeoConfigs['/'];
+    }
+
     const canonicalUrl = `${origin}${pathname === '/' ? '/' : pathname}`;
     const imageUrl = config.image.startsWith('http') ? config.image : `${origin}${config.image}`;
 
@@ -94,4 +115,3 @@ export default function SEO() {
 
   return null;
 }
-

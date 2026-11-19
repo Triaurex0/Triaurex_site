@@ -94,39 +94,100 @@ COMPANY_DATA = {
 
 SERVICES_DATA = [
     {
-        "id": "ui-ux",
-        "title": "UI/UX Design",
-        "icon": "Palette",
-        "description": "User-first digital experiences engineered for maximum conversion, visual delight, and effortless human interaction.",
-        "deliverables": ["User Research & Personas", "Wireframing & Interactive Prototypes", "Design Systems & Token Libraries", "Micro-interactions & UX Audits"]
-    },
-    {
-        "id": "web-dev",
+        "id": "web-development",
         "title": "Web Development",
         "icon": "Code",
-        "description": "Blazing-fast modern web applications built on scalable React, Next.js, and rock-solid Python backend architectures.",
-        "deliverables": ["High-Performance Single Page Apps", "Full-Stack API Integration", "Headless CMS & E-Commerce", "Core Web Vitals & SEO Optimization"]
+        "description": "Blazing-fast modern web applications built with React, Next.js, and high-throughput backend architectures.",
+        "deliverables": [
+            "High-performance Single Page Applications (React, Vite, Next.js)",
+            "Custom SaaS platforms, dashboards, and client portals",
+            "Headless CMS, E-Commerce, and payment gateway integration",
+            "Core Web Vitals and SEO optimization"
+        ]
     },
     {
-        "id": "mobile-dev",
-        "title": "Android App Development",
+        "id": "app-software-development",
+        "title": "App & Software Development",
         "icon": "Smartphone",
-        "description": "Native and high-performance Android mobile apps with fluid UI, offline persistence, and seamless push ecosystem integration.",
-        "deliverables": ["Native Android Architecture", "Jetpack Compose & Kotlin Engineering", "Google Play Store Optimization", "Realtime Sync & Device Hardware APIs"]
+        "description": "Native Android and cross-platform mobile apps with fluid animations, offline persistence, and clean architecture.",
+        "deliverables": [
+            "Native Android development with Kotlin & Jetpack Compose",
+            "Cross-platform mobile apps using Flutter & Riverpod",
+            "Offline sync, push notifications, and biometric login",
+            "Google Play Store release and optimization"
+        ]
     },
     {
-        "id": "branding",
-        "title": "Branding & Identity",
+        "id": "backend-api-database",
+        "title": "Backend, API & Database",
+        "icon": "Server",
+        "description": "High-throughput RESTful APIs, microservices, and optimized relational/NoSQL database architectures.",
+        "deliverables": [
+            "High-speed RESTful API development (Python Flask, FastAPI, Node.js)",
+            "Relational database schema modeling (PostgreSQL, MySQL, SQLite)",
+            "NoSQL data modeling (MongoDB, Firebase Firestore, Supabase)",
+            "Database indexing, query execution planning, and performance tuning"
+        ]
+    },
+    {
+        "id": "ui-ux-web-design",
+        "title": "UI/UX & Web Design",
+        "icon": "Palette",
+        "description": "Human-centered digital design, interactive Figma prototypes, and comprehensive design systems engineered for conversion.",
+        "deliverables": [
+            "Comprehensive user research, personas, and behavioral mapping",
+            "Information architecture, wireframing, and interactive prototypes",
+            "Scalable design systems with responsive tokens and style guides",
+            "Developer-ready Figma handoff files with design documentation"
+        ]
+    },
+    {
+        "id": "branding-logo-design",
+        "title": "Branding & Logo Design",
         "icon": "Sparkles",
-        "description": "Strategic brand positioning, cohesive visual identities, typography, and guidelines that make your company unforgettable.",
-        "deliverables": ["Brand Strategy & Voice", "Logo Design & Visual Language", "Brand Style Guides & Assets", "Pitch Decks & Marketing Collateral"]
+        "description": "Strategic brand identity, unforgettable logos, typography systems, and comprehensive brand guidelines that command authority.",
+        "deliverables": [
+            "Brand strategy, voice, and market positioning",
+            "Custom vector logo design (primary, secondary, wordmark)",
+            "Color palette psychology and custom typography pairings",
+            "Pitch decks, brand manuals, and marketing collateral"
+        ]
     },
     {
-        "id": "data-analysis",
-        "title": "Data Analysis",
-        "icon": "Cpu",
-        "description": "Turn raw business data into clear insights with reliable analysis, interactive dashboards, and practical recommendations.",
-        "deliverables": ["Data Cleaning & Preparation", "Exploratory Data Analysis", "Power BI Dashboards & Reporting", "Trend Analysis & Business Insights"]
+        "id": "chatbot-development",
+        "title": "Chatbot Development",
+        "icon": "Bot",
+        "description": "Intelligent, context-aware AI chatbots and customer support assistants that automate inquiries and capture leads 24/7.",
+        "deliverables": [
+            "Custom AI chatbot widget integrated into web and mobile apps",
+            "Domain knowledge base mapping and instant FAQ retrieval",
+            "OpenAI / Anthropic / Gemini LLM API integration",
+            "Automated lead capture, email dispatch, and CRM sync"
+        ]
+    },
+    {
+        "id": "data-analysis-dashboards",
+        "title": "Data Analysis & Dashboards",
+        "icon": "BarChart3",
+        "description": "Turn raw business data into actionable growth strategies with interactive Power BI, Excel, and Tableau dashboards.",
+        "deliverables": [
+            "Automated ETL pipelines: data extraction, cleaning, and preparation",
+            "Interactive Power BI executive dashboards with DAX calculations",
+            "Advanced Excel dashboards with PivotTables, dynamic slicers, and macros",
+            "Tableau visualizations for regional, product, and sales trend analysis"
+        ]
+    },
+    {
+        "id": "authentication-authorization",
+        "title": "Authentication & Authorization",
+        "icon": "ShieldCheck",
+        "description": "Secure login, sessions, and role-based access control so the right people access the right data.",
+        "deliverables": [
+            "Email/password login with secure hashing (bcrypt/argon2)",
+            "JWT and session-based authentication architectures",
+            "Google, Apple, and social login (OAuth 2.0 / OpenID Connect)",
+            "Role-based access control (admin, manager, member, guest)"
+        ]
     }
 ]
 
